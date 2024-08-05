@@ -22,7 +22,7 @@ const MenuProps = {
   },
 };
 
-const API_URL = process.env.API_URL;
+const REACT_APP_API_URL = process.env.REACT_APP_API_URL;
 
 function Home() {
 
@@ -41,7 +41,7 @@ function Home() {
 
   const handleSearch = async () => {
     try {
-      const response = await fetch(`${API_URL}/fuzzymatching/`, {
+      const response = await fetch(`${REACT_APP_API_URL}/fuzzymatching/`, {
                          method: 'POST',
                          headers: {
                            'Content-Type': 'application/json',
@@ -65,7 +65,7 @@ function Home() {
   
   const handleTranslate = async () => {
     try {
-      const response = await fetch('${API_URL}/translate/', {
+      const response = await fetch(`${REACT_APP_API_URL}/translate/`, {
                          method: 'POST',
                          headers: {
                            'Content-Type': 'application/json',
