@@ -1,1 +1,1 @@
-docker build --tag website-app:latest .
+docker build --tag codex-website-app:latest .

@@ -22,6 +22,8 @@ const MenuProps = {
   },
 };
 
+const API_URL = process.env.API_URL;
+
 function Home() {
 
   const theme = useTheme();
@@ -39,7 +41,17 @@ function Home() {
 
   const handleSearch = async () => {
     try {
-      const response = await fetch(`http://localhost:8000/fuzzymatching/?query=${inputSearch}&target_language=${targetLanguage}&source_language=${sourceLanguage}`);
+      const response = await fetch(`${API_URL}/fuzzymatching/`, {
+                         method: 'POST',
+                         headers: {
+                           'Content-Type': 'application/json',
+                         },
+                         body: JSON.stringify({
+                           query: inputSearch,
+                           target_language: targetLanguage,
+                           source_language: sourceLanguage,
+                         }),
+                       });
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
@@ -53,7 +65,16 @@ function Home() {
   
   const handleTranslate = async () => {
     try {
-      const response = await fetch(`http://localhost:8000/translate/?query=${selectedMedicine}&target_language=${targetLanguage}`);
+      const response = await fetch('${API_URL}/translate/', {
+                         method: 'POST',
+                         headers: {
+                           'Content-Type': 'application/json',
+                         },
+                         body: JSON.stringify({
+                           query: selectedMedicine,
+                           target_language: targetLanguage,
+                         }),
+                       });
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
