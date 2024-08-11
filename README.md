@@ -22,7 +22,7 @@ Set the Service Plan variables
 ```shell
 export AZ_APPSERVICE_PLAN="MedicalCodexApp"
 export AZ_RESGRP="project_codex_dev"
-export AZ_APP_NAME="MedicalCodexFrondend"
+export AZ_APP_NAME="MedicalCodexFrontend"
 ```
 
 If you don't have already an App Service Plan, create one
@@ -45,3 +45,20 @@ az webapp create --name "${AZ_APP_NAME}" \
 --runtime "NODE:20-lts"
 ```
 
+## Configure Environment Variables
+
+```shell
+az webapp config appsettings set --name "${AZ_APP_NAME}" --resource-group "${AZ_RESGRP}" --settings SCM_DO_BUILD_DURING_DEPLOYMENT=1
+```
+
+```shell
+az webapp config appsettings set --name "${AZ_APP_NAME}" --resource-group "${AZ_RESGRP}" --settings REACT_APP_API_URL="https://medicalcodexbackend.azurewebsites.net"
+```
+
+## Deploy Web App
+
+```
+az webapp up --name "${AZ_APP_NAME}" \
+--resource-group "${AZ_RESGRP}" \
+--sku B1 --runtime "NODE:20-lts"
+```

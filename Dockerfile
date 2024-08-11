@@ -17,7 +17,7 @@ COPY . .
 RUN npm run build
 
 # Stage 2: Serve the application
-FROM fholzer/nginx-brotli:v1.12.2
+FROM fholzer/nginx-brotli:v1.23.4
 
 # Copy nginx configuration file
 COPY nginx.conf /etc/nginx/nginx.conf
