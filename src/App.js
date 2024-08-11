@@ -8,8 +8,6 @@ import About from './components/About/About';
 import Help from './components/Help/Help.js';
 import Admin from './components/Admin/Admin.js';
 
-require('dotenv').config();
-
 function App() {
   return (
     <div className="App">
