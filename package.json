@@ -7,19 +7,19 @@
     "@emotion/styled": "^11.13.0",
     "@mui/material": "^5.16.6",
     "@testing-library/react": "^16.0.0",
+    "eslint-config-react-app": "^7.0.1",
+    "next": "^14.2.13",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.52.2",
     "react-icons": "^5.2.1",
     "react-router-dom": "^6.26.0",
-    "react-scripts": "^5.0.1",
-    "eslint-config-react-app": "^7.0.1"
+    "react-scripts": "^5.0.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "mocha --timeout 1000",
-    "eject": "react-scripts eject"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
   },
   "eslintConfig": {
     "extends": [
@@ -40,7 +40,8 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "mocha": "^10.7.0",
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
+    "typescript": "^5.6.2"
   }
 }
