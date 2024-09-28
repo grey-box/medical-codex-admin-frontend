@@ -160,3 +160,7 @@ cython_debug/
 #.idea/
 /.idea/
 /node_modules/
+
+# ...
+.next
+next-env.d.ts
