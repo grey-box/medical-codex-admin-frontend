@@ -10,11 +10,15 @@ function SearchBox() {
             align-items: center;
             flex-direction: column;
             width: 10em;
+            margin: 2em;
         }
 
         #search-box {
-        font-size: 24px;
+            font-size: .75em;
+            padding: .5em 1em;
             width: 100%;
+            border: none;
+            border-radius: 1em;
         }
 
         #dropdown-content {
@@ -30,11 +34,11 @@ function SearchBox() {
     `;
     return (
         <div id="search">
+            <style>{style}</style>
             <input id="search-box" placeholder="search medication names" type="text" />
             <ul id="dropdown-content">
                 {list.map((item) => <li key={item} >{item} </li>)}
             </ul>
-            <style>{style}</style>
         </div>
     );
 }

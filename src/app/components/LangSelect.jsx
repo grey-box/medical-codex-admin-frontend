@@ -17,8 +17,11 @@ function LangSelect(label) {
             display: flex;
             margin: .5em;
         }
-        .radio-option input{
+        .radio-option input {
             margin: .5em;
+        }
+        .radio-option label {
+            font-style: italic;
         }
     `;
     return (
