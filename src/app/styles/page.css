@@ -48,3 +48,9 @@
     font-size: 18px;
   }
 }
+
+@media screen and (max-width: 500px){
+  #main {
+    font-size: 14px;
+  }
+}
