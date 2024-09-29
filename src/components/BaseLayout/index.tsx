@@ -1,3 +1,4 @@
+import Navbar from '../Navbar/Navbar'
 interface BaseLayoutProps {
   children: React.ReactNode;
 }
@@ -5,6 +6,7 @@ interface BaseLayoutProps {
 export default function BaseLayout({ children }: BaseLayoutProps) {
   return (
     <>
+      <Navbar />
       <div className="w-full h-full">{children}</div>
     </>
   );
