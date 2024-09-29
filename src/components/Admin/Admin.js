@@ -15,9 +15,7 @@ function LoginForm({ onSubmit }) {
       className="flex flex-col max-w-[600px] mx-auto top-[3000px] p-[100px] bg-cover bg-left"
     >
       <div className="flex flex-col mb-4">
-        <label htmlFor="username" className="mb-2">
-          Username:
-        </label>
+        <div className="mb-2">Username:</div>
         <input
           type="text"
           id="username"
@@ -31,9 +29,7 @@ function LoginForm({ onSubmit }) {
         )}
       </div>
       <div className="flex flex-col mb-4">
-        <label htmlFor="password" className="mb-2">
-          Password:
-        </label>
+        <div className="mb-2">Password:</div>
         <input
           type="password"
           id="password"
@@ -59,9 +55,9 @@ function LoginForm({ onSubmit }) {
 function Dashboard({ username, onLogout }) {
   return (
     <div className="m-8">
-      <h2 className="mb-4 text-4xl">
+      <div className="mb-4 text-4xl">
         Welcome to the Admin Console, {username}!
-      </h2>
+      </div>
       <div className="flex justify-end mb-4">
         <button
           className="bg-red-600 text-white p-2 rounded-[0.25rem] cursor-pointer"
@@ -82,9 +78,9 @@ function Admin() {
       className="flex flex-col h-[91vh] bg-cover bg-center"
       style={{ backgroundImage: "url('../../background.jpg')" }}
     >
-      <header className="bg-[#729775] text-[rgb(12,0,0)] p-4">
-        <h1>Admin Login Portal</h1>
-      </header>
+      <div className="bg-[#729775] text-[rgb(12,0,0)] p-4">
+        <div className="text-3xl font-bold">Admin Login Portal</div>
+      </div>
       <main>
         {isLoggedIn ? (
           <Dashboard username={username} onLogout={handleLogout} />
@@ -92,11 +88,11 @@ function Admin() {
           <LoginForm onSubmit={handleLogin} />
         )}
       </main>
-      <footer className="bg-[#729775] text-[rgb(10,0,0)] p-4 mt-auto">
+      <div className="bg-[#729775] text-[rgb(10,0,0)] p-4 mt-auto">
         <div className="icons">
           <SocialMediaIcons />
         </div>
-      </footer>
+      </div>
     </div>
   );
 }
