@@ -1,6 +1,8 @@
 # medical-codex-admin-frontend
 Medical codex Administration Frontend
 
+test
+
 ## Installation steps for Azure (MacOS based)
 
 ```shell
