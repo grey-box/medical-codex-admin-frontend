@@ -23,10 +23,12 @@ function SearchBox() {
 
         #dropdown-content {
             display: none;
+            position: absolute;
             font-size: .75em;
             color: black;
             list-style: none;
             max-height: 5em;
+            width: inherit;
             z-index: 2;
             overflow-y: scroll;
             width: 100%;
