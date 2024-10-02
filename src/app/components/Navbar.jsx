@@ -15,7 +15,14 @@ function Navbar(label) {
     const style = `
         #navbar {
             height: 3em;
-            background-color:
+            background-color: grey;
+            position: sticky;
+            top: 0;
+            width: 100%;
+        }
+        #logo {
+            height: 3em;
+            width: 3em;
         }
     `;
     return (
@@ -23,7 +30,7 @@ function Navbar(label) {
         <style>
             {style}
         </style>
-        <img src="\logoGREY-BOX.jpg"></img>
+        <img id="logo" src="\logoGREY-BOX.jpg"></img>
     </nav>
     );
 }
