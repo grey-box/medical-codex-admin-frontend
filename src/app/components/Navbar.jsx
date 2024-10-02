@@ -42,6 +42,7 @@ function Navbar(label) {
             text-align: center;
             text-decoration: none;
             padding: .8em;
+            font-weight: 500;
         }
         .nav-link:hover {
             background-color: var(--accent);
@@ -100,9 +101,9 @@ function Navbar(label) {
         </style>
         <img id="logo" src="\logoGREY-BOX.jpg"></img>
         <div id="nav-links">
-            <a className="nav-link" href="#">Home</a>
-            <a className="nav-link" href="#">About</a>
-            <a className="nav-link" href="#">Help</a>
+            <a className="nav-link" href="#">HOME</a>
+            <a className="nav-link" href="#">ABOUT</a>
+            <a className="nav-link" href="#">HELP</a>
         </div>
         <div id="lang-picker">
             <div id="lang-selected">

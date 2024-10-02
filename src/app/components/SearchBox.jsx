@@ -2,13 +2,20 @@
 import { useState } from "react";
 
 function SearchBox() {
-    const list = ["Tylenol", "Advil", "Aleve"];
+    const list = ["Tylenol", "Advil", "Aleve", "Aspirin"];
     
+    const [
+        selectedWord,
+        setSelectedWord,
+    ] = useState("");
+
+    const handleSelection = (value) => {
+        setSelectedWord(value);
+    };
+
     const style = `
         #search {
-            display: flex;
-            align-items: center;
-            flex-direction: column;
+            display: block;
             width: 10em;
             margin: 2em;
         }
@@ -22,6 +29,7 @@ function SearchBox() {
         }
 
         #dropdown-content {
+        
             display: none;
             position: absolute;
             font-size: .75em;
@@ -31,7 +39,7 @@ function SearchBox() {
             width: inherit;
             z-index: 2;
             overflow-y: scroll;
-            width: 100%;
+            width: inherit;
             background-color: var(--foreground);
             border-radius: 0px 0px 1em 1em;
         }
@@ -51,14 +59,16 @@ function SearchBox() {
 
         #search-box:focus {
             border-radius: 1em 1em 0px 0px;
+            outline: none;
         }
     `;
     return (
         <div id="search">
             <style>{style}</style>
-            <input id="search-box" placeholder="search medication names" type="text" />
+            <label>{selectedWord}</label>
+            <input id="search-box" placeholder="search medication names" type="text" value={selectedWord}/>
             <ul id="dropdown-content">
-                {list.map((item) => <li key={item} >{item} </li>)}
+                {list.map((item) => <li key={item} onClick={() => handleSelection(item)}>{item} </li>)}
             </ul>
         </div>
     );
