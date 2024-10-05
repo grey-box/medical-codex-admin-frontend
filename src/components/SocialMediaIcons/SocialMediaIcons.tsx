@@ -1,12 +1,13 @@
-import React from "react";
-import { FaTwitter, FaFacebook, FaGlobe, FaLinkedin } from "react-icons/fa";
+import React, { FC } from 'react';
+import { FaTwitter, FaFacebook, FaGlobe, FaLinkedin } from 'react-icons/fa';
 
-function SocialMediaIcons() {
+const SocialMediaIcons: FC = () => {
   return (
     <div className="flex items-center justify-center">
       <a
         href="https://www.grey-box.ca/"
         target="_blank"
+        rel="noopener noreferrer"
         className="mx-2 text-2xl text-white no-underline"
       >
         <FaGlobe />
@@ -14,6 +15,7 @@ function SocialMediaIcons() {
       <a
         href="https://twitter.com/greyboxproject"
         target="_blank"
+        rel="noopener noreferrer"
         className="mx-2 text-2xl text-white no-underline"
       >
         <FaTwitter />
@@ -21,6 +23,7 @@ function SocialMediaIcons() {
       <a
         href="https://www.facebook.com/greyboxORG/"
         target="_blank"
+        rel="noopener noreferrer"
         className="mx-2 text-2xl text-white no-underline"
       >
         <FaFacebook />
@@ -28,6 +31,7 @@ function SocialMediaIcons() {
       <a
         href="https://www.linkedin.com/company/greyboxproject/"
         target="_blank"
+        rel="noopener noreferrer"
         className="mx-2 text-2xl text-white no-underline"
       >
         <FaLinkedin />
