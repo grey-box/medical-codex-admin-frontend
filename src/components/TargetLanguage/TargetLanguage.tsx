@@ -4,10 +4,10 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
 
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
+const ITEM_HEIGHT: number = 48;
+const ITEM_PADDING_TOP: number = 8;
 const MenuProps = {
   PaperProps: {
     style: {
@@ -17,39 +17,44 @@ const MenuProps = {
   },
 };
 
-const languages = [
+const languages: string[] = [
   'English',
   'Ukrainian',
   'Russian',
   'German',
 ];
 
-function getStyles(language, languageType, theme) {
+function getStyles(language: string, selectedLanguage: string, theme: any) {
   return {
     fontWeight:
-      languageType.indexOf(language) === -1
-        ? theme.typography.fontWeightRegular
-        : theme.typography.fontWeightMedium,
+      selectedLanguage === language
+        ? theme.typography.fontWeightMedium
+        : theme.typography.fontWeightRegular,
   };
 }
 
-export default function SourceLanguage({ onLanguageChange }) {
-  const theme = useTheme();
-  const [selectedLanguage, setSelectedLanguage] = React.useState('');
+interface SourceLanguageProps {
+  onLanguageChange: (language: string) => void;
+  className?: string; 
+}
 
-  const handleChange = (event) => {
-    const value = event.target.value
+const SourceLanguage: React.FC<SourceLanguageProps> = ({ onLanguageChange }) => {
+  const theme = useTheme();
+  const [selectedLanguage, setSelectedLanguage] = React.useState<string>('');
+
+  const handleChange = (event: SelectChangeEvent<string>): void => {
+    const value = event.target.value;
     setSelectedLanguage(value);
-      onLanguageChange(value);
+    onLanguageChange(value);
   };
 
   return (
     <div>
       <FormControl sx={{ m: 1, width: 300 }}>
-        <InputLabel id="demo-multiple-name-label">Language</InputLabel>
+        <InputLabel id="language-select-label">Language</InputLabel>
         <Select
-          labelId="demo-multiple-name-label"
-          id="demo-multiple-name"
+          labelId="language-select-label"
+          id="language-select"
           value={selectedLanguage}
           onChange={handleChange}
           input={<OutlinedInput label="Language" />}
@@ -69,3 +74,5 @@ export default function SourceLanguage({ onLanguageChange }) {
     </div>
   );
 }
+
+export default SourceLanguage;

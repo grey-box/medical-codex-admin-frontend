@@ -5,10 +5,11 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import { SelectChangeEvent } from '@mui/material/Select';
 
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
-const MenuProps = {
+const ITEM_HEIGHT: number = 48;
+const ITEM_PADDING_TOP: number = 8;
+const MenuProps: { PaperProps: { style: { maxHeight: number; width: number; } } } = {
   PaperProps: {
     style: {
       maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
@@ -17,14 +18,14 @@ const MenuProps = {
   },
 };
 
-const languages = [
+const languages: string[] = [
   'English',
   'Ukrainian',
   'Russian',
   'German',
 ];
 
-function getStyles(language, languageType, theme) {
+function getStyles(language: string, languageType: string[], theme: any): { fontWeight: number } {
   return {
     fontWeight:
       languageType.indexOf(language) === -1
@@ -33,14 +34,19 @@ function getStyles(language, languageType, theme) {
   };
 }
 
-export default function TargetLanguage({ onLanguageChange }) {
-  const theme = useTheme();
-  const [selectedLanguage, setSelectedLanguage] = React.useState('');
+interface SourceLanguageProps {
+  onLanguageChange: (language: string) => void;
+  className?: string; 
+}
 
-  const handleChange = (event) => {
-    const value = event.target.value
+const SourceLanguage: React.FC<SourceLanguageProps> = ({ onLanguageChange }) => {
+  const theme = useTheme();
+  const [selectedLanguage, setSelectedLanguage] = React.useState<string>('');
+
+  const handleChange = (event: SelectChangeEvent<string>): void => {
+    const value = event.target.value as string;
     setSelectedLanguage(value);
-      onLanguageChange(value);
+    onLanguageChange(value);
   };
 
   return (
@@ -55,11 +61,11 @@ export default function TargetLanguage({ onLanguageChange }) {
           input={<OutlinedInput label="Language" />}
           MenuProps={MenuProps}
         >
-          {languages.map((language) => (
+          {languages.map((language: string) => (
             <MenuItem
               key={language}
               value={language}
-              style={getStyles(language, selectedLanguage, theme)}
+              style={getStyles(language, [selectedLanguage], theme)}
             >
               {language}
             </MenuItem>
@@ -69,3 +75,5 @@ export default function TargetLanguage({ onLanguageChange }) {
     </div>
   );
 }
+
+export default SourceLanguage;
