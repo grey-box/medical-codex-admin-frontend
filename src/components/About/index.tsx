@@ -77,12 +77,12 @@ const About: FC = () => {
     <div className="bg-[#B6E7FF]">
       <div className="relative w-full h-auto">
         <div className="relative w-full h-auto">
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-4xl font-extrabold text-center">
+          <div className="absolute text-4xl font-extrabold text-center text-white transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
             About Us
           </div>
           <img
             src="/images/assets/child.png"
-            className="w-full h-auto block"
+            className="block w-full h-auto"
             alt="child in classroom"
           />
         </div>
@@ -93,7 +93,7 @@ const About: FC = () => {
           Meet <br /> Our Team
         </div>
 
-        <div className="flex justify-center flex-wrap items-center">
+        <div className="flex flex-wrap items-center justify-center">
           {teamMembers.map((member, index) => (
             <div
               key={index}
@@ -104,8 +104,8 @@ const About: FC = () => {
                 src={member.img}
                 alt={`team-member${index + 1}`}
               />
-              <h3 className="font-extrabold text-xl mb-2">{member.name}</h3>
-              <p className="font-light text-lg mb-5">{member.title}</p>
+              <h3 className="mb-2 text-xl font-extrabold">{member.name}</h3>
+              <p className="mb-5 text-lg font-light">{member.title}</p>
               <div className="flex justify-center">
                 {member.link ? (
                   <Link
@@ -113,7 +113,7 @@ const About: FC = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <FaLinkedin className="text-blue-500 text-2xl mx-2 transition-colors duration-300 ease-in-out" />
+                    <FaLinkedin className="mx-2 text-2xl text-blue-500 transition-colors duration-300 ease-in-out" />
                   </Link>
                 ) : null}
               </div>
@@ -128,7 +128,7 @@ const About: FC = () => {
             href="https://www.grey-box.ca/"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-white mx-2"
+            className="mx-2 text-white"
           >
             <FaGlobe />
           </Link>
@@ -136,7 +136,7 @@ const About: FC = () => {
             href="https://twitter.com/greyboxproject"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-white mx-2"
+            className="mx-2 text-white"
           >
             <FaTwitter />
           </Link>
@@ -144,7 +144,7 @@ const About: FC = () => {
             href="https://www.facebook.com/greyboxORG/"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-white mx-2"
+            className="mx-2 text-white"
           >
             <FaFacebook />
           </Link>
@@ -152,7 +152,7 @@ const About: FC = () => {
             href="https://www.linkedin.com/company/greyboxproject/"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-white mx-2"
+            className="mx-2 text-white"
           >
             <FaLinkedin />
           </Link>

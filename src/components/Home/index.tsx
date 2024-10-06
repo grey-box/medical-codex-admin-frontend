@@ -1,7 +1,7 @@
 import React, { useState, FC } from "react";
-import SocialMediaIcons from "@/components/SocialMediaIcons/SocialMediaIcons";
-import SourceLanguage from "@/components/SourceLanguage/SourceLanguage";
-import TargetLanguage from "@/components/TargetLanguage/TargetLanguage";
+import SocialMediaIcons from "@/components/SocialMediaIcons";
+import SourceLanguage from "@/components/SourceLanguage";
+import TargetLanguage from "@/components/TargetLanguage";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import FormControl from "@mui/material/FormControl";
 //import { useTheme } from '@emotion/react';
