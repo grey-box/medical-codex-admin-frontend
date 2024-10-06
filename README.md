@@ -2,6 +2,31 @@
 
 Medical codex Administration Frontend
 
+## Local Instance Instructions
+
+1. Open your preferred IDE of choice. I am using Visual Studio Code.
+2. Open a new terminal, and clone the repository using the following command (SSH not considered as that didn't seem required):
+
+```bash
+git clone https://github.com/grey-box/medical-codex-admin-frontend.git
+```
+
+3. Ensure that you are in the working directory of the repository that you just cloned.
+4. Once you are in the root of the clone repository, you need to install requirements using the following command:
+
+```bash
+npm i
+```
+
+5. Ensure that the backend is running, or if the APIs are deployed, you may only need to adjust your `.env.local`. Please refer to the `.env.template` for help regarding `.env.local` creation.
+6. Boot up the development server using the following command. Assuming everything else is running fine, you should see `localhost:3000` exposed.:
+
+```bash
+npm run dev
+```
+
+---
+
 ## Installation steps for Azure (MacOS based)
 
 ```shell
