@@ -1,5 +1,4 @@
 import React, { useState, FC } from "react";
-import SocialMediaIcons from "@/components/SocialMediaIcons";
 import SourceLanguage from "@/components/SourceLanguage";
 import TargetLanguage from "@/components/TargetLanguage";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
@@ -40,13 +39,17 @@ const Home: FC = () => {
   };
 
   return (
-    <div className="relative flex flex-col min-h-screen overflow-hidden">
+    <div className="relative flex flex-col overflow-hidden">
       <div className="relative flex flex-col flex-grow">
         {/* <div
           className="absolute inset-0 bg-center bg-cover"
           style={{ backgroundImage: "url('background2.jpg')" }}
         ></div> */}
-        <h1 className="p-5 text-sm font-semibold font-inter">
+        <div className="p-4 text-4xl font-bold text-center">
+          Medical Translation Tool
+        </div>
+        <div className="mx-10 border-b-2"></div>
+        <h1 className="p-3 text-sm font-semibold font-inter">
           Source Language
         </h1>
         <SourceLanguage className="p-5" onLanguageChange={setSourceLanguage} />
@@ -67,7 +70,7 @@ const Home: FC = () => {
             </div>
             <div className="text-center flex-[20%]">
               <button
-                className="w-[90px] h-[48px] bg-[#044677] text-white rounded-lg border-none font-inter shadow-md"
+                className="bg-[#2f876e] w-[90px] h-[48px] text-white rounded-lg border-none font-inter shadow-md"
                 onClick={() =>
                   handleSearch(
                     inputSearch,
@@ -116,7 +119,7 @@ const Home: FC = () => {
           </h1>
           <div className="pl-[120px]">
             <button
-              className="w-[90px] h-[48px] bg-[#044677] text-white rounded-lg border-none font-inter shadow-md"
+              className="bg-[#2f876e] w-[90px] h-[48px] text-white rounded-lg border-none font-inter shadow-md"
               onClick={() =>
                 handleTranslate(
                   selectedMedicine,
@@ -138,9 +141,6 @@ const Home: FC = () => {
             />
           </div>
         </div>
-      </div>
-      <div className="bg-[#044677] p-5 text-center h-[60px] z-[1]">
-        <SocialMediaIcons />
       </div>
     </div>
   );
