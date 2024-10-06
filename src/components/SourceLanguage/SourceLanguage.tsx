@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useTheme } from "@mui/material/styles";
+import { useTheme, Theme } from "@mui/material/styles";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
@@ -25,13 +25,13 @@ const languages: string[] = ["English", "Ukrainian", "Russian", "German"];
 function getStyles(
   language: string,
   languageType: string[],
-  theme: any,
+  theme: Theme,
 ): { fontWeight: number } {
   return {
     fontWeight:
       languageType.indexOf(language) === -1
-        ? theme.typography.fontWeightRegular
-        : theme.typography.fontWeightMedium,
+        ? (theme.typography.fontWeightRegular as number) || 400
+        : (theme.typography.fontWeightMedium as number) || 500,
   };
 }
 
