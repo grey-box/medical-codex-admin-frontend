@@ -8,6 +8,7 @@
 // 2. It should throw an error when the API request fails.
 // 3. It should throw an error when the API response status is not ok (200).
 
+import { expect } from "@jest/globals";
 import handleSearch from "../handleSearch";
 import fetchMock from "jest-fetch-mock";
 
