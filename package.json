@@ -21,7 +21,7 @@
     "start": "next start",
     "test": "jest --watchAll",
     "test:coverage": "jest --watchAll --coverage",
-    "test:ci": "jest --coverage --ci",
+    "test:ci": "jest --coverage --ci --silent",
     "check-format": "prettier --check .",
     "lint": "eslint .",
     "check-format-and-lint": "npm run check-format && npm run lint",
