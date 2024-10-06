@@ -86,10 +86,10 @@ const Home: FC = () => {
   return (
     <div className="relative flex flex-col min-h-screen overflow-hidden">
       <div className="relative flex flex-col flex-grow">
-        <div
+        {/* <div
           className="absolute inset-0 bg-center bg-cover"
           style={{ backgroundImage: "url('background2.jpg')" }}
-        ></div>
+        ></div> */}
         <h1 className="p-5 text-sm font-semibold font-inter">
           Source Language
         </h1>
