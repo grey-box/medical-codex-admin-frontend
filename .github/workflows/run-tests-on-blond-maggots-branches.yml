@@ -37,7 +37,3 @@ jobs:
 
       - name: Run Cypress E2E tests
         run: npm run cypress:headless
-
-      - name: Stop the server
-        run: kill $(lsof -t -i:3000)
-        continue-on-error: true
