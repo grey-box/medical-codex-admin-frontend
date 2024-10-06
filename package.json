@@ -7,13 +7,11 @@
     "@emotion/styled": "^11.13.0",
     "@mui/material": "^5.16.6",
     "@testing-library/react": "^16.0.0",
-    "eslint-config-react-app": "^7.0.1",
     "next": "^14.2.13",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.52.2",
-    "react-icons": "^5.2.1",
-    "react-router-dom": "^6.26.0"
+    "react-icons": "^5.2.1"
   },
   "scripts": {
     "dev": "next dev",
@@ -31,8 +29,7 @@
   },
   "eslintConfig": {
     "extends": [
-      "react-app",
-      "react-app/jest"
+      "next/core-web-vitals"
     ]
   },
   "browserslist": {
