@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { useForm } from "react-hook-form";
-import useLogin from "./UseLogin";
+import useLogin from "@/components/Admin/UseLogin";
 import SocialMediaIcons from "@/components/SocialMediaIcons/SocialMediaIcons";
 
 interface LoginFormProps {
@@ -64,10 +64,11 @@ const LoginForm: FC<LoginFormProps> = ({ onSubmit }) => {
 
 interface DashboardProps {
   username: string;
+  password: string;
   onLogout: () => void;
 }
 
-const Dashboard: FC<DashboardProps> = ({ username, onLogout }) => {
+const Dashboard: FC<DashboardProps> = ({ username, password, onLogout }) => {
   return (
     <div className="m-8">
       <div className="mb-4 text-4xl">
@@ -81,12 +82,14 @@ const Dashboard: FC<DashboardProps> = ({ username, onLogout }) => {
           Logout
         </button>
       </div>
+      <div>Your password is: {password}</div>
     </div>
   );
 };
 
 const Admin: FC = () => {
-  const { isLoggedIn, username, handleLogin, handleLogout } = useLogin();
+  const { isLoggedIn, username, password, handleLogin, handleLogout } =
+    useLogin();
 
   return (
     <div
@@ -98,7 +101,11 @@ const Admin: FC = () => {
       </div>
       <main>
         {isLoggedIn ? (
-          <Dashboard username={username} onLogout={handleLogout} />
+          <Dashboard
+            username={username}
+            password={password}
+            onLogout={handleLogout}
+          />
         ) : (
           <LoginForm onSubmit={handleLogin} />
         )}

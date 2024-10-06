@@ -27,7 +27,7 @@ function useLogin() {
     setIsLoggedIn(false);
   };
 
-  return { isLoggedIn, username, handleLogin, handleLogout };
+  return { isLoggedIn, username, password, handleLogin, handleLogout };
 }
 
 export default useLogin;
