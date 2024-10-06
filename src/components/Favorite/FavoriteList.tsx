@@ -1,6 +1,16 @@
 import React, { useState, useEffect } from "react";
 
-function FavoriteList({ favoriteList, onItemRemove, onClearList }) {
+interface FavoriteListProps {
+  favoriteList: string[];
+  onItemRemove: (newList: string[]) => void;
+  onClearList: () => void;
+}
+
+function FavoriteList({
+  favoriteList,
+  onItemRemove,
+  onClearList,
+}: FavoriteListProps) {
   const [newItem, setNewItem] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [isListEmpty, setIsListEmpty] = useState(false);
@@ -9,11 +19,11 @@ function FavoriteList({ favoriteList, onItemRemove, onClearList }) {
     setIsListEmpty(favoriteList.length === 0);
   }, [favoriteList]);
 
-  const handleNewItemChange = (event) => {
+  const handleNewItemChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setNewItem(event.target.value);
   };
 
-  const handleNewItemSubmit = (event) => {
+  const handleNewItemSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     const newItemTrimmed = newItem.trim();
 
@@ -21,8 +31,7 @@ function FavoriteList({ favoriteList, onItemRemove, onClearList }) {
       if (favoriteList.includes(newItemTrimmed)) {
         setErrorMessage("This item is already in your favorite list.");
       } else {
-        favoriteList.push(newItemTrimmed);
-        onItemRemove([...favoriteList]);
+        onItemRemove([...favoriteList, newItemTrimmed]);
         setNewItem("");
         setErrorMessage("");
       }
@@ -31,7 +40,7 @@ function FavoriteList({ favoriteList, onItemRemove, onClearList }) {
     }
   };
 
-  const handleItemRemove = (itemIndex) => {
+  const handleItemRemove = (itemIndex: number) => {
     const newFavoriteList = favoriteList.filter(
       (item, index) => index !== itemIndex,
     );
@@ -56,7 +65,7 @@ function FavoriteList({ favoriteList, onItemRemove, onClearList }) {
       </form>
       {errorMessage && <p>{errorMessage}</p>}
       {isListEmpty ? (
-        <p>You don't have any favorite items yet.</p>
+        <p>You don&apos;t have any favorite items yet.</p>
       ) : (
         <div>
           <ul>
