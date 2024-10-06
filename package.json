@@ -21,7 +21,7 @@
     "start": "next start",
     "test": "mocha --timeout 1000",
     "check-format": "prettier --check .",
-    "fix-format": "prettier --write ."
+    "fix-format-and-lint": "prettier --write . && eslint ."
   },
   "eslintConfig": {
     "extends": [
