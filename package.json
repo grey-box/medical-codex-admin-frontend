@@ -20,7 +20,7 @@
     "build": "next build",
     "start": "next start",
     "test": "jest --watchAll",
-    "test:coverage": "jest --coverage",
+    "test:coverage": "jest --watchAll --coverage",
     "test:ci": "jest --coverage --ci",
     "check-format": "prettier --check .",
     "lint": "eslint .",
