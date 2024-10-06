@@ -20,6 +20,7 @@
     "build": "next build",
     "start": "next start",
     "test": "mocha --timeout 1000",
+    "lint": "eslint .",
     "check-format": "prettier --check .",
     "fix-format-and-lint": "prettier --write . && eslint ."
   },
