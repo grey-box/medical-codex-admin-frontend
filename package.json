@@ -19,14 +19,14 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "lint": "next lint",
+    "check-format": "prettier --check .",
+    "fix-format-and-lint": "prettier --write . && eslint .",
+    "check-format-and-lint": "npm run check-format && npm run lint",
     "test": "jest --watchAll",
     "test:coverage": "jest --watchAll --coverage",
     "test:ci": "jest --coverage --ci --silent",
-    "cypress:open": "cypress open",
-    "check-format": "prettier --check .",
-    "lint": "eslint .",
-    "check-format-and-lint": "npm run check-format && npm run lint",
-    "fix-format-and-lint": "prettier --write . && eslint ."
+    "cypress:open": "cypress open"
   },
   "eslintConfig": {
     "extends": [
