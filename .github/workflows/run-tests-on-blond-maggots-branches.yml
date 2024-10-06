@@ -23,3 +23,6 @@ jobs:
 
       - name: Run Prettier and ESLint checks
         run: npm run check-format-and-lint
+
+      - name: Run Jest unit tests
+        run: npm run test:ci
