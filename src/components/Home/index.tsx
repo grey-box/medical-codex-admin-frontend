@@ -8,6 +8,7 @@ import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import MenuItem from "@mui/material/MenuItem";
+import handleSearch from "@/utils/handleSearch";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -35,30 +36,6 @@ const Home: FC = () => {
 
   const handleMedicineChange = (e: SelectChangeEvent<string>): void => {
     setSelectedMedicine(e.target.value);
-  };
-
-  const handleSearch = async (): Promise<void> => {
-    try {
-      const response = await fetch(`${NEXT_PUBLIC_API_URL}/fuzzymatching/`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          query: inputSearch,
-          target_language: targetLanguage,
-          source_language: sourceLanguage,
-        }),
-      });
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-      const data = await response.json();
-      console.log("Received data:", data);
-      setMedicines(data.results);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
   };
 
   const handleTranslate = async (): Promise<void> => {
@@ -112,7 +89,15 @@ const Home: FC = () => {
             <div className="text-center flex-[20%]">
               <button
                 className="w-[90px] h-[48px] bg-[#044677] text-white rounded-lg border-none font-inter shadow-md"
-                onClick={handleSearch}
+                onClick={() =>
+                  handleSearch(
+                    inputSearch,
+                    targetLanguage,
+                    sourceLanguage,
+                    setMedicines,
+                    NEXT_PUBLIC_API_URL,
+                  )
+                }
               >
                 Search
               </button>
