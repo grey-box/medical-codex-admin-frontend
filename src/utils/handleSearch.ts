@@ -25,6 +25,7 @@ const handleSearch = async (
     setMedicines(data.results);
   } catch (error) {
     console.error("Error fetching data:", error);
+    throw error;
   }
 };
 
