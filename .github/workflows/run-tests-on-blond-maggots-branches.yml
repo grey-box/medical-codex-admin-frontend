@@ -40,3 +40,4 @@ jobs:
 
       - name: Stop the server
         run: kill $(lsof -t -i:3000)
+        continue-on-error: true
