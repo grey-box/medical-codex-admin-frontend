@@ -1,4 +1,4 @@
-import Navbar from "../Navbar/Navbar";
+import Navbar from "@/components/Navbar/Navbar";
 interface BaseLayoutProps {
   children: React.ReactNode;
 }

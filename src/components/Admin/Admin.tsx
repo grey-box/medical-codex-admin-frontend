@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { useForm } from "react-hook-form";
 import useLogin from "./UseLogin";
-import SocialMediaIcons from "../SocialMediaIcons/SocialMediaIcons";
+import SocialMediaIcons from "@/components/SocialMediaIcons/SocialMediaIcons";
 
 interface LoginFormProps {
   onSubmit: (data: LoginFormInputs) => void;
