@@ -20,7 +20,7 @@ const MenuProps = {
   },
 };
 
-const REACT_APP_API_URL: string | undefined = process.env.REACT_APP_API_URL;
+const NEXT_PUBLIC_API_URL: string | undefined = process.env.NEXT_PUBLIC_API_URL;
 
 const Home: FC = () => {
   //const theme = useTheme();
@@ -39,7 +39,7 @@ const Home: FC = () => {
 
   const handleSearch = async (): Promise<void> => {
     try {
-      const response = await fetch(`${REACT_APP_API_URL}/fuzzymatching/`, {
+      const response = await fetch(`${NEXT_PUBLIC_API_URL}/fuzzymatching/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -63,7 +63,7 @@ const Home: FC = () => {
 
   const handleTranslate = async (): Promise<void> => {
     try {
-      const response = await fetch(`${REACT_APP_API_URL}/translate/`, {
+      const response = await fetch(`${NEXT_PUBLIC_API_URL}/translate/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
