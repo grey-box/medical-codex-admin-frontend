@@ -6,6 +6,13 @@ const handleSearch = async (
   NEXT_PUBLIC_API_URL: string | undefined,
 ): Promise<void> => {
   try {
+    const requestBody = {
+      query: inputSearch,
+      target_language: targetLanguage,
+      source_language: sourceLanguage,
+    };
+    console.log("Request parameters:", requestBody);
+
     const response = await fetch(`${NEXT_PUBLIC_API_URL}/fuzzymatching/`, {
       method: "POST",
       headers: {
