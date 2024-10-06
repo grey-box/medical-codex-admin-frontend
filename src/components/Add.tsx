@@ -1,7 +1,11 @@
-import { useState } from "react";
 import React from "react";
-const Add = ({ setAddOn, TextBox, outputText }) => {
-  const [list, setList] = useState([]);
+
+interface AddProps {
+  setAddOn: (value: string | null) => void;
+  TextBox: string;
+}
+
+const Add: React.FC<AddProps> = ({ setAddOn, TextBox }) => {
   return (
     <div className="row">
       <div
