@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 
 function FavoriteList({ favoriteList, onItemRemove, onClearList }) {
-  
   const [newItem, setNewItem] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [isListEmpty, setIsListEmpty] = useState(false);
@@ -13,7 +12,6 @@ function FavoriteList({ favoriteList, onItemRemove, onClearList }) {
   const handleNewItemChange = (event) => {
     setNewItem(event.target.value);
   };
-
 
   const handleNewItemSubmit = (event) => {
     event.preventDefault();
@@ -33,16 +31,16 @@ function FavoriteList({ favoriteList, onItemRemove, onClearList }) {
     }
   };
 
-
   const handleItemRemove = (itemIndex) => {
-    const newFavoriteList = favoriteList.filter((item, index) => index !== itemIndex);
+    const newFavoriteList = favoriteList.filter(
+      (item, index) => index !== itemIndex,
+    );
     onItemRemove(newFavoriteList);
   };
 
   const handleClearList = () => {
     onClearList();
   };
-
 
   return (
     <div>

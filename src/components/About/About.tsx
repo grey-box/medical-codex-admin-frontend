@@ -1,6 +1,6 @@
-import React, { FC } from 'react';
-import Link from 'next/link';
-import { FaTwitter, FaFacebook, FaGlobe, FaLinkedin } from 'react-icons/fa';
+import React, { FC } from "react";
+import Link from "next/link";
+import { FaTwitter, FaFacebook, FaGlobe, FaLinkedin } from "react-icons/fa";
 
 interface TeamMember {
   name: string;
@@ -108,7 +108,11 @@ const About: FC = () => {
               <p className="font-light text-lg mb-5">{member.title}</p>
               <div className="flex justify-center">
                 {member.link ? (
-                  <Link href={member.link} target="_blank" rel="noopener noreferrer">
+                  <Link
+                    href={member.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <FaLinkedin className="text-blue-500 text-2xl mx-2 transition-colors duration-300 ease-in-out" />
                   </Link>
                 ) : null}

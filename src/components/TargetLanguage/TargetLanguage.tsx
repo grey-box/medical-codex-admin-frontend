@@ -1,10 +1,10 @@
-import * as React from 'react';
-import { useTheme } from '@mui/material/styles';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
+import * as React from "react";
+import { useTheme } from "@mui/material/styles";
+import OutlinedInput from "@mui/material/OutlinedInput";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
 
 const ITEM_HEIGHT: number = 48;
 const ITEM_PADDING_TOP: number = 8;
@@ -17,12 +17,7 @@ const MenuProps = {
   },
 };
 
-const languages: string[] = [
-  'English',
-  'Ukrainian',
-  'Russian',
-  'German',
-];
+const languages: string[] = ["English", "Ukrainian", "Russian", "German"];
 
 function getStyles(language: string, selectedLanguage: string, theme: any) {
   return {
@@ -35,12 +30,14 @@ function getStyles(language: string, selectedLanguage: string, theme: any) {
 
 interface SourceLanguageProps {
   onLanguageChange: (language: string) => void;
-  className?: string; 
+  className?: string;
 }
 
-const SourceLanguage: React.FC<SourceLanguageProps> = ({ onLanguageChange }) => {
+const SourceLanguage: React.FC<SourceLanguageProps> = ({
+  onLanguageChange,
+}) => {
   const theme = useTheme();
-  const [selectedLanguage, setSelectedLanguage] = React.useState<string>('');
+  const [selectedLanguage, setSelectedLanguage] = React.useState<string>("");
 
   const handleChange = (event: SelectChangeEvent<string>): void => {
     const value = event.target.value;
@@ -73,6 +70,6 @@ const SourceLanguage: React.FC<SourceLanguageProps> = ({ onLanguageChange }) => 
       </FormControl>
     </div>
   );
-}
+};
 
 export default SourceLanguage;

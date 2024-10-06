@@ -1,5 +1,5 @@
-import React, { FC } from 'react';
-import { FaTwitter, FaFacebook, FaGlobe, FaLinkedin } from 'react-icons/fa';
+import React, { FC } from "react";
+import { FaTwitter, FaFacebook, FaGlobe, FaLinkedin } from "react-icons/fa";
 
 const SocialMediaIcons: FC = () => {
   return (
@@ -38,6 +38,6 @@ const SocialMediaIcons: FC = () => {
       </a>
     </div>
   );
-}
+};
 
 export default SocialMediaIcons;

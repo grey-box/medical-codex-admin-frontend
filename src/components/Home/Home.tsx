@@ -1,13 +1,13 @@
-import React, { useState, FC } from 'react';
-import SocialMediaIcons from '../SocialMediaIcons/SocialMediaIcons';
-import SourceLanguage from '../SourceLanguage/SourceLanguage';
-import TargetLanguage from '../TargetLanguage/TargetLanguage';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
-import FormControl from '@mui/material/FormControl';
+import React, { useState, FC } from "react";
+import SocialMediaIcons from "../SocialMediaIcons/SocialMediaIcons";
+import SourceLanguage from "../SourceLanguage/SourceLanguage";
+import TargetLanguage from "../TargetLanguage/TargetLanguage";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
+import FormControl from "@mui/material/FormControl";
 //import { useTheme } from '@emotion/react';
-import InputLabel from '@mui/material/InputLabel';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import MenuItem from '@mui/material/MenuItem';
+import InputLabel from "@mui/material/InputLabel";
+import OutlinedInput from "@mui/material/OutlinedInput";
+import MenuItem from "@mui/material/MenuItem";
 
 const ITEM_HEIGHT: number = 48;
 const ITEM_PADDING_TOP: number = 8;
@@ -24,12 +24,14 @@ const REACT_APP_API_URL: string | undefined = process.env.REACT_APP_API_URL;
 
 const Home: FC = () => {
   //const theme = useTheme();
-  const [inputSearch, setInputSearch] = useState<string>('');
-  const [outputTranslation, setOutputTranslation] = useState<string>('');
-  const [medicines, setMedicines] = useState<Array<{ matching_name: string }>>([]);
-  const [selectedMedicine, setSelectedMedicine] = useState<string>('');
-  const [targetLanguage, setTargetLanguage] = useState<string>('');
-  const [sourceLanguage, setSourceLanguage] = useState<string>('');
+  const [inputSearch, setInputSearch] = useState<string>("");
+  const [outputTranslation, setOutputTranslation] = useState<string>("");
+  const [medicines, setMedicines] = useState<Array<{ matching_name: string }>>(
+    [],
+  );
+  const [selectedMedicine, setSelectedMedicine] = useState<string>("");
+  const [targetLanguage, setTargetLanguage] = useState<string>("");
+  const [sourceLanguage, setSourceLanguage] = useState<string>("");
 
   const handleMedicineChange = (e: SelectChangeEvent<string>): void => {
     setSelectedMedicine(e.target.value);
@@ -38,9 +40,9 @@ const Home: FC = () => {
   const handleSearch = async (): Promise<void> => {
     try {
       const response = await fetch(`${REACT_APP_API_URL}/fuzzymatching/`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           query: inputSearch,
@@ -52,19 +54,19 @@ const Home: FC = () => {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
       const data = await response.json();
-      console.log('Received data:', data);
+      console.log("Received data:", data);
       setMedicines(data.results);
     } catch (error) {
-      console.error('Error fetching data:', error);
+      console.error("Error fetching data:", error);
     }
   };
 
   const handleTranslate = async (): Promise<void> => {
     try {
       const response = await fetch(`${REACT_APP_API_URL}/translate/`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           query: selectedMedicine,
@@ -77,7 +79,7 @@ const Home: FC = () => {
       const dataFromServer = await response.json();
       setOutputTranslation(dataFromServer.translated_name);
     } catch (error) {
-      console.error('Error in handleTranslate function:', error);
+      console.error("Error in handleTranslate function:", error);
     }
   };
 
@@ -171,6 +173,6 @@ const Home: FC = () => {
       </div>
     </div>
   );
-}
+};
 
 export default Home;

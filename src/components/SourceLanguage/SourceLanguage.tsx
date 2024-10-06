@@ -1,15 +1,17 @@
-import * as React from 'react';
-import { useTheme } from '@mui/material/styles';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-import { SelectChangeEvent } from '@mui/material/Select';
+import * as React from "react";
+import { useTheme } from "@mui/material/styles";
+import OutlinedInput from "@mui/material/OutlinedInput";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
+import { SelectChangeEvent } from "@mui/material/Select";
 
 const ITEM_HEIGHT: number = 48;
 const ITEM_PADDING_TOP: number = 8;
-const MenuProps: { PaperProps: { style: { maxHeight: number; width: number; } } } = {
+const MenuProps: {
+  PaperProps: { style: { maxHeight: number; width: number } };
+} = {
   PaperProps: {
     style: {
       maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
@@ -18,14 +20,13 @@ const MenuProps: { PaperProps: { style: { maxHeight: number; width: number; } } 
   },
 };
 
-const languages: string[] = [
-  'English',
-  'Ukrainian',
-  'Russian',
-  'German',
-];
+const languages: string[] = ["English", "Ukrainian", "Russian", "German"];
 
-function getStyles(language: string, languageType: string[], theme: any): { fontWeight: number } {
+function getStyles(
+  language: string,
+  languageType: string[],
+  theme: any,
+): { fontWeight: number } {
   return {
     fontWeight:
       languageType.indexOf(language) === -1
@@ -36,12 +37,14 @@ function getStyles(language: string, languageType: string[], theme: any): { font
 
 interface SourceLanguageProps {
   onLanguageChange: (language: string) => void;
-  className?: string; 
+  className?: string;
 }
 
-const SourceLanguage: React.FC<SourceLanguageProps> = ({ onLanguageChange }) => {
+const SourceLanguage: React.FC<SourceLanguageProps> = ({
+  onLanguageChange,
+}) => {
   const theme = useTheme();
-  const [selectedLanguage, setSelectedLanguage] = React.useState<string>('');
+  const [selectedLanguage, setSelectedLanguage] = React.useState<string>("");
 
   const handleChange = (event: SelectChangeEvent<string>): void => {
     const value = event.target.value as string;
@@ -74,6 +77,6 @@ const SourceLanguage: React.FC<SourceLanguageProps> = ({ onLanguageChange }) => 
       </FormControl>
     </div>
   );
-}
+};
 
 export default SourceLanguage;

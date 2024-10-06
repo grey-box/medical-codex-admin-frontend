@@ -1,7 +1,7 @@
-import React, { FC } from 'react';
-import { useForm } from 'react-hook-form';
-import useLogin from './UseLogin';
-import SocialMediaIcons from '../SocialMediaIcons/SocialMediaIcons';
+import React, { FC } from "react";
+import { useForm } from "react-hook-form";
+import useLogin from "./UseLogin";
+import SocialMediaIcons from "../SocialMediaIcons/SocialMediaIcons";
 
 interface LoginFormProps {
   onSubmit: (data: LoginFormInputs) => void;
@@ -29,7 +29,7 @@ const LoginForm: FC<LoginFormProps> = ({ onSubmit }) => {
         <input
           type="text"
           id="username"
-          {...register('username', { required: true })}
+          {...register("username", { required: true })}
           className="p-2 border-[1px] border-[#ced4da] rounded-[0.25rem]"
         />
         {errors.username && (
@@ -43,7 +43,7 @@ const LoginForm: FC<LoginFormProps> = ({ onSubmit }) => {
         <input
           type="password"
           id="password"
-          {...register('password', { required: true })}
+          {...register("password", { required: true })}
           className="p-2 border-[1px] border-[#ced4da] rounded-[0.25rem]"
         />
         {errors.password && (

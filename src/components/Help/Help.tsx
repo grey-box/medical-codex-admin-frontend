@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { FC } from 'react';
+import React, { FC } from "react";
 
 const Help: FC = () => {
   return (
@@ -18,7 +18,10 @@ const Help: FC = () => {
       </div>
       <div className="p-5">
         <p className="text-lg text-white font-inter text-center mx-12 font-semibold">
-          This pages explains how the application operates and how to perform the various functions associated with the application. It assists the user if they have a query about a button or functionality of the touch panel.
+          This pages explains how the application operates and how to perform
+          the various functions associated with the application. It assists the
+          user if they have a query about a button or functionality of the touch
+          panel.
         </p>
       </div>
 
@@ -31,31 +34,57 @@ const Help: FC = () => {
               alt="white pills"
             />
             <div className="flex flex-col">
-              <h1 className="text-white font-inter font-extrabold text-3xl">Terminology</h1>
+              <h1 className="text-white font-inter font-extrabold text-3xl">
+                Terminology
+              </h1>
               <ul className="list-none">
                 <li className="flex flex-col">
-                  <a className="text-white font-inter font-semibold text-xl">Dropdown Menu</a>
-                  <a className="text-white font-inter font-thin text-base">Select source and target language</a>
+                  <a className="text-white font-inter font-semibold text-xl">
+                    Dropdown Menu
+                  </a>
+                  <a className="text-white font-inter font-thin text-base">
+                    Select source and target language
+                  </a>
                 </li>
                 <li className="flex flex-col">
-                  <a className="text-white font-inter font-semibold text-xl">Input Textbox</a>
-                  <a className="text-white font-inter font-thin text-base">Enter search word in English</a>
+                  <a className="text-white font-inter font-semibold text-xl">
+                    Input Textbox
+                  </a>
+                  <a className="text-white font-inter font-thin text-base">
+                    Enter search word in English
+                  </a>
                 </li>
                 <li className="flex flex-col">
-                  <a className="text-white font-inter font-semibold text-xl">Search Button</a>
-                  <a className="text-white font-inter font-thin text-base">Search for word</a>
+                  <a className="text-white font-inter font-semibold text-xl">
+                    Search Button
+                  </a>
+                  <a className="text-white font-inter font-thin text-base">
+                    Search for word
+                  </a>
                 </li>
                 <li className="flex flex-col">
-                  <a className="text-white font-inter font-semibold text-xl">Output Textbox</a>
-                  <a className="text-white font-inter font-thin text-base">Database Search Results</a>
+                  <a className="text-white font-inter font-semibold text-xl">
+                    Output Textbox
+                  </a>
+                  <a className="text-white font-inter font-thin text-base">
+                    Database Search Results
+                  </a>
                 </li>
                 <li className="flex flex-col">
-                  <a className="text-white font-inter font-semibold text-xl">Translate Button</a>
-                  <a className="text-white font-inter font-thin text-base">Translate output text search results to selected language</a>
+                  <a className="text-white font-inter font-semibold text-xl">
+                    Translate Button
+                  </a>
+                  <a className="text-white font-inter font-thin text-base">
+                    Translate output text search results to selected language
+                  </a>
                 </li>
                 <li className="flex flex-col">
-                  <a className="text-white font-inter font-semibold text-xl">Output Textbox 2</a>
-                  <a className="text-white font-inter font-thin text-base">Translation Results</a>
+                  <a className="text-white font-inter font-semibold text-xl">
+                    Output Textbox 2
+                  </a>
+                  <a className="text-white font-inter font-thin text-base">
+                    Translation Results
+                  </a>
                 </li>
               </ul>
             </div>
@@ -64,6 +93,6 @@ const Help: FC = () => {
       </section>
     </div>
   );
-}
+};
 
 export default Help;
