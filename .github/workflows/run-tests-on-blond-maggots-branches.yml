@@ -26,3 +26,6 @@ jobs:
 
       - name: Run Jest unit tests
         run: npm run test:ci
+
+      - name: Run Cypress E2E tests
+        run: npm run cypress:headless
