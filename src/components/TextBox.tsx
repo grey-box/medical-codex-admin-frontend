@@ -1,11 +1,17 @@
 import React from "react";
-import { useState } from "react";
-const TextBox = ({
-  selectedLanguage,
+
+interface TextBoxProps {
+  languagesList: string[];
+  style: "output" | "input";
+  setInputText: (value: string) => void;
+  outputvalue: string;
+  setShowLists: (style: "output" | "input") => void;
+}
+
+const TextBox: React.FC<TextBoxProps> = ({
   languagesList,
   style,
   setInputText,
-  value,
   outputvalue,
   setShowLists,
 }) => {
@@ -15,13 +21,14 @@ const TextBox = ({
         <div className="textbox-child1">
           <select>
             {languagesList.map((names, index) => (
-              <option value={index}>{names}</option>
+              <option key={index} value={index}>
+                {names}
+              </option>
             ))}
           </select>
         </div>
 
         <div className="textbox-child2">
-          {/*<input value={selectedLanguage}/>*/}
           <button
             className="selection-button"
             onClick={() => setShowLists(style)}
@@ -31,17 +38,15 @@ const TextBox = ({
         </div>
       </div>
       <br />
-      {/* Spacing a gap between the dropdown and textbox */}
-      {style == "output" ? (
+      {style === "output" ? (
         <textarea
           value={outputvalue}
-          placeholder={style == "input" ? "Enter Text" : "After Translation"}
-          disabled={style == "output"}
+          placeholder={style === "output" ? "After Translation" : "Enter Text"}
+          disabled={style === "output"}
         />
       ) : (
         <textarea
-          //value={style == 'output' ? outputvalue : value}
-          placeholder={style == "input" ? "Enter Text" : "After Translation"}
+          placeholder={style === "input" ? "Enter Text" : "After Translation"}
           onChange={(e) => setInputText(e.target.value)}
         />
       )}
