@@ -1,6 +1,7 @@
 // Author: Matthew Quijano
 
 // Notes:
+// import { expect } from "@jest/globals"; to avoid type conflicts with Cypress.
 // Source language is not actually being used in fuzzy_matching.py, so it doesn't matter what it is.
 
 // Test cases:

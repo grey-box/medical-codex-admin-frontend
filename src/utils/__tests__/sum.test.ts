@@ -1,6 +1,7 @@
 // Author: Jest [https://jestjs.io/docs/getting-started]
 
 // Notes:
+// Ensure that you import { expect } from "@jest/globals"; at the top of your test file so that it avoids type conflicts with Cypress.
 // This does not have any functionality within the application and is only used to confirm that Jest is working correctly.
 // To run tests, look at package.json. We have 3 scripts, but you want to run either:
 // 'npm run test' just to check if your tests pass (this takes a shorter amount of time to run)
