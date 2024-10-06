@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useTheme } from "@mui/material/styles";
+import { useTheme, Theme } from "@mui/material/styles";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
@@ -19,7 +19,7 @@ const MenuProps = {
 
 const languages: string[] = ["English", "Ukrainian", "Russian", "German"];
 
-function getStyles(language: string, selectedLanguage: string, theme: any) {
+function getStyles(language: string, selectedLanguage: string, theme: Theme) {
   return {
     fontWeight:
       selectedLanguage === language
