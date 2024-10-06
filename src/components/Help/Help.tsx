@@ -1,6 +1,7 @@
-import React from "react";
+/* eslint-disable jsx-a11y/anchor-is-valid */
+import React, { FC } from 'react';
 
-const Help = () => {
+const Help: FC = () => {
   return (
     <div className="bg-[#044677]">
       <div className="relative w-full h-auto">

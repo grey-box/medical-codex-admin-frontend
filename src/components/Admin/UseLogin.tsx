@@ -1,11 +1,16 @@
 import { useState } from 'react';
 
-function useLogin() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+interface LoginData {
+  username: string;
+  password: string;
+}
 
-  const handleLogin = (data) => {
+function useLogin() {
+  const [username, setUsername] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+
+  const handleLogin = (data: LoginData): void => {
     const { username, password } = data;
     if (username === 'admin' && password === 'admin') {
       setUsername(username);
@@ -16,7 +21,7 @@ function useLogin() {
     }
   };
 
-  const handleLogout = () => {
+  const handleLogout = (): void => {
     setUsername('');
     setPassword('');
     setIsLoggedIn(false);

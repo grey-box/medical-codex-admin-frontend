@@ -1,14 +1,24 @@
-import React from "react";
-import { useForm } from "react-hook-form";
-import useLogin from "./UseLogin";
-import SocialMediaIcons from "../SocialMediaIcons/SocialMediaIcons";
+import React, { FC } from 'react';
+import { useForm } from 'react-hook-form';
+import useLogin from './UseLogin';
+import SocialMediaIcons from '../SocialMediaIcons/SocialMediaIcons';
 
-function LoginForm({ onSubmit }) {
+interface LoginFormProps {
+  onSubmit: (data: LoginFormInputs) => void;
+}
+
+interface LoginFormInputs {
+  username: string;
+  password: string;
+}
+
+const LoginForm: FC<LoginFormProps> = ({ onSubmit }) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm<LoginFormInputs>();
+
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
@@ -19,7 +29,7 @@ function LoginForm({ onSubmit }) {
         <input
           type="text"
           id="username"
-          {...register("username", { required: true })}
+          {...register('username', { required: true })}
           className="p-2 border-[1px] border-[#ced4da] rounded-[0.25rem]"
         />
         {errors.username && (
@@ -33,7 +43,7 @@ function LoginForm({ onSubmit }) {
         <input
           type="password"
           id="password"
-          {...register("password", { required: true })}
+          {...register('password', { required: true })}
           className="p-2 border-[1px] border-[#ced4da] rounded-[0.25rem]"
         />
         {errors.password && (
@@ -50,9 +60,14 @@ function LoginForm({ onSubmit }) {
       </button>
     </form>
   );
+};
+
+interface DashboardProps {
+  username: string;
+  onLogout: () => void;
 }
 
-function Dashboard({ username, onLogout }) {
+const Dashboard: FC<DashboardProps> = ({ username, onLogout }) => {
   return (
     <div className="m-8">
       <div className="mb-4 text-4xl">
@@ -68,9 +83,9 @@ function Dashboard({ username, onLogout }) {
       </div>
     </div>
   );
-}
+};
 
-function Admin() {
+const Admin: FC = () => {
   const { isLoggedIn, username, handleLogin, handleLogout } = useLogin();
 
   return (
@@ -95,6 +110,6 @@ function Admin() {
       </div>
     </div>
   );
-}
+};
 
 export default Admin;
