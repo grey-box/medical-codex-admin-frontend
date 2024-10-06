@@ -20,8 +20,9 @@
     "build": "next build",
     "start": "next start",
     "test": "mocha --timeout 1000",
-    "lint": "eslint .",
     "check-format": "prettier --check .",
+    "lint": "eslint .",
+    "check-format-and-lint": "npm run check-format && npm run lint",
     "fix-format-and-lint": "prettier --write . && eslint ."
   },
   "eslintConfig": {
