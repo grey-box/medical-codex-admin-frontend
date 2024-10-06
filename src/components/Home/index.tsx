@@ -9,6 +9,7 @@ import InputLabel from "@mui/material/InputLabel";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import MenuItem from "@mui/material/MenuItem";
 import handleSearch from "@/utils/handleSearch";
+import handleTranslate from "@/utils/handleTranslate";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -36,28 +37,6 @@ const Home: FC = () => {
 
   const handleMedicineChange = (e: SelectChangeEvent<string>): void => {
     setSelectedMedicine(e.target.value);
-  };
-
-  const handleTranslate = async (): Promise<void> => {
-    try {
-      const response = await fetch(`${NEXT_PUBLIC_API_URL}/translate/`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          query: selectedMedicine,
-          target_language: targetLanguage,
-        }),
-      });
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-      const dataFromServer = await response.json();
-      setOutputTranslation(dataFromServer.translated_name);
-    } catch (error) {
-      console.error("Error in handleTranslate function:", error);
-    }
   };
 
   return (
@@ -138,7 +117,14 @@ const Home: FC = () => {
           <div className="pl-[120px]">
             <button
               className="w-[90px] h-[48px] bg-[#044677] text-white rounded-lg border-none font-inter shadow-md"
-              onClick={handleTranslate}
+              onClick={() =>
+                handleTranslate(
+                  selectedMedicine,
+                  targetLanguage,
+                  setOutputTranslation,
+                  NEXT_PUBLIC_API_URL,
+                )
+              }
             >
               Translate
             </button>
