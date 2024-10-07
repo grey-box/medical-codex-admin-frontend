@@ -1,10 +1,10 @@
 'use client';
 
-import "./styles/page.css";
-import LangSelect from "./components/LangSelect.jsx"
-import SearchBox from "./components/SearchBox.jsx"
-import Navbar from "./components/Navbar.jsx"
-import Footer from "./components/Footer.jsx"
+import "../../public/styles/page.css";
+import LangSelect from "../components/LangSelect.jsx"
+import SearchBox from "../components/SearchBox.jsx"
+import Navbar from "../components/Navbar.jsx"
+import Footer from "../components/Footer.jsx"
 
 
 export default function Home() {

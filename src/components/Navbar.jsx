@@ -4,9 +4,9 @@ import React, { useState } from "react";
 
 function Navbar(label) {
     const langIcons = {
-        "English": "/icon-great-britain.png",
-        "Ukrainian": "/icon-ukraine.png",
-        "Russian": "/icon-russia.png"
+        "English": "/images/icon-great-britain.png",
+        "Ukrainian": "/images/icon-ukraine.png",
+        "Russian": "/images/icon-russia.png"
     }
     
     let langs = ["English", "Ukrainian", "Russian"];
@@ -99,7 +99,7 @@ function Navbar(label) {
         <style>
             {style}
         </style>
-        <img id="logo" src="\logoGREY-BOX.jpg"></img>
+        <img id="logo" src="\images\logoGREY-BOX.jpg"></img>
         <div id="nav-links">
             <a className="nav-link" href="#">HOME</a>
             <a className="nav-link" href="#">ABOUT</a>
@@ -110,7 +110,7 @@ function Navbar(label) {
                 
                 <img src={langIcons[selectedLang]} id="lang-selected-img" value={selectedLang}></img>
                 <label>{selectedLang}</label>
-                <img src="/icons-expand-arrow.png" id="lang-arrow"></img>
+                <img src="/images/icons-expand-arrow.png" id="lang-arrow"></img>
             </div>
             <div id="lang-dropdown">
                 {langs.map(lang => 
