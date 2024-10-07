@@ -1,23 +1,36 @@
 'use client';
 
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
+import { useLanguage } from '../i18n/LanguageContext';
 
 function Navbar(label) {
+    const { translate, language, setLanguage } = useLanguage();
+
     const langIcons = {
-        "English": "/images/icon-great-britain.png",
-        "Ukrainian": "/images/icon-ukraine.png",
-        "Russian": "/images/icon-russia.png"
-    }
-    
-    let langs = ["English", "Ukrainian", "Russian"];
+        "en": {
+            name: "English",
+            icon: "/images/icon-great-britain.png"
+        },
+        "uk": {
+            name: "українська",
+            icon: "/images/icon-ukraine.png"
+        },
+        "ru": {
+            name: "Русский",
+            icon: "/images/icon-russia.png"
+        }
+    };
 
-    const [
-        selectedLang,
-        setSelectedLang,
-    ] = useState("English");
+    const [selectedLang, setSelectedLang] = useState(language);
 
-    const handleSelection = (value) => {
-        setSelectedLang(value);
+    useEffect(() => {
+        // Update selected language when context language changes
+        setSelectedLang(language);
+    }, [language]);
+
+    const handleSelection = (langCode) => {
+        setSelectedLang(langCode);
+        setLanguage(langCode); // This updates the context language
     };
 
     const style = `
@@ -99,31 +112,38 @@ function Navbar(label) {
         <style>
             {style}
         </style>
-        <img id="logo" src="\images\logoGREY-BOX.jpg"></img>
+        <img id="logo" src="/images/logoGREY-BOX.jpg" alt="Grey-box logo"></img>
         <div id="nav-links">
-            <a className="nav-link" href="#">HOME</a>
-            <a className="nav-link" href="#">ABOUT</a>
-            <a className="nav-link" href="#">HELP</a>
+            <a className="nav-link" href="#">{translate('home')}</a>
+            <a className="nav-link" href="#">{translate('about')}</a>
+            <a className="nav-link" href="#">{translate('help')}</a>
         </div>
         <div id="lang-picker">
             <div id="lang-selected">
-                
-                <img src={langIcons[selectedLang]} id="lang-selected-img" value={selectedLang}></img>
-                <label>{selectedLang}</label>
-                <img src="/images/icons-expand-arrow.png" id="lang-arrow"></img>
+                <img
+                    src={langIcons[selectedLang].icon}
+                    id="lang-selected-img"
+                    alt={langIcons[selectedLang].name}
+                />
+                <label>{langIcons[selectedLang].name}</label>
+                <img src="/images/icons-expand-arrow.png" id="lang-arrow" alt="Expand"/>
             </div>
             <div id="lang-dropdown">
-                {langs.map(lang => 
-                    (lang != selectedLang)? 
-                    <div className="lang-select" onClick={() => handleSelection(lang) }>
-                    <img src={langIcons[lang]} className="lang-img" key={lang} ></img><label>{lang}</label></div>:null
+                {Object.entries(langIcons).map(([code, {name, icon}]) =>
+                    code !== selectedLang ? (
+                        <div
+                            key={code}
+                            className="lang-select"
+                            onClick={() => handleSelection(code)}
+                        >
+                            <img src={icon} className="lang-img" alt={name}/>
+                            <label>{name}</label>
+                        </div>
+                    ) : null
                 )}
-                
             </div>
         </div>
     </nav>
     );
 }
-  
 export default Navbar;
-  

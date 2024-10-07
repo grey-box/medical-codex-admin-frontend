@@ -1,8 +1,10 @@
 'use client';
 
 import React, { useState } from "react";
+import { useLanguage } from '../i18n/LanguageContext';
 
 function LangSelect(label) {
+    const { translate } = useLanguage();
     const [
         selectedValue,
         setSelectedValue,
@@ -38,7 +40,7 @@ function LangSelect(label) {
                     checked={selectedValue === "English"}
                     onChange={() => handleRadioChange("English")}
                 />
-                <label>English</label>
+                <label>{translate('langNameEN')}</label>
             </div>
             <div className="radio-option">
                 <input 
@@ -47,7 +49,7 @@ function LangSelect(label) {
                     checked={selectedValue === "Ukrainian"}
                     onChange={() => handleRadioChange("Ukrainian")}
                 />
-                <label>Ukrainian</label>
+                <label>{translate('langNameUK')}</label>
             </div>
             <div className="radio-option">
                 <input 
@@ -56,7 +58,7 @@ function LangSelect(label) {
                     checked={selectedValue === "Russian"}
                     onChange={() => handleRadioChange("Russian")}
                 />
-                <label>Russian</label>
+                <label>{translate('langNameRU')}</label>
             </div>
         </div>
     </div>
