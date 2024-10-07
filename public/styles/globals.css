@@ -6,16 +6,17 @@
   --accent: #69b1eb;
 }
 
-html,
-body {
+html {
   font-family: 'Open Sans';
-  width: 100vw;
-  height: 100vh;
-  overflow-x: hidden;
+  height: 100%;
+  overflow: hidden;
   background-color: var(--background);
 }
 
 body {
+  overscroll-behavior-y: none;
+  height: 100%;
+  overflow: auto;
   color: var(--foreground);
   background-image: url("/images/background.jpg");
   background-size: cover;
