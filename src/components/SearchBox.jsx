@@ -1,7 +1,9 @@
 'use client';
 import { useState } from "react";
+import { useLanguage } from '../i18n/LanguageContext';
 
 function SearchBox() {
+    const { translate } = useLanguage();
     const list = ["Tylenol", "Advil", "Aleve", "Aspirin"];
     
     const [
@@ -66,7 +68,7 @@ function SearchBox() {
         <div id="search">
             <style>{style}</style>
             <label>{selectedWord}</label>
-            <input id="search-box" placeholder="search medication names" type="text" value={selectedWord}/>
+            <input id="search-box" placeholder={translate('searchPlaceholder')} type="text" value={selectedWord}/>
             <ul id="dropdown-content">
                 {list.map((item) => <li key={item} onClick={() => handleSelection(item)}>{item} </li>)}
             </ul>
