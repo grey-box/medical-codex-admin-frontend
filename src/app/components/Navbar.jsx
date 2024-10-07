@@ -22,7 +22,7 @@ function Navbar(label) {
 
     const style = `
         #navbar {
-            position: sticky;
+            width: 100%;
             top: 0;
             height: 3em;
             background-color: grey;
