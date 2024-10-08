@@ -1,7 +1,6 @@
 import React, { FC } from "react";
 import { useForm } from "react-hook-form";
 import useLogin from "@/hooks/useLogin";
-import SocialMediaIcons from "@/components/SocialMediaIcons";
 
 interface LoginFormProps {
   onSubmit: (data: LoginFormInputs) => void;
@@ -110,11 +109,6 @@ const AdminPage: FC = () => {
           <LoginForm onSubmit={handleLogin} />
         )}
       </main>
-      <div className="bg-[#729775] text-[rgb(10,0,0)] p-4 mt-auto">
-        <div className="icons">
-          <SocialMediaIcons />
-        </div>
-      </div>
     </div>
   );
 };
