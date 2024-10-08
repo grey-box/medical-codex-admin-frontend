@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import Link from "next/link";
-import {FaLinkedin } from "react-icons/fa";
+import { FaLinkedin } from "react-icons/fa";
 
 interface TeamMember {
   name: string;
