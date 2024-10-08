@@ -1,10 +1,12 @@
-import * as React from "react";
-import { useTheme, Theme } from "@mui/material/styles";
-import OutlinedInput from "@mui/material/OutlinedInput";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
+import React, { FC, useState } from "react";
+import {
+  FormControl,
+  InputLabel,
+  MenuItem,
+  OutlinedInput,
+  Select,
+  SelectChangeEvent,
+} from "@mui/material";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -17,27 +19,14 @@ const MenuProps = {
   },
 };
 
-const languages: string[] = ["English", "Ukrainian", "Russian", "German"];
-
-function getStyles(language: string, selectedLanguage: string, theme: Theme) {
-  return {
-    fontWeight:
-      selectedLanguage === language
-        ? theme.typography.fontWeightMedium
-        : theme.typography.fontWeightRegular,
-  };
-}
+const languages = ["English", "Ukrainian", "Russian", "German"];
 
 interface SourceLanguageProps {
   onLanguageChange: (language: string) => void;
-  className?: string;
 }
 
-const SourceLanguage: React.FC<SourceLanguageProps> = ({
-  onLanguageChange,
-}) => {
-  const theme = useTheme();
-  const [selectedLanguage, setSelectedLanguage] = React.useState<string>("");
+const SourceLanguage: FC<SourceLanguageProps> = ({ onLanguageChange }) => {
+  const [selectedLanguage, setSelectedLanguage] = useState<string>("");
 
   const handleChange = (event: SelectChangeEvent<string>): void => {
     const value = event.target.value;
@@ -46,29 +35,23 @@ const SourceLanguage: React.FC<SourceLanguageProps> = ({
   };
 
   return (
-    <div>
-      <FormControl sx={{ m: 1, width: 300 }}>
-        <InputLabel id="language-select-label">Language</InputLabel>
-        <Select
-          labelId="language-select-label"
-          id="language-select"
-          value={selectedLanguage}
-          onChange={handleChange}
-          input={<OutlinedInput label="Language" />}
-          MenuProps={MenuProps}
-        >
-          {languages.map((language) => (
-            <MenuItem
-              key={language}
-              value={language}
-              style={getStyles(language, selectedLanguage, theme)}
-            >
-              {language}
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
-    </div>
+    <FormControl fullWidth>
+      <InputLabel id="language-select-label">Language</InputLabel>
+      <Select
+        labelId="language-select-label"
+        id="language-select"
+        value={selectedLanguage}
+        onChange={handleChange}
+        input={<OutlinedInput label="Language" />}
+        MenuProps={MenuProps}
+      >
+        {languages.map((language) => (
+          <MenuItem key={language} value={language}>
+            {language}
+          </MenuItem>
+        ))}
+      </Select>
+    </FormControl>
   );
 };
 
