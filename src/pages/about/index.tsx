@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 import Link from "next/link";
 import { FaLinkedin } from "react-icons/fa";
+import Head from "next/head";
 
 interface TeamMember {
   name: string;
@@ -75,6 +76,13 @@ const AboutPage: FC = () => {
 
   return (
     <div className="bg-[#808080]">
+      <Head>
+        <title>Project Medical Codex | About</title>
+        <meta
+          name="description"
+          content="About the Project Medical Codex team."
+        />
+      </Head>
       <div className="relative w-full h-auto">
         <div className="relative w-full h-auto">
           <div className="absolute text-4xl font-extrabold text-center text-white transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">

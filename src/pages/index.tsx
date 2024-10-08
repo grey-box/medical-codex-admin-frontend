@@ -3,6 +3,7 @@ import Dropdown from "@/components/ui/Dropdown";
 import handleSearch from "@/utils/handleSearch";
 import handleTranslate from "@/utils/handleTranslate";
 import HelpModal from "@/components/ui/modals/HelpModal";
+import Head from "next/head";
 
 const NEXT_PUBLIC_API_URL: string | undefined = process.env.NEXT_PUBLIC_API_URL;
 
@@ -26,6 +27,13 @@ const HomePage: FC = () => {
 
   return (
     <div className="relative flex flex-col overflow-hidden">
+      <Head>
+        <title>Project Medical Codex | Home</title>
+        <meta
+          name="description"
+          content="A tool developed to help coordinate medical equipment between countries."
+        />
+      </Head>
       <div className="relative flex flex-col flex-grow">
         <div className="flex items-center justify-between p-5">
           <div className="flex flex-col">

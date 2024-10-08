@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 import { useForm } from "react-hook-form";
 import useLogin from "@/hooks/useLogin";
+import Head from "next/head";
 
 interface LoginFormProps {
   onSubmit: (data: LoginFormInputs) => void;
@@ -23,6 +24,13 @@ const LoginForm: FC<LoginFormProps> = ({ onSubmit }) => {
       onSubmit={handleSubmit(onSubmit)}
       className="flex flex-col max-w-[600px] mx-auto top-[3000px] p-[100px] bg-cover bg-left"
     >
+      <Head>
+        <title>Project Medical Codex | Admin</title>
+        <meta
+          name="description"
+          content="Admin login portal for Project Medical Codex."
+        />
+      </Head>
       <div className="flex flex-col mb-4">
         <div className="mb-2">Username:</div>
         <input
