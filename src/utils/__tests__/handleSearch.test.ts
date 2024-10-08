@@ -25,7 +25,7 @@ describe("handleSearch", () => {
     fetchMock.mockResponseOnce(JSON.stringify(mockData));
 
     const setMedicines = jest.fn();
-    const NEXT_PUBLIC_API_URL = process.env.NEXT_PUBLIC_API_URL;
+    const NEXT_PUBLIC_API_URL = "http://localhost:3000";
 
     await handleSearch(
       "Tylenol",
@@ -57,24 +57,24 @@ describe("handleSearch", () => {
     fetchMock.mockRejectOnce(new Error("Fetch failed"));
 
     const setMedicines = jest.fn();
-    const NEXT_PUBLIC_API_URL = process.env.NEXT_PUBLIC_API_URL;
+    const NEXT_PUBLIC_API_URL = "http://localhost:3000";
 
     await expect(
       handleSearch("Tylenol", "English", "", setMedicines, NEXT_PUBLIC_API_URL),
     ).rejects.toThrow("Fetch failed");
     expect(setMedicines).not.toHaveBeenCalled();
   });
-});
 
-it("throws an error when the API response status is not ok (200)", async () => {
-  fetchMock.mockResponseOnce("", { status: 404 });
+  it("throws an error when the API response status is not ok (200)", async () => {
+    fetchMock.mockResponseOnce("", { status: 404 });
 
-  const setMedicines = jest.fn();
-  const NEXT_PUBLIC_API_URL = process.env.NEXT_PUBLIC_API_URL;
+    const setMedicines = jest.fn();
+    const NEXT_PUBLIC_API_URL = "http://localhost:3000";
 
-  await expect(
-    handleSearch("Tylenol", "English", "", setMedicines, NEXT_PUBLIC_API_URL),
-  ).rejects.toThrow("HTTP error! Status: 404");
+    await expect(
+      handleSearch("Tylenol", "English", "", setMedicines, NEXT_PUBLIC_API_URL),
+    ).rejects.toThrow("HTTP error! Status: 404");
 
-  expect(setMedicines).not.toHaveBeenCalled();
+    expect(setMedicines).not.toHaveBeenCalled();
+  });
 });
