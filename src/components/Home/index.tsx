@@ -26,10 +26,14 @@ const Home: FC = () => {
   return (
     <div className="relative flex flex-col overflow-hidden">
       <div className="relative flex flex-col flex-grow">
-        <div className="p-4 text-4xl font-bold text-center">
-          Medical Translation Tool
+        <div className="p-4 text-3xl font-bold text-center md:text-4xl">
+          Project Medical Codex
         </div>
-        <div className="mx-10 border-b-2"></div>
+        <div className="text-sm text-center md:text-base">
+          A tool developed to help coordinate medical equipment between
+          countries.
+        </div>
+        <div className="w-11/12 mx-auto mt-5 border-b-2 md:w-9/12"></div>
 
         <div className="p-5">
           <SectionTitle text="Source Language" />
@@ -41,13 +45,13 @@ const Home: FC = () => {
             />
             <input
               type="text"
-              className="w-full md:w-[150px] h-[35px] text-base font-inter font-semibold text-[#044677] text-center shadow-md border-none"
+              className="w-full md:w-1/4 h-10 text-base font-inter font-semibold text-[#044677] text-center shadow-md border-none"
               placeholder="Word to Search"
               value={inputSearch}
               onChange={(e) => setInputSearch(e.target.value)}
             />
             <button
-              className="bg-[#2f876e] w-full md:w-[90px] h-[48px] text-white rounded-lg shadow-md"
+              className="bg-[#2f876e] w-full md:w-1/5 h-12 text-white rounded-lg shadow-md"
               onClick={() =>
                 handleSearch(
                   inputSearch,
@@ -81,7 +85,7 @@ const Home: FC = () => {
               onChange={setTargetLanguage}
             />
             <button
-              className="bg-[#2f876e] w-full md:w-[90px] h-[48px] text-white rounded-lg shadow-md"
+              className="bg-[#2f876e] w-full md:w-1/5 h-12 text-white rounded-lg shadow-md"
               onClick={() =>
                 handleTranslate(
                   selectedMedicine,
@@ -95,7 +99,7 @@ const Home: FC = () => {
             </button>
             <input
               type="text"
-              className="w-[320px] h-[25px] text-base shadow-md border-none"
+              className="w-full h-10 text-base border-none shadow-md md:w-1/3"
               value={outputTranslation}
               readOnly
             />
