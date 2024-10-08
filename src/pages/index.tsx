@@ -26,7 +26,7 @@ const HomePage: FC = () => {
   return (
     <div className="relative flex flex-col overflow-hidden">
       <div className="relative flex flex-col flex-grow">
-        <div className="p-4 text-3xl font-bold text-center md:text-4xl">
+        <div className="p-5 text-3xl font-bold text-center md:text-4xl">
           Project Medical Codex
         </div>
         <div className="text-sm text-center md:text-base">
@@ -45,13 +45,13 @@ const HomePage: FC = () => {
             />
             <input
               type="text"
-              className="w-full md:w-1/4 h-10 text-base font-inter font-semibold text-[#044677] text-center shadow-md border-none"
-              placeholder="Word to Search"
+              className="w-full md:w-1/2 h-12 text-base font-inter font-semibold text-[#044677] text-center shadow-md border border-gray-300 rounded-md focus:border-[#2f876e] focus:ring-[#2f876e] focus:outline-none p-2"
+              placeholder="Word to search"
               value={inputSearch}
               onChange={(e) => setInputSearch(e.target.value)}
             />
             <button
-              className="bg-[#2f876e] w-full md:w-1/5 h-12 text-white rounded-lg shadow-md"
+              className="bg-[#2f876e] w-full md:w-1/4 h-12 text-white rounded-lg shadow-md hover:bg-[#256c54] transition-all"
               onClick={() =>
                 handleSearch(
                   inputSearch,
@@ -85,7 +85,7 @@ const HomePage: FC = () => {
               onChange={setTargetLanguage}
             />
             <button
-              className="bg-[#2f876e] w-full md:w-1/5 h-12 text-white rounded-lg shadow-md"
+              className="bg-[#2f876e] w-full md:w-1/4 h-12 text-white rounded-lg shadow-md hover:bg-[#256c54] transition-all"
               onClick={() =>
                 handleTranslate(
                   selectedMedicine,
@@ -99,7 +99,8 @@ const HomePage: FC = () => {
             </button>
             <input
               type="text"
-              className="w-full h-10 text-base border-none shadow-md md:w-1/3"
+              className="w-full h-12 text-base text-center font-inter font-semibold text-[#044677] shadow-md border border-gray-300 rounded-md md:w-1/2 focus:border-[#2f876e] focus:ring-[#2f876e] focus:outline-none p-2"
+              placeholder="Translation will appear here"
               value={outputTranslation}
               readOnly
             />
