@@ -25,7 +25,9 @@ const Home: FC = () => {
         <div className="mx-10 border-b-2"></div>
 
         <div className="p-5">
-          <h1 className="text-sm font-semibold font-inter">Source Language</h1>
+          <div className="text-sm font-semibold font-inter">
+            Source Language
+          </div>
           <div className="flex flex-col gap-5 md:flex-row md:items-center">
             <SourceLanguage onLanguageChange={setSourceLanguage} />
             <input
@@ -53,7 +55,9 @@ const Home: FC = () => {
         </div>
 
         <div className="p-5">
-          <h1 className="text-sm font-semibold font-inter">Database Results</h1>
+          <div className="text-sm font-semibold font-inter">
+            Database Results
+          </div>
           <div className="w-full md:w-[300px] shadow-md p-3 bg-white">
             <select
               className="w-full p-2 border rounded-md"
@@ -74,12 +78,12 @@ const Home: FC = () => {
         </div>
 
         <div className="p-5">
-          <h1 className="text-sm font-semibold font-inter">
+          <div className="text-sm font-semibold font-inter">
             Translation Results
-          </h1>
-          <h1 className="p-5 text-sm font-semibold font-inter">
+          </div>
+          <div className="p-5 text-sm font-semibold font-inter">
             Target Language
-          </h1>
+          </div>
           <div className="flex flex-col gap-5 md:flex-row md:items-center">
             <TargetLanguage onLanguageChange={setTargetLanguage} />
             <button
