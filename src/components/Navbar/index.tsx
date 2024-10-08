@@ -1,13 +1,20 @@
-import React, { FC } from "react";
+import React, { useState, FC } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 import SocialMediaIcons from "@/components/SocialMediaIcons";
 
 const NavigationBar: FC = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
     <nav className="relative bg-[#2e7c64] shadow-lg">
-      <div className="flex justify-between items-center h-[100px] px-6">
-        <div className="flex items-center space-x-6 flex-grow">
+      <div className="flex items-center justify-between h-24 px-6 mx-auto max-w-7xl">
+        <div className="flex items-center space-x-10">
           <Link href="/" className="no-underline">
             <Image
               src="/images/assets/logoGrey-BOX.png"
@@ -18,26 +25,45 @@ const NavigationBar: FC = () => {
             />
           </Link>
 
-          <div className="flex items-center space-x-6">
+          <div className="items-center hidden space-x-8 md:flex">
             <Link
               href="/about"
-              className="text-[18px] font-bold text-white no-underline"
+              className="text-lg font-bold text-white no-underline hover:underline"
             >
               About
             </Link>
             <Link
               href="/help"
-              className="text-[18px] font-bold text-white no-underline"
+              className="text-lg font-bold text-white no-underline hover:underline"
             >
               Help
             </Link>
           </div>
         </div>
 
-        <div className="flex items-center">
+        <div className="md:hidden">
+          <button
+            onClick={toggleMenu}
+            className="text-white focus:outline-none"
+          >
+            {isOpen ? (
+              <AiOutlineClose className="w-8 h-8" />
+            ) : (
+              <AiOutlineMenu className="w-8 h-8" />
+            )}
+          </button>
+        </div>
+
+        <div className="items-center hidden space-x-4 md:flex">
           <SocialMediaIcons />
         </div>
       </div>
+
+      {isOpen && (
+        <div className="md:hidden flex flex-col items-center space-y-4 bg-[#2e7c64] py-4">
+          <SocialMediaIcons />
+        </div>
+      )}
     </nav>
   );
 };
