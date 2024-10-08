@@ -73,6 +73,7 @@ const HomePage: FC = () => {
             label="Select Medicine"
             options={medicines.map((medicine) => medicine.matching_name)}
             onChange={setSelectedMedicine}
+            disabled={medicines.length === 0}
           />
         </div>
 
@@ -83,6 +84,7 @@ const HomePage: FC = () => {
               label="Target Language"
               options={languages}
               onChange={setTargetLanguage}
+              disabled={!selectedMedicine}
             />
             <button
               className="bg-[#2f876e] w-full md:w-1/4 h-12 text-white rounded-lg shadow-md hover:bg-[#256c54] transition-all"
@@ -94,6 +96,7 @@ const HomePage: FC = () => {
                   NEXT_PUBLIC_API_URL,
                 )
               }
+              disabled={!targetLanguage || !selectedMedicine}
             >
               Translate
             </button>

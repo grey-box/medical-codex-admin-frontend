@@ -12,9 +12,15 @@ interface DropdownProps {
   label: string;
   options: string[];
   onChange: (value: string) => void;
+  disabled?: boolean;
 }
 
-const Dropdown: FC<DropdownProps> = ({ label, options, onChange }) => {
+const Dropdown: FC<DropdownProps> = ({
+  label,
+  options,
+  onChange,
+  disabled = false,
+}) => {
   const [selectedOption, setSelectedOption] = useState<string>("");
 
   const handleChange = (event: SelectChangeEvent<string>): void => {
@@ -24,7 +30,8 @@ const Dropdown: FC<DropdownProps> = ({ label, options, onChange }) => {
   };
 
   return (
-    <FormControl fullWidth>
+    <FormControl fullWidth disabled={disabled}>
+      {" "}
       <InputLabel>{label}</InputLabel>
       <Select
         value={selectedOption}
