@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import Link from "next/link";
-import { FaTwitter, FaFacebook, FaGlobe, FaLinkedin } from "react-icons/fa";
+import {FaLinkedin } from "react-icons/fa";
 
 interface TeamMember {
   name: string;
@@ -74,7 +74,7 @@ const About: FC = () => {
   ];
 
   return (
-    <div className="bg-[#B6E7FF]">
+    <div className="bg-[#808080]">
       <div className="relative w-full h-auto">
         <div className="relative w-full h-auto">
           <div className="absolute text-4xl font-extrabold text-center text-white transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
@@ -88,8 +88,8 @@ const About: FC = () => {
         </div>
       </div>
 
-      <div className="flex flex-col mt-12 bg-[#B6E7FF]">
-        <div className="text-4xl font-extrabold mb-12 text-left pl-10 text-[#555555]">
+      <div className="flex flex-col mt-12 bg-[#808080]">
+        <div className="text-4xl font-extrabold mb-12 text-left pl-10 text-[#ffffff]">
           Meet <br /> Our Team
         </div>
 
@@ -119,43 +119,6 @@ const About: FC = () => {
               </div>
             </div>
           ))}
-        </div>
-      </div>
-
-      <div className="relative bg-[#044677] p-5 text-center h-[60px] w-full">
-        <div className="flex justify-center">
-          <Link
-            href="https://www.grey-box.ca/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mx-2 text-white"
-          >
-            <FaGlobe />
-          </Link>
-          <Link
-            href="https://twitter.com/greyboxproject"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mx-2 text-white"
-          >
-            <FaTwitter />
-          </Link>
-          <Link
-            href="https://www.facebook.com/greyboxORG/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mx-2 text-white"
-          >
-            <FaFacebook />
-          </Link>
-          <Link
-            href="https://www.linkedin.com/company/greyboxproject/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mx-2 text-white"
-          >
-            <FaLinkedin />
-          </Link>
         </div>
       </div>
     </div>
