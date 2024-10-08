@@ -17,6 +17,12 @@ const Home: FC = () => {
   const [targetLanguage, setTargetLanguage] = useState<string>("");
   const [sourceLanguage, setSourceLanguage] = useState<string>("");
 
+  const SectionTitle: FC<{ text: string }> = ({ text }) => (
+    <div className="m-2 text-lg font-semibold text-center font-inter">
+      {text}
+    </div>
+  );
+
   return (
     <div className="relative flex flex-col overflow-hidden">
       <div className="relative flex flex-col flex-grow">
@@ -26,9 +32,7 @@ const Home: FC = () => {
         <div className="mx-10 border-b-2"></div>
 
         <div className="p-5">
-          <div className="text-sm font-semibold font-inter">
-            Source Language
-          </div>
+          <SectionTitle text="Source Language" />
           <div className="flex flex-col gap-5 md:flex-row md:items-center">
             <Dropdown
               label="Source Language"
@@ -60,9 +64,7 @@ const Home: FC = () => {
         </div>
 
         <div className="p-5">
-          <div className="text-sm font-semibold font-inter">
-            Database Results
-          </div>
+          <SectionTitle text="Database Results" />
           <Dropdown
             label="Select Medicine"
             options={medicines.map((medicine) => medicine.matching_name)}
@@ -71,12 +73,7 @@ const Home: FC = () => {
         </div>
 
         <div className="p-5">
-          <div className="text-sm font-semibold font-inter">
-            Translation Results
-          </div>
-          <div className="p-5 text-sm font-semibold font-inter">
-            Target Language
-          </div>
+          <SectionTitle text="Translation Results" />
           <div className="flex flex-col gap-5 md:flex-row md:items-center">
             <Dropdown
               label="Target Language"
