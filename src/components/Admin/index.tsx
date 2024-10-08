@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { useForm } from "react-hook-form";
-import useLogin from "@/components/Admin/UseLogin";
+import useLogin from "@/hooks/UseLogin";
 import SocialMediaIcons from "@/components/SocialMediaIcons";
 
 interface LoginFormProps {
