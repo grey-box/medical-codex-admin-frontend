@@ -46,40 +46,34 @@ const Home: FC = () => {
         <h1 className="p-3 text-sm font-semibold font-inter">
           Source Language
         </h1>
-        <SourceLanguage className="p-5" onLanguageChange={setSourceLanguage} />
+        <div className="flex flex-col gap-5 p-5 md:flex-row md:items-center">
+          <SourceLanguage onLanguageChange={setSourceLanguage} />
+          <input
+            type="text"
+            className="w-full md:w-[150px] h-[35px] text-base font-inter font-semibold text-[#044677] text-center shadow-md border-none"
+            placeholder="Word to Search"
+            value={inputSearch}
+            onChange={(e) => setInputSearch(e.target.value)}
+          />
+          <button
+            className="bg-[#2f876e] w-full md:w-[90px] h-[48px] text-white rounded-lg border-none font-inter shadow-md"
+            onClick={() =>
+              handleSearch(
+                inputSearch,
+                targetLanguage,
+                sourceLanguage,
+                setMedicines,
+                NEXT_PUBLIC_API_URL,
+              )
+            }
+          >
+            Search
+          </button>
+        </div>
         <h1 className="p-5 text-sm font-semibold font-inter">
           Target Language
         </h1>
         <TargetLanguage className="p-5" onLanguageChange={setTargetLanguage} />
-        <div className="flex flex-col items-start w-full p-5">
-          <div className="flex justify-start items-center flex-grow-[0.4] gap-8">
-            <div className="text-right flex-[20%]">
-              <input
-                type="text"
-                className="w-[150px] h-[35px] text-base font-inter font-semibold text-[#044677] text-center shadow-md border-none"
-                placeholder="Word to Search"
-                value={inputSearch}
-                onChange={(e) => setInputSearch(e.target.value)}
-              />
-            </div>
-            <div className="text-center flex-[20%]">
-              <button
-                className="bg-[#2f876e] w-[90px] h-[48px] text-white rounded-lg border-none font-inter shadow-md"
-                onClick={() =>
-                  handleSearch(
-                    inputSearch,
-                    targetLanguage,
-                    sourceLanguage,
-                    setMedicines,
-                    NEXT_PUBLIC_API_URL,
-                  )
-                }
-              >
-                Search
-              </button>
-            </div>
-          </div>
-        </div>
         <div className="flex flex-col p-5">
           <h1 className="pt-5 text-sm font-semibold font-inter">
             Database Search Results
@@ -113,7 +107,7 @@ const Home: FC = () => {
           </h1>
           <div className="pl-[120px]">
             <button
-              className="bg-[#2f876e] w-[90px] h-[48px] text-white rounded-lg border-none font-inter shadow-md"
+              className="bg-[#2f876e] w-full md:w-[90px] h-[48px] text-white rounded-lg border-none font-inter shadow-md"
               onClick={() =>
                 handleTranslate(
                   selectedMedicine,
