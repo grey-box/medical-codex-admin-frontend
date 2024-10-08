@@ -3,7 +3,6 @@ import SourceLanguage from "@/components/SourceLanguage";
 import TargetLanguage from "@/components/TargetLanguage";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import FormControl from "@mui/material/FormControl";
-//import { useTheme } from '@emotion/react';
 import InputLabel from "@mui/material/InputLabel";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import MenuItem from "@mui/material/MenuItem";
@@ -24,7 +23,6 @@ const MenuProps = {
 const NEXT_PUBLIC_API_URL: string | undefined = process.env.NEXT_PUBLIC_API_URL;
 
 const Home: FC = () => {
-  //const theme = useTheme();
   const [inputSearch, setInputSearch] = useState<string>("");
   const [outputTranslation, setOutputTranslation] = useState<string>("");
   const [medicines, setMedicines] = useState<Array<{ matching_name: string }>>(
@@ -41,10 +39,6 @@ const Home: FC = () => {
   return (
     <div className="relative flex flex-col overflow-hidden">
       <div className="relative flex flex-col flex-grow">
-        {/* <div
-          className="absolute inset-0 bg-center bg-cover"
-          style={{ backgroundImage: "url('background2.jpg')" }}
-        ></div> */}
         <div className="p-4 text-4xl font-bold text-center">
           Medical Translation Tool
         </div>
