@@ -70,10 +70,6 @@ const Home: FC = () => {
             Search
           </button>
         </div>
-        <h1 className="p-5 text-sm font-semibold font-inter">
-          Target Language
-        </h1>
-        <TargetLanguage className="p-5" onLanguageChange={setTargetLanguage} />
         <div className="flex flex-col p-5">
           <h1 className="pt-5 text-sm font-semibold font-inter">
             Database Search Results
@@ -105,7 +101,11 @@ const Home: FC = () => {
           <h1 className="text-sm font-semibold font-inter">
             Translation Results
           </h1>
-          <div className="pl-[120px]">
+          <h1 className="p-5 text-sm font-semibold font-inter">
+            Target Language
+          </h1>
+          <div className="flex flex-col gap-5 md:flex-row md:items-center">
+            <TargetLanguage onLanguageChange={setTargetLanguage} />
             <button
               className="bg-[#2f876e] w-full md:w-[90px] h-[48px] text-white rounded-lg border-none font-inter shadow-md"
               onClick={() =>
@@ -119,14 +119,14 @@ const Home: FC = () => {
             >
               Translate
             </button>
-          </div>
-          <div className="p-5">
-            <input
-              type="text"
-              className="w-[320px] h-[25px] text-base shadow-md border-none"
-              value={outputTranslation}
-              readOnly
-            />
+            <div className="p-5">
+              <input
+                type="text"
+                className="w-[320px] h-[25px] text-base shadow-md border-none"
+                value={outputTranslation}
+                readOnly
+              />
+            </div>
           </div>
         </div>
       </div>
