@@ -30,9 +30,9 @@ const HelpModal: FC = () => {
 
             <div className="p-4">
               <p className="text-base font-semibold text-[#044677] mb-4">
-                This page explains how the application operates and how to
-                perform the various functions associated with the application.
-                It assists the user if they have a query about a button or
+                This explains how the application operates and how to perform
+                the various functions associated with the application. It
+                assists the user if they have a query about a button or
                 functionality of the touch panel.
               </p>
 
