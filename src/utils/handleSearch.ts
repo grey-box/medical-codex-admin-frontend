@@ -5,14 +5,11 @@ const handleSearch = async (
   setMedicines: (data: Array<{ matching_name: string }>) => void,
   NEXT_PUBLIC_API_URL: string | undefined,
 ): Promise<void> => {
+  if (!NEXT_PUBLIC_API_URL) {
+    console.error("API URL is not defined");
+    return;
+  }
   try {
-    const requestBody = {
-      query: inputSearch,
-      target_language: targetLanguage,
-      source_language: sourceLanguage,
-    };
-    console.log("Request parameters:", requestBody);
-
     const response = await fetch(`${NEXT_PUBLIC_API_URL}/fuzzymatching/`, {
       method: "POST",
       headers: {
@@ -31,8 +28,18 @@ const handleSearch = async (
     console.log("Received data:", data);
     setMedicines(data.results);
   } catch (error) {
-    console.error("Error fetching data:", error);
-    throw error;
+    if (error instanceof Error) {
+      console.error("Error fetching data:", error);
+      if (error.name === "TypeError" && error.message === "Failed to fetch") {
+        console.error(
+          "The server is not responding. Please check your server and try again.",
+        );
+      } else {
+        throw error;
+      }
+    } else {
+      throw error;
+    }
   }
 };
 
