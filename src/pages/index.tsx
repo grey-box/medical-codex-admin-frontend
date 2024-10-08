@@ -43,7 +43,7 @@ const HomePage: FC = () => {
         <div className="w-11/12 mx-auto mt-5 border-b-2 md:w-9/12"></div>
 
         <div className="p-5">
-          <SectionTitle text="Source Language" />
+          <SectionTitle text="Search for drug name..." />
           <div className="flex flex-col gap-5 md:flex-row md:items-center">
             <Dropdown
               label="Source Language"
@@ -75,7 +75,7 @@ const HomePage: FC = () => {
         </div>
 
         <div className="p-5">
-          <SectionTitle text="Database Results" />
+          <SectionTitle text="Results" />
           <Dropdown
             label="Select Medicine"
             options={medicines.map((medicine) => medicine.matching_name)}
@@ -85,7 +85,7 @@ const HomePage: FC = () => {
         </div>
 
         <div className="p-5">
-          <SectionTitle text="Translation Results" />
+          <SectionTitle text="Translate/Localize drug name..." />
           <div className="flex flex-col gap-5 md:flex-row md:items-center">
             <Dropdown
               label="Target Language"
