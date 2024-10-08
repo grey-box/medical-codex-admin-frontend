@@ -10,7 +10,7 @@ const HelpModal: FC = () => {
     <div>
       <button
         onClick={openModal}
-        className="bg-[#2e7c64] text-white font-bold py-2 px-4 rounded-lg shadow-md hover:bg-[#256c54] transition-all"
+        className="bg-[#2e7c64] text-white font-bold py-2 px-4 mx-4 rounded-lg shadow-md hover:bg-[#256c54] transition-all"
       >
         Help
       </button>
