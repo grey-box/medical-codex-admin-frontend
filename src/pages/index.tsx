@@ -2,6 +2,7 @@ import React, { useState, FC } from "react";
 import Dropdown from "@/components/ui/Dropdown";
 import handleSearch from "@/utils/handleSearch";
 import handleTranslate from "@/utils/handleTranslate";
+import HelpModal from "@/components/ui/modals/HelpModal";
 
 const NEXT_PUBLIC_API_URL: string | undefined = process.env.NEXT_PUBLIC_API_URL;
 
@@ -26,13 +27,19 @@ const HomePage: FC = () => {
   return (
     <div className="relative flex flex-col overflow-hidden">
       <div className="relative flex flex-col flex-grow">
-        <div className="p-5 text-3xl font-bold text-center md:text-4xl">
-          Project Medical Codex
+        <div className="flex items-center justify-between p-5">
+          <div className="flex flex-col">
+            <span className="text-3xl font-bold md:text-4xl">
+              Project Medical Codex
+            </span>
+            <span className="mt-2 text-sm md:text-base">
+              A tool developed to help coordinate medical equipment between
+              countries.
+            </span>
+          </div>
+          <HelpModal />
         </div>
-        <div className="text-sm text-center md:text-base">
-          A tool developed to help coordinate medical equipment between
-          countries.
-        </div>
+
         <div className="w-11/12 mx-auto mt-5 border-b-2 md:w-9/12"></div>
 
         <div className="p-5">
