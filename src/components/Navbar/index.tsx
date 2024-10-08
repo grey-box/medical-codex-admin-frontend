@@ -27,16 +27,16 @@ const NavigationBar: FC = () => {
 
           <div className="items-center hidden space-x-8 md:flex">
             <Link
+              href="/"
+              className="text-lg font-bold text-white no-underline hover:underline"
+            >
+              Home
+            </Link>
+            <Link
               href="/about"
               className="text-lg font-bold text-white no-underline hover:underline"
             >
               About
-            </Link>
-            <Link
-              href="/help"
-              className="text-lg font-bold text-white no-underline hover:underline"
-            >
-              Help
             </Link>
           </div>
         </div>
