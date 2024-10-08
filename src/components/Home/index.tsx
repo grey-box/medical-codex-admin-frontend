@@ -1,10 +1,11 @@
 import React, { useState, FC } from "react";
-import SourceLanguage from "@/components/SourceLanguage";
-import TargetLanguage from "@/components/TargetLanguage";
+import Dropdown from "@/components/ui/Dropdown";
 import handleSearch from "@/utils/handleSearch";
 import handleTranslate from "@/utils/handleTranslate";
 
 const NEXT_PUBLIC_API_URL: string | undefined = process.env.NEXT_PUBLIC_API_URL;
+
+const languages = ["English", "Ukrainian", "Russian", "German"];
 
 const Home: FC = () => {
   const [inputSearch, setInputSearch] = useState<string>("");
@@ -29,7 +30,11 @@ const Home: FC = () => {
             Source Language
           </div>
           <div className="flex flex-col gap-5 md:flex-row md:items-center">
-            <SourceLanguage onLanguageChange={setSourceLanguage} />
+            <Dropdown
+              label="Source Language"
+              options={languages}
+              onChange={setSourceLanguage}
+            />
             <input
               type="text"
               className="w-full md:w-[150px] h-[35px] text-base font-inter font-semibold text-[#044677] text-center shadow-md border-none"
@@ -58,23 +63,11 @@ const Home: FC = () => {
           <div className="text-sm font-semibold font-inter">
             Database Results
           </div>
-          <div className="w-full md:w-[300px] shadow-md p-3 bg-white">
-            <select
-              className="w-full p-2 border rounded-md"
-              value={selectedMedicine}
-              onChange={(e) => setSelectedMedicine(e.target.value)}
-            >
-              <option value="">Select Medicine</option>
-              {medicines.map((medicine) => (
-                <option
-                  key={medicine.matching_name}
-                  value={medicine.matching_name}
-                >
-                  {medicine.matching_name}
-                </option>
-              ))}
-            </select>
-          </div>
+          <Dropdown
+            label="Select Medicine"
+            options={medicines.map((medicine) => medicine.matching_name)}
+            onChange={setSelectedMedicine}
+          />
         </div>
 
         <div className="p-5">
@@ -85,7 +78,11 @@ const Home: FC = () => {
             Target Language
           </div>
           <div className="flex flex-col gap-5 md:flex-row md:items-center">
-            <TargetLanguage onLanguageChange={setTargetLanguage} />
+            <Dropdown
+              label="Target Language"
+              options={languages}
+              onChange={setTargetLanguage}
+            />
             <button
               className="bg-[#2f876e] w-full md:w-[90px] h-[48px] text-white rounded-lg shadow-md"
               onClick={() =>
