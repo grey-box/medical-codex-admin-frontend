@@ -4,7 +4,7 @@ import { useLanguage } from '../i18n/LanguageContext';
 import { handleFuzzy } from "../utils/FuzzyMatching";
 
 
-function SearchBox(state, setter, source, target, API_URL) {
+function SearchBox(source, target, API_URL) {
     const { translate } = useLanguage();
     
     const [
@@ -12,8 +12,25 @@ function SearchBox(state, setter, source, target, API_URL) {
         setFuzzyOutput,
       ] = useState([" "]);
 
-    const inputChangedHandler = () => {
-        handleFuzzy();
+    const [
+        selectedWord,
+        setSelectedWord,
+    ] = useState("");
+
+    const [
+        typedWord,
+        setTypedWord,
+    ] = useState("");
+
+    const inputChangedHandler = (value) => {
+        setTypedWord(value.target.value);
+        if(typedWord)
+            handleFuzzy(typedWord, source, API_URL, setFuzzyOutput);
+    }
+
+    const selectionHandler = (value) => {
+        setSelectedWord(value);
+        document.getElementById("search-box").setAttribute("text", selectedWord);
     }
 
     const style = `
@@ -72,10 +89,10 @@ function SearchBox(state, setter, source, target, API_URL) {
                 id="search-box" 
                 placeholder={translate('searchPlaceholder')} 
                 type="text" 
-                defaultValue={state}
-                onChange={(e)=>inputChangedHandler(e)}/>
+                defaultValue={selectedWord}
+                onChange={e =>inputChangedHandler(e)}/>
             <ul id="dropdown-content">
-                {fuzzyOutput.map((item) => <li key={item} value={item} onClick={() => setter(item)}>{item}</li>)}
+                {fuzzyOutput.map((item) => <li key={item} value={item} onClick={() => selectionHandler(item)}>{item}</li>)}
             </ul>
         </div>
     );

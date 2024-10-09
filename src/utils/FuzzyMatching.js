@@ -1,4 +1,4 @@
-const handleFuzzy = async (input, targetLanguage, sourceLanguage, API_URL, setFuzzyOutput) => {
+const handleFuzzy = async (input, sourceLanguage, API_URL, setFuzzyOutput) => {
   
     if (!API_URL) {
         console.error("API URL is not valid");
@@ -6,16 +6,16 @@ const handleFuzzy = async (input, targetLanguage, sourceLanguage, API_URL, setFu
     }
   
     try {
-  
       const response = await fetch(`${API_URL}/fuzzymatching/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          query: input,
-          target_language: targetLanguage,
           source_language: sourceLanguage,
+          query: input,
+          threshold : 5,
+          nb_max_results: 5
         }),
   
       });
@@ -28,34 +28,22 @@ const handleFuzzy = async (input, targetLanguage, sourceLanguage, API_URL, setFu
   
       console.log("Received data:", data);
   
-      setFuzzyOutput(data.results);
+      setFuzzyOutput(data.results.map(match => match.matching_name));
   
     } catch (error) {
   
       if (error instanceof Error) {
-  
         console.error("Error fetching data:", error);
-  
         if (error.name === "TypeError" && error.message === "Failed to fetch") {
-  
           console.error(
-  
             "The server is not responding. Please check your server and try again.",
-  
           );
-  
         } else {
-  
           throw error;
-  
         }
-  
       } else {
-  
         throw error;
-  
       }
-  
     }
   
   };
