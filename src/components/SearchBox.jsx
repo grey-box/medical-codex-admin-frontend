@@ -1,19 +1,20 @@
 'use client';
 import { useState } from "react";
 import { useLanguage } from '../i18n/LanguageContext';
+import { handleFuzzy } from "../utils/FuzzyMatching";
 
-function SearchBox() {
+
+function SearchBox(state, setter, source, target, API_URL) {
     const { translate } = useLanguage();
-    const list = ["Tylenol", "Advil", "Aleve", "Aspirin"];
     
     const [
-        selectedWord,
-        setSelectedWord,
-    ] = useState("");
+        fuzzyOutput,
+        setFuzzyOutput,
+      ] = useState([" "]);
 
-    const handleSelection = (value) => {
-        setSelectedWord(value);
-    };
+    const inputChangedHandler = () => {
+        handleFuzzy();
+    }
 
     const style = `
         #search {
@@ -31,7 +32,6 @@ function SearchBox() {
         }
 
         #dropdown-content {
-        
             display: none;
             position: absolute;
             font-size: .75em;
@@ -55,22 +55,27 @@ function SearchBox() {
             color: var(--foreground)
         }
 
-        #search-box:focus + #dropdown-content{
+        #search:hover  #dropdown-content{
             display: block !important;
         }
 
-        #search-box:focus {
+        #search:hover #search-box {
             border-radius: 1em 1em 0px 0px;
             outline: none;
         }
     `;
+
     return (
         <div id="search">
             <style>{style}</style>
-            <label>{selectedWord}</label>
-            <input id="search-box" placeholder={translate('searchPlaceholder')} type="text" value={selectedWord}/>
+            <input 
+                id="search-box" 
+                placeholder={translate('searchPlaceholder')} 
+                type="text" 
+                defaultValue={state}
+                onChange={(e)=>inputChangedHandler(e)}/>
             <ul id="dropdown-content">
-                {list.map((item) => <li key={item} onClick={() => handleSelection(item)}>{item} </li>)}
+                {fuzzyOutput.map((item) => <li key={item} value={item} onClick={() => setter(item)}>{item}</li>)}
             </ul>
         </div>
     );

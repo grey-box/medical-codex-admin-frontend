@@ -3,15 +3,11 @@
 import React, { useState } from "react";
 import { useLanguage } from '../i18n/LanguageContext';
 
-function LangSelect(label) {
+function LangSelect(label, state, setter) {
     const { translate } = useLanguage();
-    const [
-        selectedValue,
-        setSelectedValue,
-    ] = useState("English");
-
+    
     const handleRadioChange = (value) => {
-        setSelectedValue(value);
+        setter(value);
     };
 
     const style = `
@@ -37,7 +33,7 @@ function LangSelect(label) {
                 <input 
                     type="radio"
                     value="English"
-                    checked={selectedValue === "English"}
+                    checked={state === "English"}
                     onChange={() => handleRadioChange("English")}
                 />
                 <label>{translate('langNameEN')}</label>
@@ -46,7 +42,7 @@ function LangSelect(label) {
                 <input 
                     type="radio"
                     value="Ukrainian"
-                    checked={selectedValue === "Ukrainian"}
+                    checked={state === "Ukrainian"}
                     onChange={() => handleRadioChange("Ukrainian")}
                 />
                 <label>{translate('langNameUK')}</label>
@@ -55,7 +51,7 @@ function LangSelect(label) {
                 <input 
                     type="radio"
                     value="Russian"
-                    checked={selectedValue === "Russian"}
+                    checked={state === "Russian"}
                     onChange={() => handleRadioChange("Russian")}
                 />
                 <label>{translate('langNameRU')}</label>
