@@ -11,7 +11,8 @@
   background-color: grey;
   padding: 2em;
   border-radius: 3em;
-  width: 20em;
+  width: 30em;
+  max-width: 90%;
   margin: 5em auto;
 }
 
@@ -37,18 +38,53 @@
   border-radius: 1em;
 }
 
+#translate-button:hover {
+  background-color: #074fa8; 
+  cursor: pointer; 
+}
+
 #output-label {
   margin-top: 2em;
 }
-
-@media screen and (max-width: 800px){
+/* Tablet view */
+@media screen and (max-width: 1024px) {
   #main {
     font-size: 18px;
   }
+
+  #translation-form {
+    width: 35em; 
+    max-width: 90%;
+    margin: 5em auto; 
+  }
 }
 
-@media screen and (max-width: 500px){
+/* Mobile view */
+@media screen and (max-width: 768px) {
+  #main {
+    font-size: 16px;
+  }
+
+  #translation-form {
+    width: 100%;
+    max-width: 90%; 
+    padding: 1.5em;
+    margin: 2em auto;
+    border-radius: 1em;
+  }
+}
+
+/* Mobile View */
+@media screen and (max-width: 480px) {
   #main {
     font-size: 14px;
+  }
+
+  #translation-form {
+    width: 100%;
+    max-width: 90%; 
+    padding: 1em;
+    margin: 2em auto;
+    border-radius: 0.5em;
   }
 }
