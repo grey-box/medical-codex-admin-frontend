@@ -9,6 +9,7 @@ export const translations = {
         langNameEN: "English",
         langNameUK: "Ukrainian",
         langNameRU: "Russian",
+        footerGreybox: "is a nonprofit registered in Canada at the Federal and Provincial (Quebec) level since 2016",
         // Add more translations as needed
     },
     uk: {
@@ -21,6 +22,7 @@ export const translations = {
         langNameEN: "англійська",
         langNameUK: "українська",
         langNameRU: "російська",
+        footerGreybox: "є некомерційною організацією, зареєстрованою в Канаді на федеральному та провінційному рівнях (Квебек) з 2016 року",
         // Add more translations as needed
     },
     ru: {
@@ -33,6 +35,7 @@ export const translations = {
         langNameEN: "Английский",
         langNameUK: "Украинский",
         langNameRU: "Русский",
+        footerGreybox: "некоммерческая организация, зарегистрированная в Канаде на федеральном и провинциальном (Квебек) уровне с 2016 года.",
         // Add more translations as needed
     },
     // Add more languages as needed
