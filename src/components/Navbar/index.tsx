@@ -17,7 +17,7 @@ const NavigationBar: FC = () => {
         <div className="flex items-center space-x-10">
           <Link href="/" className="no-underline">
             <Image
-              src="/images/assets/logoGrey-BOX.png"
+              src="/images/meta/Grey-box_Logo.png"
               alt="Greybox Logo"
               width={80}
               height={30}
