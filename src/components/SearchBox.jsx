@@ -36,40 +36,51 @@ function SearchBox(source, target, API_URL) {
     const style = `
         #search {
             display: block;
-            width: 10em;
-            margin: 2em;
+            width: 100%;
+            margin: 2em 0;
+            position: relative;
         }
 
         #search-box {
-            font-size: .75em;
-            padding: .5em 1em;
+            font-size: 1em;
+            padding: 0.75em 1em;
             width: 100%;
-            border: none;
+            border: 1px solid #ccc;
             border-radius: 1em;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease-in-out;
+        }
+        
+        #search-box:focus {
+            outline: none;
+            border-color: #074fa8;
+            box-shadow: 0 0 8px rgba(7, 79, 168, 0.5);
         }
 
         #dropdown-content {
             display: none;
             position: absolute;
-            font-size: .75em;
-            color: black;
+            font-size: 0.9em;
+            color: #333;
             list-style: none;
-            max-height: 5em;
-            width: inherit;
+            max-height: 10em;
+            width: 100%;
             z-index: 2;
             overflow-y: scroll;
-            width: inherit;
-            background-color: var(--foreground);
+            background-color: #fff;
+            border: 1px solid #ccc;  /* Border for dropdown */
             border-radius: 0px 0px 1em 1em;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
         
         #dropdown-content li {
-            padding: .5em 1em;
+            padding: 0.5em 1em;
+            cursor: pointer;
         }
 
         #dropdown-content li:hover {
             background-color: var(--accent);
-            color: var(--foreground)
+            color: #fff;
         }
 
         #search:hover  #dropdown-content{
@@ -78,7 +89,10 @@ function SearchBox(source, target, API_URL) {
 
         #search:hover #search-box {
             border-radius: 1em 1em 0px 0px;
-            outline: none;
+        }
+        input[type="radio"] {
+            accent-color: #074fa8; /* Color for radio buttons */
+            margin-right: 0.5em; /* Spacing between radio button and label */
         }
     `;
 

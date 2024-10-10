@@ -11,15 +11,42 @@ function LangSelect(label, state, setter) {
     };
 
     const style = `
+        .lang-selectors-container {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-bottom: 2em;
+        }
+        .lang-selector {
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+            margin-bottom: 1.5em;
+            flex: 1;
+        }
+        .lang-label {
+            color: #333;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
         .radio-option {
             display: flex;
-            margin: .5em;
+            align-items: center;
+            margin: 0.5em 0;
         }
-        .radio-option input {
-            margin: .5em;
+        .radio-option input[type="radio"] {
+            margin-right: 0.5em;
         }
         .radio-option label {
             font-style: italic;
+            cursor: pointer;
+        }
+        .radio-option input[type="radio"]:hover {
+            accent-color: #074fa8;
+        }
+        .radio-option input[type="radio"]:focus {
+            outline: 2px solid #074fa8;
+            outline-offset: 2px;
         }
     `;
     return (
@@ -27,7 +54,7 @@ function LangSelect(label, state, setter) {
         <style>
             {style}
         </style>
-        <h3>{label}</h3>
+        <h3 className="lang-label">{label}</h3>
         <div>
             <div className="radio-option">
                 <input 

@@ -36,74 +36,76 @@ function Navbar(label) {
     const style = `
         #navbar {
             width: 100%;
-            top: 0;
-            height: 3em;
+            height: 3.5em;
             background-color: grey;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adding shadow */
+            padding: 0 2em;
             z-index: 1;
         }
         #logo {
-            height: 3em;
-            width: 3em;
-            float: left;
+            height: 2.5em;
+            width: 2.5em;
+            margin-right: 1.5em; /* Added margin for better spacing */
         }
         #nav-links {
-            float: left;
+            display: flex;
+            gap: 1em;
+            flex-grow: 1;
         }
         .nav-link {
-            float: left;
-            display: block;
-            text-align: center;
+            font-size: 1.1em;
             text-decoration: none;
-            padding: .8em;
-            font-weight: 500;
+            color: white;
+            padding: 0.8em;
+            transition: background-color 0.3s;
         }
         .nav-link:hover {
-            background-color: var(--accent);
+            background-color: #4a4a4a; /* Darker background on hover */
         }
         #lang-picker {
-            float: right;
+            display: flex;
             position: relative;
-            width: 8 em;
+            align-items: center;
         }
         #lang-selected-img {
-            height:2em;
-            width 2em;
-        }
-        #lang-selected {
-            display:flex;
-            align-items: center;
-            padding: .5em;
-        }
-        #lang-arrow {
-            height: 1em;
-            width: 1em;
+            height: 2em;
+            width: 2em;
+            margin-right: 0.5em;
+            transition: border 0.3s;
         }
         #lang-selected:hover #lang-selected-img {
-            border: .1em solid white !important;
-            border-radius: 1em;
+            border: 2px solid white;
+            border-radius: 50%;
         }
         #lang-dropdown {
             display: none;
             position: absolute;
+            top: 100%;
+            right: 0;
             background-color: grey;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 10;
             flex-direction: column;
-            
         }
         #lang-picker:hover #lang-dropdown {
             display: flex;
         }
+        .lang-select {
+            padding: 0.5em;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .lang-select:hover {
+            background-color: #4a4a4a;
+        }
         .lang-img {
             height: 2em;
             width: 2em;
-        }
-        .lang-select {
-            padding: .5em;
-            display: inline-flex;
-            align-items: center;
-        }
-        .lang-select:hover .lang-img{
-            border: .1em solid white !important;
-            border-radius: 1em;
+            margin-right: 0.5em;
         }
     `;
 
@@ -118,31 +120,7 @@ function Navbar(label) {
             <a className="nav-link" href="#">{translate('about')}</a>
             <a className="nav-link" href="#">{translate('help')}</a>
         </div>
-        <div id="lang-picker">
-            <div id="lang-selected">
-                <img
-                    src={langIcons[selectedLang].icon}
-                    id="lang-selected-img"
-                    alt={langIcons[selectedLang].name}
-                />
-                <label>{langIcons[selectedLang].name}</label>
-                <img src="/images/icons-expand-arrow.png" id="lang-arrow" alt="Expand"/>
-            </div>
-            <div id="lang-dropdown">
-                {Object.entries(langIcons).map(([code, {name, icon}]) =>
-                    code !== selectedLang ? (
-                        <div
-                            key={code}
-                            className="lang-select"
-                            onClick={() => handleSelection(code)}
-                        >
-                            <img src={icon} className="lang-img" alt={name}/>
-                            <label>{name}</label>
-                        </div>
-                    ) : null
-                )}
-            </div>
-        </div>
+
     </nav>
     );
 }

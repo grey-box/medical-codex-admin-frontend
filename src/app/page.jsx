@@ -32,15 +32,18 @@ export default function Home() {
       <main id="main">
         <Navbar/>
         <form id="translation-form">
+          <div id="lang-selectors-container">
           <div id="lang-selectors">
             {LangSelect("Source Language", selectedLangSource, setSelectedLangSource)}
             {LangSelect("Target Language", selectedLangTarget, setSelectedLangTarget)}
           </div>
+            </div>
           {SearchBox(selectedLangSource, selectedLangTarget, API_URL)}
           <button id="translate-button" disabled >{translate('translate')}</button>
           <label id="output-label">{translate('output')}</label>
         </form>
       </main>
+      <Footer/>
     </>
   );
 }
