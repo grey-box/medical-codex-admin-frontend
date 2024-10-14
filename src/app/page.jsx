@@ -3,13 +3,16 @@
 import "../../public/styles/page.css";
 import LangSelect from "../components/LangSelect.jsx"
 import SearchBox from "../components/SearchBox.jsx"
+import TranslateBox from "../components/TranslationBox.jsx"
+import fetchData from "../components/TranslationBox.jsx"
 import Navbar from "../components/Navbar.jsx"
 import Footer from "../components/Footer.jsx"
 import { useLanguage } from '../i18n/LanguageContext';
 import { useState } from "react";
+import mockTranslate from "../TranslationMock/translateMock";
+import React, { FC } from "react";
 
-
-
+// Change API URL
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export default function Home() {
@@ -23,7 +26,10 @@ export default function Home() {
     setSelectedLangTarget,
   ] = useState("Ukrainian");
 
+  // Current input from user for translation
+  const [inputSearch, setInputSearch] = useState("");
   
+  const [outputTranslation, setOutputTranslation] = useState("");
 
   const { translate, language, setLanguage } = useLanguage();
 
@@ -38,9 +44,29 @@ export default function Home() {
             {LangSelect("Target Language", selectedLangTarget, setSelectedLangTarget)}
           </div>
             </div>
-          {SearchBox(selectedLangSource, selectedLangTarget, API_URL)}
-          <button id="translate-button" disabled >{translate('translate')}</button>
+          {SearchBox(selectedLangSource, selectedLangTarget, API_URL, setInputSearch)}
+          <button type="button" id="translate-button" onClick={() =>
+                mockTranslate(
+                  inputSearch,
+                  selectedLangSource,
+                  selectedLangTarget,
+                  setOutputTranslation
+                )
+              }>{translate('translate')}</button>
           <label id="output-label">{translate('output')}</label>
+
+          <div id="translation-output">            
+            <div id="translate-box">
+                <style></style>
+                <input
+                  type="text" 
+                  id="output-text"
+                  placeholder="Test"
+                  value={outputTranslation}
+                  readOnly
+                />
+            </div>
+          </div>
         </form>
       </main>
       <Footer/>

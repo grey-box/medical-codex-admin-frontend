@@ -14,8 +14,9 @@ function Footer() {
                     align-items: center;
                     justify-content: center;
                     text-align: center;
+                    margin-top: 10em;
+                    margin-bottom: 0;
                 }
-
                 #footer div {
                     display: flex;
                     align-items: center;
@@ -33,7 +34,7 @@ function Footer() {
                     text-align: left;
                 }
             `}</style>
-            <div>
+            <div class="flex-wrapper">
                 <img id="logo" src="/images/logoGREY-BOX.jpg" alt="Grey-box logo"/>
                 <span><strong>Grey-box</strong> {translate('footerGreybox')}</span>
             </div>
