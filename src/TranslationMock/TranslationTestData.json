@@ -2,18 +2,18 @@
     "results": [
         {
             "en_name": "tylenol",
-            "uk_name": "тайленол",
-            "ru_name": "тайленол1"
+            "uk_name": "Парацетамол_uk",
+            "ru_name": "Парацетамол_ru"
         },
         {
-            "en_name": "aspirin",
-            "uk_name": "аспірин",
-            "ru_name": "аспирин1"
+            "en_name": "ibuprofen",
+            "uk_name": "Ібупрофен_uk",
+            "ru_name": "Ибупрофен_ru"
         },
         {
-            "en_name": "oxycodone",
-            "uk_name": "оксикодон",
-            "ru_name": "оксикодон1"
+            "en_name": "morphine",
+            "uk_name": "морфін_uk",
+            "ru_name": "морфин_ru"
         }
     ]
 }
