@@ -13,9 +13,9 @@ const handleFuzzy = async (input, sourceLanguage, API_URL, setFuzzyOutput) => {
         },
         body: JSON.stringify({
           source_language: sourceLanguage,
-          query: input,
-          threshold : 5,
-          nb_max_results: 5
+          query: input
+          // threshold : 5,
+          // nb_max_results: 5
         }),
   
       });

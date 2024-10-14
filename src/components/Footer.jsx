@@ -14,6 +14,7 @@ function Footer() {
                     align-items: center;
                     justify-content: center;
                     text-align: center;
+                    margin-top: 35vh;
                 }
 
                 #footer div {

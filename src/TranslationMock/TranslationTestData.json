@@ -1,0 +1,19 @@
+{
+    "results": [
+        {
+            "en_name": "tylenol",
+            "uk_name": "тайленол",
+            "ru_name": "тайленол1"
+        },
+        {
+            "en_name": "aspirin",
+            "uk_name": "аспірин",
+            "ru_name": "аспирин1"
+        },
+        {
+            "en_name": "oxycodone",
+            "uk_name": "оксикодон",
+            "ru_name": "оксикодон1"
+        }
+    ]
+}
