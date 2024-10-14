@@ -3,6 +3,7 @@
 import "../../public/styles/page.css";
 import LangSelect from "../components/LangSelect.jsx"
 import SearchBox from "../components/SearchBox.jsx"
+import TranslateBox from "../components/TranslationBox.jsx"
 import Navbar from "../components/Navbar.jsx"
 import Footer from "../components/Footer.jsx"
 import { useLanguage } from '../i18n/LanguageContext';
@@ -39,11 +40,11 @@ export default function Home() {
           </div>
             </div>
           {SearchBox(selectedLangSource, selectedLangTarget, API_URL)}
-          <button id="translate-button"  >{translate('translate')}</button>
+          <button id="translate-button" >{translate('translate')}</button>
           <label id="output-label">{translate('output')}</label>
 
-          <div id="translation-output" className="output-container">
-            {TranslateBox(selectedLangSource, selectedLangTarget, termTo)}
+          <div id="translation-output" class="output-container">            
+            {TranslateBox(selectedLangSource, selectedLangTarget)}
           </div>
         </form>
       </main>

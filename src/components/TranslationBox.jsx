@@ -1,22 +1,11 @@
 'use client';
 import { useState } from "react";
 import { useLanguage } from '../i18n/LanguageContext';
-import { TranslationParserMock } from "../utils/TranslationParserMock";
+import { TranslationParserMock } from "../TranslationMock/TranslationParserMock";
 
 function TranslateBox(source, target) {
     const { translate } = useLanguage();
     
-    const [
-        translation,
-        setTranslation,
-    ] = useState(TranslationParserMock[source][target] || '');
-
-    const inputChangedHandler = (value) => {
-        const newTranslation = TranslationParserMock[source][target].find(
-            (translation) => translation.includes(value.target.value)
-        );
-        setTranslation(newTranslation || '');
-    }
 
     const style = `
         #output-text {
@@ -43,10 +32,13 @@ function TranslateBox(source, target) {
     return (
         <div id="translate-box">
             <style>{style}</style>
-            <p className="output-placeholder">{translate('outputPlaceholder')}</p>
-            <div id="output-text" className="output-text">
-                <p>{translation}</p>
-            </div>
+            <input
+              type="text" 
+              id="output-text"
+              placeholder="Test"
+              // value={}
+              readOnly
+            />
         </div>
     );
 
