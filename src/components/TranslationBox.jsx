@@ -1,10 +1,10 @@
 'use client';
 import { useState } from "react";
 import { useLanguage } from '../i18n/LanguageContext';
-import { TranslationParserMock } from "../TranslationMock/TranslationParserMock";
+import { TranslationParserMock } from "../TranslationMock/translateMock";
 
 function fetchData() {
-    
+
 }
 
 function TranslateBox(source, target) {
@@ -40,7 +40,7 @@ function TranslateBox(source, target) {
               type="text" 
               id="output-text"
               placeholder="Test"
-              // value={}
+              value={outputTranslation}
               readOnly
             />
         </div>

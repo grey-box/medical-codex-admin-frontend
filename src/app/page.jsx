@@ -9,8 +9,8 @@ import Navbar from "../components/Navbar.jsx"
 import Footer from "../components/Footer.jsx"
 import { useLanguage } from '../i18n/LanguageContext';
 import { useState } from "react";
-
-
+import mockTranslate from "../TranslationMock/translateMock";
+import React, { FC } from "react";
 
 const API_URL = "";
 
@@ -25,14 +25,10 @@ export default function Home() {
     setSelectedLangTarget,
   ] = useState("Ukrainian");
 
-
+  // Current input from user for translation
   const [inputSearch, setInputSearch] = useState("");
   
-
-  const handleInputSearch = (input) => {
-    setInputSearch(input);
-  };
-
+  const [outputTranslation, setOutputTranslation] = useState("");
 
   const { translate, language, setLanguage } = useLanguage();
 
@@ -47,18 +43,28 @@ export default function Home() {
             {LangSelect("Target Language", selectedLangTarget, setSelectedLangTarget)}
           </div>
             </div>
-          {SearchBox(selectedLangSource, selectedLangTarget, API_URL)}
+          {SearchBox(selectedLangSource, selectedLangTarget, API_URL, setInputSearch)}
           <button id="translate-button" onClick={() =>
-                translateText(
+                mockTranslate(
+                  inputSearch,
                   selectedLangSource,
                   selectedLangTarget,
-                  inputSearch
+                  setOutputTranslation
                 )
               }>{translate('translate')}</button>
           <label id="output-label">{translate('output')}</label>
 
           <div id="translation-output">            
-            {TranslateBox(selectedLangSource, selectedLangTarget)}
+            <div id="translate-box">
+                <style></style>
+                <input
+                  type="text" 
+                  id="output-text"
+                  placeholder="Test"
+                  value={outputTranslation}
+                  readOnly
+                />
+            </div>
           </div>
         </form>
       </main>
