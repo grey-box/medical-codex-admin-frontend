@@ -25,7 +25,15 @@ export default function Home() {
     setSelectedLangTarget,
   ] = useState("Ukrainian");
 
+  // This state is used to store the user's input in the search box
+  // It is used to trigger the search function when the user types something in the search box
   const [inputSearch, setInputSearch] = useState("");
+  
+  // This function is called when the user types something in the search box
+  // It updates the state with the user's input
+  const handleInputSearch = (e) => {
+    setInputSearch(e.target.value);
+  };
   
 
   const { translate, language, setLanguage } = useLanguage();
@@ -51,7 +59,7 @@ export default function Home() {
               }>{translate('translate')}</button>
           <label id="output-label">{translate('output')}</label>
 
-          <div id="translation-output" class="output-container">            
+          <div id="translation-output">            
             {TranslateBox(selectedLangSource, selectedLangTarget)}
           </div>
         </form>

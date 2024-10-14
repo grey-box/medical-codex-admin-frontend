@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { useLanguage } from '../i18n/LanguageContext';
 import { handleFuzzy } from "../utils/FuzzyMatching";
-
+import handleInputSearch from "../app/page";
 
 function SearchBox(source, target, API_URL) {
     const { translate } = useLanguage();
@@ -24,6 +24,7 @@ function SearchBox(source, target, API_URL) {
 
     const inputChangedHandler = (value) => {
         setTypedWord(value.target.value);
+        handleInputSearch(value.target.value)
         if(typedWord)
             handleFuzzy(typedWord, source, API_URL, setFuzzyOutput);
     }
