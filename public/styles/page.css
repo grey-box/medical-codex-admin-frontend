@@ -73,9 +73,10 @@
 }
 
 #output-label {
-  margin-top: 2em;
+  margin-top: 1em;
   font-size: 1.2em;
   color: #333;
+  font-weight: bold;
 }
 
 /* Tablet view */
@@ -143,10 +144,17 @@ body, input, button, select {
   font-family: 'Lato', sans-serif;
 }
 
-#output-label{
-  font-weight: bold;
-}
 
 #output-text{
-  margin-top: 1em;
+  margin-top: 0.5em;
+  border-radius: 2em;
+  padding: 1em;
+  /* background-color: rgba(255, 255, 255, 0.8); */
+  width: 100%;
+  max-width: 100%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-size: 1.2em;
+  text-align: center;
 }
+
+

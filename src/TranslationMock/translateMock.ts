@@ -1,11 +1,12 @@
 import translationData from './TranslationTestData.json';
 const translateMock = async (
-    selectedMedicine: string,
-    targetLanguage: string,
     inputSearch: (translation: string) => void,
+    selectedLangSource: string,
+    selectedLangTarget: string,
+    setOutputTranslation: (translation: string) => void,
   ): Promise<void> => {
       // Not implemented yet
-      console.log(selectedMedicine)
+      console.log(inputSearch)
   };
   
   export default translateMock;

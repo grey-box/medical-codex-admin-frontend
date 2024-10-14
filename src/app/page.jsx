@@ -44,7 +44,7 @@ export default function Home() {
           </div>
             </div>
           {SearchBox(selectedLangSource, selectedLangTarget, API_URL, setInputSearch)}
-          <button id="translate-button" onClick={() =>
+          <button type="button" id="translate-button" onClick={() =>
                 mockTranslate(
                   inputSearch,
                   selectedLangSource,
