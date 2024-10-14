@@ -3,10 +3,14 @@ import { useState } from "react";
 import { useLanguage } from '../i18n/LanguageContext';
 import { TranslationParserMock } from "../TranslationMock/TranslationParserMock";
 
+function fetchData() {
+    
+}
+
 function TranslateBox(source, target) {
     const { translate } = useLanguage();
     
-
+    
     const style = `
         #output-text {
             font-size: 1em;
