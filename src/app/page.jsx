@@ -69,7 +69,6 @@ export default function Home() {
           </div>
         </form>
       </main>
-      <Footer/>
     </>
   );
 }
