@@ -25,16 +25,14 @@ export default function Home() {
     setSelectedLangTarget,
   ] = useState("Ukrainian");
 
-  // This state is used to store the user's input in the search box
-  // It is used to trigger the search function when the user types something in the search box
+
   const [inputSearch, setInputSearch] = useState("");
   
-  // This function is called when the user types something in the search box
-  // It updates the state with the user's input
-  const handleInputSearch = (e) => {
-    setInputSearch(e.target.value);
+
+  const handleInputSearch = (input) => {
+    setInputSearch(input);
   };
-  
+
 
   const { translate, language, setLanguage } = useLanguage();
 
