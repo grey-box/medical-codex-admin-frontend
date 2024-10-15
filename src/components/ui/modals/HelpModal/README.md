@@ -1,6 +1,6 @@
 ## HelpModal
 
-Author(s): François Pelletier, Matthew Quijano
+Author(s): François Pelletier, Herman Sahani
 
 This component displays a modal with help information about the application. The modal can be opened and closed by clicking the "Help" button and the close button in the modal, respectively.
 
