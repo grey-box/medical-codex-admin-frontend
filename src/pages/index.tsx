@@ -18,6 +18,7 @@ const HomePage: FC = () => {
   const [selectedMedicine, setSelectedMedicine] = useState<string>("");
   const [targetLanguage, setTargetLanguage] = useState<string>("");
   const [sourceLanguage, setSourceLanguage] = useState<string>("");
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const SectionTitle: FC<{ text: string }> = ({ text }) => (
     <div className="m-2 text-lg font-semibold text-center font-inter">
@@ -74,12 +75,16 @@ const HomePage: FC = () => {
                   sourceLanguage,
                   setMedicines,
                   NEXT_PUBLIC_API_URL,
+                  setErrorMessage,
                 )
               }
             >
               Search
             </button>
           </div>
+          {errorMessage && (
+            <div className="mt-2 text-center text-red-500">{errorMessage}</div>
+          )}
         </div>
 
         <div className="p-5">
