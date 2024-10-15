@@ -2,6 +2,7 @@ import React, { useState, FC } from "react";
 import SearchSection from "@/components/HomePage/SearchSection";
 import ResultsSection from "@/components/HomePage/ResultsSection";
 import TranslateSection from "@/components/HomePage/TranslateSection";
+import SectionError from "@/components/HomePage/SectionError";
 import handleSearch from "@/utils/handleSearch";
 import handleTranslate from "@/utils/handleTranslate";
 import HelpModal from "@/components/ui/modals/HelpModal";
@@ -10,14 +11,6 @@ import Head from "next/head";
 const NEXT_PUBLIC_API_URL: string | undefined = process.env.NEXT_PUBLIC_API_URL;
 
 const languages = ["English", "Ukrainian", "Russian", "German"];
-
-const SectionError: FC<{ errorMessage: string | null }> = ({
-  errorMessage,
-}) => {
-  return errorMessage ? (
-    <div className="text-center text-red-500">{errorMessage}</div>
-  ) : null;
-};
 
 const HomePage: FC = () => {
   const [inputSearch, setInputSearch] = useState<string>("");
