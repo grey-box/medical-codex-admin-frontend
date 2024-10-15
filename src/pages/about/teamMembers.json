@@ -1,5 +1,29 @@
 [
   {
+    "name": "Miles Murphy",
+    "title": "Fullstack Developer",
+    "img": "/images/people/MilesMurphy.png",
+    "link": "https://www.linkedin.com/in/miles-murphy-3733a9220/"
+  },
+  {
+    "name": "Thayer Picart",
+    "title": "Fullstack Developer",
+    "img": "/images/people/ThayerPicart.png",
+    "link": "https://www.linkedin.com/in/thayerpicart/"
+  },
+  {
+    "name": "Matthew Quijano",
+    "title": "Fullstack Developer",
+    "img": "/images/people/MatthewQuijano.png",
+    "link": "https://www.linkedin.com/in/matthewquijano022002/"
+  },
+  {
+    "name": "Herman Sahani",
+    "title": "Fullstack Developer",
+    "img": "/images/people/HermanSahani.png",
+    "link": ""
+  },
+  {
     "name": "Abhishek Nair",
     "title": "Backend Developer, API Developer",
     "img": "/images/people/Abhishek.jpg",
