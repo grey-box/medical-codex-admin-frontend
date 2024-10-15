@@ -4,7 +4,7 @@ import Image from "next/image";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 import SocialMediaIcons from "@/components/SocialMediaIcons";
 
-const NavigationBar: FC = () => {
+const Navbar: FC = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -68,4 +68,4 @@ const NavigationBar: FC = () => {
   );
 };
 
-export default NavigationBar;
+export default Navbar;
