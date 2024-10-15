@@ -21,9 +21,11 @@ const HomePage: FC = () => {
   const [targetLanguage, setTargetLanguage] = useState<string>("");
   const [sourceLanguage, setSourceLanguage] = useState<string>("");
   const [searchError, setSearchError] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
 
-  const handleSearchAction = () => {
-    handleSearch(
+  const handleSearchAction = async () => {
+    setLoading(true);
+    await handleSearch(
       inputSearch,
       targetLanguage,
       sourceLanguage,
@@ -31,6 +33,7 @@ const HomePage: FC = () => {
       NEXT_PUBLIC_API_URL,
       setSearchError,
     );
+    setLoading(false);
   };
 
   const handleTranslateAction = () => {
@@ -76,9 +79,10 @@ const HomePage: FC = () => {
           languages={languages}
           searchError={searchError}
           setSearchError={setSearchError}
+          loading={loading}
         />
 
-        <div className="min-h-[24px]">
+        <div className="min-h-[48px]">
           {searchError && (
             <div className="text-center text-red-500">{searchError}</div>
           )}

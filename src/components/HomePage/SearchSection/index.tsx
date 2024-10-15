@@ -10,6 +10,7 @@ interface SearchSectionProps {
   languages: string[];
   searchError: string | null;
   setSearchError: (msg: string | null) => void;
+  loading: boolean;
 }
 
 const SearchSection: FC<SearchSectionProps> = ({
@@ -20,6 +21,7 @@ const SearchSection: FC<SearchSectionProps> = ({
   handleSearch,
   languages,
   setSearchError,
+  loading,
 }) => {
   const validateAndSearch = () => {
     if (!inputSearch || !sourceLanguage) {
@@ -49,10 +51,15 @@ const SearchSection: FC<SearchSectionProps> = ({
           onChange={(e) => setInputSearch(e.target.value)}
         />
         <button
-          className="bg-[#2f876e] w-full md:w-1/4 h-12 text-white rounded-lg shadow-md hover:bg-[#256c54] transition-all"
+          className={`bg-[#2f876e] w-full md:w-1/4 h-12 text-white rounded-lg shadow-md ${
+            loading
+              ? "cursor-not-allowed opacity-50"
+              : "hover:bg-[#256c54] transition-all"
+          }`}
           onClick={validateAndSearch}
+          disabled={loading}
         >
-          Search
+          {loading ? "Loading..." : "Search"}
         </button>
       </div>
     </div>
