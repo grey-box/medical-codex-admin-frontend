@@ -4,7 +4,7 @@ import Image from "next/image";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 import SocialMediaIcons from "@/components/SocialMediaIcons";
 
-const NavigationBar: FC = () => {
+const Navbar: FC = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -13,7 +13,7 @@ const NavigationBar: FC = () => {
 
   return (
     <nav className="relative bg-[#2e7c64] shadow-lg">
-      <div className="flex items-center justify-between h-24 px-6 mx-auto max-w-7xl">
+      <div className="flex items-center justify-between h-24 px-6 mx-auto">
         <div className="flex items-center space-x-10">
           <Link href="/" className="no-underline">
             <Image
@@ -25,7 +25,7 @@ const NavigationBar: FC = () => {
             />
           </Link>
 
-          <div className="items-center hidden space-x-8 md:flex">
+          <div className="items-center space-x-8">
             <Link
               href="/"
               className="text-lg font-bold text-white no-underline hover:underline"
@@ -68,4 +68,4 @@ const NavigationBar: FC = () => {
   );
 };
 
-export default NavigationBar;
+export default Navbar;

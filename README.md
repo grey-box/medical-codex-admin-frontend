@@ -2,6 +2,11 @@
 
 Medical codex Administration Frontend
 
+## System Requirements
+
+- Node: https://nodejs.org/en
+- IDE (Visual Studio Code, JetBrains IDEs, etc.)
+
 ## Local Instance Instructions
 
 1. Open your preferred IDE of choice. I am using Visual Studio Code.
@@ -18,7 +23,7 @@ git clone https://github.com/grey-box/medical-codex-admin-frontend.git
 npm i
 ```
 
-5. Ensure that the backend is running, or if the APIs are deployed, you may only need to adjust your `.env.local`. Please refer to the `.env.template` for help regarding `.env.local` creation.
+5. Ensure that the backend is running, or if the APIs are deployed, you may only need to adjust your `.env.local`. Please refer to the `.env.template` for help regarding `.env.local` creation. This is also under the assumption that you have the backend endpoints exposed from the backend, or hosted on Azure.
 6. Boot up the development server using the following command. Assuming everything else is running fine, you should see `localhost:3000` exposed.:
 
 ```bash

@@ -1,5 +1,7 @@
 import React, { useState, FC } from "react";
-import Dropdown from "@/components/ui/Dropdown";
+import SearchSection from "@/components/HomePage/SearchSection";
+import ResultsSection from "@/components/HomePage/ResultsSection";
+import TranslateSection from "@/components/HomePage/TranslateSection";
 import handleSearch from "@/utils/handleSearch";
 import handleTranslate from "@/utils/handleTranslate";
 import HelpModal from "@/components/ui/modals/HelpModal";
@@ -18,12 +20,34 @@ const HomePage: FC = () => {
   const [selectedMedicine, setSelectedMedicine] = useState<string>("");
   const [targetLanguage, setTargetLanguage] = useState<string>("");
   const [sourceLanguage, setSourceLanguage] = useState<string>("");
+  const [searchError, setSearchError] = useState<string | null>(null);
+  const [translateError, setTranslateError] = useState<string | null>(null);
+  const [loadingSearch, setLoadingSearch] = useState<boolean>(false);
+  const [loadingTranslate, setLoadingTranslate] = useState<boolean>(false);
 
-  const SectionTitle: FC<{ text: string }> = ({ text }) => (
-    <div className="m-2 text-lg font-semibold text-center font-inter">
-      {text}
-    </div>
-  );
+  const handleSearchAction = async () => {
+    setLoadingSearch(true);
+    await handleSearch(
+      inputSearch,
+      targetLanguage,
+      sourceLanguage,
+      setMedicines,
+      NEXT_PUBLIC_API_URL,
+      setSearchError,
+    );
+    setLoadingSearch(false);
+  };
+
+  const handleTranslateAction = async () => {
+    setLoadingTranslate(true);
+    await handleTranslate(
+      selectedMedicine,
+      targetLanguage,
+      setOutputTranslation,
+      NEXT_PUBLIC_API_URL,
+    );
+    setLoadingTranslate(false);
+  };
 
   return (
     <div className="relative flex flex-col overflow-hidden">
@@ -50,80 +74,35 @@ const HomePage: FC = () => {
 
         <div className="w-11/12 mx-auto mt-5 border-b-2 md:w-9/12"></div>
 
-        <div className="p-5">
-          <SectionTitle text="Search for drug name..." />
-          <div className="flex flex-col gap-5 md:flex-row md:items-center">
-            <Dropdown
-              label="Source Language"
-              options={languages}
-              onChange={setSourceLanguage}
-            />
-            <input
-              type="text"
-              className="w-full md:w-1/2 h-12 text-base font-inter font-semibold text-[#044677] text-center shadow-md border border-gray-300 rounded-md focus:border-[#2f876e] focus:ring-[#2f876e] focus:outline-none p-2"
-              placeholder="Word to search"
-              value={inputSearch}
-              onChange={(e) => setInputSearch(e.target.value)}
-            />
-            <button
-              className="bg-[#2f876e] w-full md:w-1/4 h-12 text-white rounded-lg shadow-md hover:bg-[#256c54] transition-all"
-              onClick={() =>
-                handleSearch(
-                  inputSearch,
-                  targetLanguage,
-                  sourceLanguage,
-                  setMedicines,
-                  NEXT_PUBLIC_API_URL,
-                )
-              }
-            >
-              Search
-            </button>
-          </div>
-        </div>
+        <SearchSection
+          inputSearch={inputSearch}
+          setInputSearch={setInputSearch}
+          sourceLanguage={sourceLanguage}
+          setSourceLanguage={setSourceLanguage}
+          handleSearch={handleSearchAction}
+          languages={languages}
+          searchError={searchError}
+          setSearchError={setSearchError}
+          loading={loadingSearch}
+        />
 
-        <div className="p-5">
-          <SectionTitle text="Results" />
-          <Dropdown
-            label="Select Medicine"
-            options={medicines.map((medicine) => medicine.matching_name)}
-            onChange={setSelectedMedicine}
-            disabled={medicines.length === 0}
-          />
-        </div>
+        <ResultsSection
+          medicines={medicines}
+          selectedMedicine={selectedMedicine}
+          setSelectedMedicine={setSelectedMedicine}
+        />
 
-        <div className="p-5">
-          <SectionTitle text="Translate/Localize drug name..." />
-          <div className="flex flex-col gap-5 md:flex-row md:items-center">
-            <Dropdown
-              label="Target Language"
-              options={languages}
-              onChange={setTargetLanguage}
-              disabled={!selectedMedicine}
-            />
-            <button
-              className="bg-[#2f876e] w-full md:w-1/4 h-12 text-white rounded-lg shadow-md hover:bg-[#256c54] transition-all"
-              onClick={() =>
-                handleTranslate(
-                  selectedMedicine,
-                  targetLanguage,
-                  setOutputTranslation,
-                  NEXT_PUBLIC_API_URL,
-                )
-              }
-              disabled={!targetLanguage || !selectedMedicine}
-            >
-              Translate
-            </button>
-            <input
-              type="text"
-              className="w-full h-12 text-base text-center font-inter font-semibold text-[#044677] shadow-md border border-gray-300 rounded-md md:w-1/2 focus:border-[#2f876e] focus:ring-[#2f876e] focus:outline-none p-2"
-              placeholder="Translation will appear here"
-              value={outputTranslation}
-              readOnly
-            />
-          </div>
-        </div>
+        <TranslateSection
+          selectedMedicine={selectedMedicine}
+          targetLanguage={targetLanguage}
+          setTargetLanguage={setTargetLanguage}
+          outputTranslation={outputTranslation}
+          handleTranslate={handleTranslateAction}
+          languages={languages}
+          translateError={translateError}
+          setTranslateError={setTranslateError}
+          loading={loadingTranslate}
+        />
       </div>
     </div>
   );
