@@ -74,6 +74,7 @@ const HomePage: FC = () => {
           setSourceLanguage={setSourceLanguage}
           handleSearch={handleSearchAction}
           languages={languages}
+          setErrorMessage={setErrorMessage}
         />
 
         {errorMessage && (
