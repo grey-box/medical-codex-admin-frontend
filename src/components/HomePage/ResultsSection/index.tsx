@@ -9,7 +9,6 @@ interface ResultsSectionProps {
 
 const ResultsSection: FC<ResultsSectionProps> = ({
   medicines,
-  selectedMedicine,
   setSelectedMedicine,
 }) => {
   return (
