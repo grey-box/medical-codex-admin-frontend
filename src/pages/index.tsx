@@ -11,6 +11,14 @@ const NEXT_PUBLIC_API_URL: string | undefined = process.env.NEXT_PUBLIC_API_URL;
 
 const languages = ["English", "Ukrainian", "Russian", "German"];
 
+const SectionError: FC<{ errorMessage: string | null }> = ({
+  errorMessage,
+}) => {
+  return errorMessage ? (
+    <div className="text-center text-red-500">{errorMessage}</div>
+  ) : null;
+};
+
 const HomePage: FC = () => {
   const [inputSearch, setInputSearch] = useState<string>("");
   const [outputTranslation, setOutputTranslation] = useState<string>("");
@@ -86,11 +94,7 @@ const HomePage: FC = () => {
           loading={loadingSearch}
         />
 
-        <div>
-          {searchError && (
-            <div className="text-center text-red-500">{searchError}</div>
-          )}
-        </div>
+        <SectionError errorMessage={searchError} />
 
         <ResultsSection
           medicines={medicines}
@@ -110,11 +114,7 @@ const HomePage: FC = () => {
           loading={loadingTranslate}
         />
 
-        <div>
-          {translateError && (
-            <div className="text-center text-red-500">{translateError}</div>
-          )}
-        </div>
+        <SectionError errorMessage={translateError} />
       </div>
     </div>
   );
