@@ -10,8 +10,6 @@ Key functionalities:
 - Other files in the `pages` directory map to their filename. For example, `pages/about.tsx` maps to the `/about` route.
 - Dynamic routes can be created using file names with square brackets. For example, `pages/posts/[id].tsx` maps to the `/posts/:id` route.
 - The `_app.tsx` file is used to initialize pages. It can be used to keep state when navigating between pages, handle errors, and inject additional data into pages.
-- The `_document.tsx` file is used to augment the application's `<html>` and `<body>` tags.
-- The `api` directory within `pages` is used for creating API routes.
 
 ## \_app.tsx
 
@@ -24,6 +22,7 @@ Key functionalities:
 - Imports the global styles from `globals.css`.
 - Wraps all pages with the `BaseLayout` component, which includes the common layout across all pages.
 - Receives the `Component` and `pageProps` props from Next.js. `Component` is the active page (so any of your `pages/` files), and `pageProps` are its props.
+- Anything that you put here, will show up on all pages.
 
 ## HomePage
 
