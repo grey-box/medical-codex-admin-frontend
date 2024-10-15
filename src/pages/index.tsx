@@ -87,8 +87,6 @@ const HomePage: FC = () => {
           loading={loadingSearch}
         />
 
-        <SectionError errorMessage={searchError} />
-
         <ResultsSection
           medicines={medicines}
           selectedMedicine={selectedMedicine}
@@ -106,8 +104,6 @@ const HomePage: FC = () => {
           setTranslateError={setTranslateError}
           loading={loadingTranslate}
         />
-
-        <SectionError errorMessage={translateError} />
       </div>
     </div>
   );

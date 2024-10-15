@@ -1,5 +1,6 @@
 import React, { FC } from "react";
 import Dropdown from "@/components/ui/Dropdown";
+import SectionError from "@/components/HomePage/SectionError";
 
 interface TranslateSectionProps {
   selectedMedicine: string;
@@ -64,6 +65,7 @@ const TranslateSection: FC<TranslateSectionProps> = ({
           readOnly
         />
       </div>
+      <SectionError errorMessage={translateError} />
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import React, { FC } from "react";
 import Dropdown from "@/components/ui/Dropdown";
+import SectionError from "@/components/HomePage/SectionError";
 
 interface SearchSectionProps {
   inputSearch: string;
@@ -21,6 +22,7 @@ const SearchSection: FC<SearchSectionProps> = ({
   handleSearch,
   languages,
   setSearchError,
+  searchError,
   loading,
 }) => {
   const validateAndSearch = () => {
@@ -62,6 +64,7 @@ const SearchSection: FC<SearchSectionProps> = ({
           {loading ? "Loading..." : "Search"}
         </button>
       </div>
+      <SectionError errorMessage={searchError} />
     </div>
   );
 };
