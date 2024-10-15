@@ -82,7 +82,7 @@ const HomePage: FC = () => {
           loading={loading}
         />
 
-        <div className="min-h-[48px]">
+        <div>
           {searchError && (
             <div className="text-center text-red-500">{searchError}</div>
           )}
