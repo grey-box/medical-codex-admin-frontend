@@ -6,7 +6,7 @@ interface SectionErrorProps {
 
 const SectionError: FC<SectionErrorProps> = ({ errorMessage }) => {
   return errorMessage ? (
-    <div className="text-center text-red-500">{errorMessage}</div>
+    <div className="mt-4 text-center text-red-500">{errorMessage}</div>
   ) : null;
 };
 
