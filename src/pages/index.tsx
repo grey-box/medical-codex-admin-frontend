@@ -78,9 +78,11 @@ const HomePage: FC = () => {
           setSearchError={setSearchError}
         />
 
-        {searchError && (
-          <div className="mt-2 text-center text-red-500">{searchError}</div>
-        )}
+        <div className="min-h-[24px]">
+          {searchError && (
+            <div className="text-center text-red-500">{searchError}</div>
+          )}
+        </div>
 
         <ResultsSection
           medicines={medicines}
