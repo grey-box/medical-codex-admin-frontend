@@ -46,17 +46,23 @@ const TranslateSection: FC<TranslateSectionProps> = ({
           onChange={setTargetLanguage}
           disabled={!selectedMedicine}
         />
-        <button
-          className={`bg-[#2f876e] w-full md:w-1/4 h-12 text-white rounded-lg shadow-md ${
-            loading
-              ? "cursor-not-allowed opacity-50"
-              : "hover:bg-[#256c54] transition-all"
-          }`}
-          onClick={validateAndTranslate}
-          disabled={loading || !selectedMedicine}
-        >
-          {loading ? "Loading..." : "Translate"}
-        </button>
+        <div className="flex flex-col w-full md:w-1/4">
+          <button
+            className={`bg-[#2f876e] h-12 text-white rounded-lg shadow-md ${
+              loading
+                ? "cursor-not-allowed opacity-50"
+                : "hover:bg-[#256c54] transition-all"
+            }`}
+            onClick={validateAndTranslate}
+            disabled={loading || !selectedMedicine}
+          >
+            {loading ? "Loading..." : "Translate"}
+          </button>
+
+          <div className="block md:hidden">
+            <SectionError errorMessage={translateError} />
+          </div>
+        </div>
         <input
           type="text"
           className="w-full h-12 text-base text-center font-inter font-semibold text-[#044677] shadow-md border border-gray-300 rounded-md md:w-1/2 focus:border-[#2f876e] focus:ring-[#2f876e] focus:outline-none p-2"
@@ -65,7 +71,10 @@ const TranslateSection: FC<TranslateSectionProps> = ({
           readOnly
         />
       </div>
-      <SectionError errorMessage={translateError} />
+
+      <div className="hidden mt-5 md:block">
+        <SectionError errorMessage={translateError} />
+      </div>
     </div>
   );
 };
