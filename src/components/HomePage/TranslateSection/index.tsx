@@ -8,6 +8,9 @@ interface TranslateSectionProps {
   outputTranslation: string;
   handleTranslate: () => void;
   languages: string[];
+  translateError: string | null;
+  setTranslateError: (msg: string | null) => void;
+  loading: boolean;
 }
 
 const TranslateSection: FC<TranslateSectionProps> = ({
@@ -17,7 +20,19 @@ const TranslateSection: FC<TranslateSectionProps> = ({
   outputTranslation,
   handleTranslate,
   languages,
+  translateError,
+  setTranslateError,
+  loading,
 }) => {
+  const validateAndTranslate = () => {
+    if (!targetLanguage) {
+      setTranslateError("Target language is required.");
+    } else {
+      setTranslateError(null);
+      handleTranslate();
+    }
+  };
+
   return (
     <div className="p-5">
       <div className="m-2 text-lg font-semibold text-center font-inter">
@@ -31,11 +46,15 @@ const TranslateSection: FC<TranslateSectionProps> = ({
           disabled={!selectedMedicine}
         />
         <button
-          className="bg-[#2f876e] w-full md:w-1/4 h-12 text-white rounded-lg shadow-md hover:bg-[#256c54] transition-all"
-          onClick={handleTranslate}
-          disabled={!targetLanguage || !selectedMedicine}
+          className={`bg-[#2f876e] w-full md:w-1/4 h-12 text-white rounded-lg shadow-md ${
+            loading
+              ? "cursor-not-allowed opacity-50"
+              : "hover:bg-[#256c54] transition-all"
+          }`}
+          onClick={validateAndTranslate}
+          disabled={loading || !selectedMedicine}
         >
-          Translate
+          {loading ? "Loading..." : "Translate"}
         </button>
         <input
           type="text"

@@ -21,10 +21,12 @@ const HomePage: FC = () => {
   const [targetLanguage, setTargetLanguage] = useState<string>("");
   const [sourceLanguage, setSourceLanguage] = useState<string>("");
   const [searchError, setSearchError] = useState<string | null>(null);
-  const [loading, setLoading] = useState<boolean>(false);
+  const [translateError, setTranslateError] = useState<string | null>(null);
+  const [loadingSearch, setLoadingSearch] = useState<boolean>(false);
+  const [loadingTranslate, setLoadingTranslate] = useState<boolean>(false);
 
   const handleSearchAction = async () => {
-    setLoading(true);
+    setLoadingSearch(true);
     await handleSearch(
       inputSearch,
       targetLanguage,
@@ -33,16 +35,18 @@ const HomePage: FC = () => {
       NEXT_PUBLIC_API_URL,
       setSearchError,
     );
-    setLoading(false);
+    setLoadingSearch(false);
   };
 
-  const handleTranslateAction = () => {
-    handleTranslate(
+  const handleTranslateAction = async () => {
+    setLoadingTranslate(true);
+    await handleTranslate(
       selectedMedicine,
       targetLanguage,
       setOutputTranslation,
       NEXT_PUBLIC_API_URL,
     );
+    setLoadingTranslate(false);
   };
 
   return (
@@ -79,7 +83,7 @@ const HomePage: FC = () => {
           languages={languages}
           searchError={searchError}
           setSearchError={setSearchError}
-          loading={loading}
+          loading={loadingSearch}
         />
 
         <div>
@@ -101,7 +105,16 @@ const HomePage: FC = () => {
           outputTranslation={outputTranslation}
           handleTranslate={handleTranslateAction}
           languages={languages}
+          translateError={translateError}
+          setTranslateError={setTranslateError}
+          loading={loadingTranslate}
         />
+
+        <div>
+          {translateError && (
+            <div className="text-center text-red-500">{translateError}</div>
+          )}
+        </div>
       </div>
     </div>
   );
