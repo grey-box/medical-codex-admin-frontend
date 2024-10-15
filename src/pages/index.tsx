@@ -2,7 +2,6 @@ import React, { useState, FC } from "react";
 import SearchSection from "@/components/HomePage/SearchSection";
 import ResultsSection from "@/components/HomePage/ResultsSection";
 import TranslateSection from "@/components/HomePage/TranslateSection";
-import SectionError from "@/components/HomePage/SectionError";
 import handleSearch from "@/utils/handleSearch";
 import handleTranslate from "@/utils/handleTranslate";
 import HelpModal from "@/components/ui/modals/HelpModal";
