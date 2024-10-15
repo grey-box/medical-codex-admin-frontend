@@ -36,10 +36,10 @@ const AboutPage: FC = () => {
           {teamMembers.map((member, index) => (
             <div
               key={index}
-              className="w-[376px] h-[384px] m-5 p-5 bg-white shadow-md text-center transition-transform duration-300 ease-in-out rounded-2xl hover:translate-y-[-5px]"
+              className="w-[280px] h-[384px] m-5 p-5 bg-white shadow-md text-center transition-transform duration-300 ease-in-out rounded-2xl hover:translate-y-[-5px]"
             >
               <img
-                className="w-[349px] h-[195px] mb-5 object-cover"
+                className="w-[253px] h-[195px] mb-5 object-cover"
                 src={member.img}
                 alt={`team-member${index + 1}`}
               />
