@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC } from "react";
 import Dropdown from "@/components/ui/Dropdown";
 
 interface SearchSectionProps {
@@ -8,7 +8,8 @@ interface SearchSectionProps {
   setSourceLanguage: (value: string) => void;
   handleSearch: () => void;
   languages: string[];
-  setErrorMessage: (msg: string | null) => void;
+  searchError: string | null;
+  setSearchError: (msg: string | null) => void;
 }
 
 const SearchSection: FC<SearchSectionProps> = ({
@@ -18,13 +19,13 @@ const SearchSection: FC<SearchSectionProps> = ({
   setSourceLanguage,
   handleSearch,
   languages,
-  setErrorMessage,
+  setSearchError,
 }) => {
   const validateAndSearch = () => {
     if (!inputSearch || !sourceLanguage) {
-      setErrorMessage("Both fields are required.");
+      setSearchError("Both fields are required.");
     } else {
-      setErrorMessage(null);
+      setSearchError(null);
       handleSearch();
     }
   };

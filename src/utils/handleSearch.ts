@@ -4,7 +4,7 @@ const handleSearch = async (
   sourceLanguage: string,
   setMedicines: (data: Array<{ matching_name: string }>) => void,
   NEXT_PUBLIC_API_URL: string | undefined,
-  setErrorMessage: (msg: string | null) => void,
+  setSearchError: (msg: string | null) => void,
 ): Promise<void> => {
   try {
     const requestBody = {
@@ -27,12 +27,10 @@ const handleSearch = async (
     const data = await response.json();
     console.log("Received data:", data);
     setMedicines(data.results);
-    setErrorMessage(null);
+    setSearchError(null);
   } catch (error) {
     console.error("Error fetching data:", error);
-    setErrorMessage(
-      "Unable to connect to the service. Please try again later.",
-    );
+    setSearchError("Unable to connect to the service. Please try again later.");
   }
 };
 

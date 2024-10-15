@@ -20,7 +20,7 @@ const HomePage: FC = () => {
   const [selectedMedicine, setSelectedMedicine] = useState<string>("");
   const [targetLanguage, setTargetLanguage] = useState<string>("");
   const [sourceLanguage, setSourceLanguage] = useState<string>("");
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [searchError, setSearchError] = useState<string | null>(null);
 
   const handleSearchAction = () => {
     handleSearch(
@@ -29,7 +29,7 @@ const HomePage: FC = () => {
       sourceLanguage,
       setMedicines,
       NEXT_PUBLIC_API_URL,
-      setErrorMessage,
+      setSearchError,
     );
   };
 
@@ -74,11 +74,12 @@ const HomePage: FC = () => {
           setSourceLanguage={setSourceLanguage}
           handleSearch={handleSearchAction}
           languages={languages}
-          setErrorMessage={setErrorMessage}
+          searchError={searchError}
+          setSearchError={setSearchError}
         />
 
-        {errorMessage && (
-          <div className="mt-2 text-center text-red-500">{errorMessage}</div>
+        {searchError && (
+          <div className="mt-2 text-center text-red-500">{searchError}</div>
         )}
 
         <ResultsSection
