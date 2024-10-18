@@ -1,6 +1,7 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import Dropdown from "@/components/ui/Dropdown";
 import SectionError from "@/components/HomePage/SectionError";
+import LastResortWarnModal from "@/components/ui/modals/LastResortWarnModal";
 
 interface TranslateSectionProps {
   selectedMedicine: string;
@@ -25,6 +26,8 @@ const TranslateSection: FC<TranslateSectionProps> = ({
   setTranslateError,
   loading,
 }) => {
+  const [isFeatureEnabled, setIsFeatureEnabled] = useState<boolean>(false);
+  const [isWarningModalOpen, setIsWarningModalOpen] = useState<boolean>(false);
   const validateAndTranslate = () => {
     if (!targetLanguage) {
       setTranslateError("Target language is required.");
@@ -32,6 +35,19 @@ const TranslateSection: FC<TranslateSectionProps> = ({
       setTranslateError(null);
       handleTranslate();
     }
+  };
+
+  const handleSwitchToggle = () => {
+    if (!isFeatureEnabled) {
+      setIsWarningModalOpen(true);
+    } else {
+      setIsFeatureEnabled(false);
+    }
+  };
+
+  const handleConfirmEnable = () => {
+    setIsFeatureEnabled(true);
+    setIsWarningModalOpen(false);
   };
 
   return (
@@ -70,11 +86,36 @@ const TranslateSection: FC<TranslateSectionProps> = ({
           value={outputTranslation}
           readOnly
         />
+        <div className="flex items-center">
+          <span className="mr-2">Last Resort Translation:</span>
+          <div className="relative">
+            <input
+              type="checkbox"
+              checked={isFeatureEnabled}
+              onChange={handleSwitchToggle}
+              className="absolute w-0 h-0 opacity-0"
+            />
+            <div
+              className={`block w-14 h-8 rounded-full ${isFeatureEnabled ? "bg-green-500" : "bg-gray-300"} cursor-pointer`}
+              onClick={handleSwitchToggle}
+            >
+              <div
+                className={`absolute left-1 top-1 w-6 h-6 rounded-full bg-white transition-transform duration-200 ${isFeatureEnabled ? "transform translate-x-full" : ""}`}
+              />
+            </div>
+          </div>
+        </div>
       </div>
 
       <div className="hidden mt-5 md:block">
         <SectionError errorMessage={translateError} />
       </div>
+      {isWarningModalOpen && (
+        <LastResortWarnModal
+          onConfirm={handleConfirmEnable}
+          onCancel={() => setIsWarningModalOpen(false)}
+        />
+      )}
     </div>
   );
 };
