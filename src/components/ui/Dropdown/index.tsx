@@ -31,18 +31,23 @@ const Dropdown: FC<DropdownProps> = ({
 
   return (
     <FormControl fullWidth disabled={disabled}>
-      {" "}
       <InputLabel>{label}</InputLabel>
       <Select
         value={selectedOption}
         onChange={handleChange}
         input={<OutlinedInput label={label} />}
       >
-        {options.map((option) => (
-          <MenuItem key={option} value={option}>
-            {option}
+        {options && options.length > 0 ? (
+          options.map((option) => (
+            <MenuItem key={option} value={option}>
+              {option}
+            </MenuItem>
+          ))
+        ) : (
+          <MenuItem disabled value="">
+            No options available
           </MenuItem>
-        ))}
+        )}
       </Select>
     </FormControl>
   );

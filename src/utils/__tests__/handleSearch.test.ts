@@ -16,8 +16,11 @@ import fetchMock from "jest-fetch-mock";
 fetchMock.enableMocks();
 
 describe("handleSearch", () => {
+  let setErrorMessage: jest.Mock;
+
   beforeEach(() => {
     fetchMock.resetMocks();
+    setErrorMessage = jest.fn();
   });
 
   it("fetches data and updates state with successful API response", async () => {
@@ -33,6 +36,7 @@ describe("handleSearch", () => {
       "",
       setMedicines,
       NEXT_PUBLIC_API_URL,
+      setErrorMessage,
     );
 
     expect(fetchMock).toHaveBeenCalledTimes(1);
@@ -51,6 +55,7 @@ describe("handleSearch", () => {
       },
     );
     expect(setMedicines).toHaveBeenCalledWith(mockData.results);
+    expect(setErrorMessage).toHaveBeenCalledWith(null); // Expect it to clear any previous error
   });
 
   it("throws an error when the API request fails", async () => {
@@ -59,9 +64,18 @@ describe("handleSearch", () => {
     const setMedicines = jest.fn();
     const NEXT_PUBLIC_API_URL = "http://localhost:3000";
 
-    await expect(
-      handleSearch("Tylenol", "English", "", setMedicines, NEXT_PUBLIC_API_URL),
-    ).rejects.toThrow("Fetch failed");
+    await handleSearch(
+      "Tylenol",
+      "English",
+      "",
+      setMedicines,
+      NEXT_PUBLIC_API_URL,
+      setErrorMessage,
+    );
+
+    expect(setErrorMessage).toHaveBeenCalledWith(
+      "Unable to connect to the service. Please try again later.",
+    );
     expect(setMedicines).not.toHaveBeenCalled();
   });
 
@@ -71,10 +85,18 @@ describe("handleSearch", () => {
     const setMedicines = jest.fn();
     const NEXT_PUBLIC_API_URL = "http://localhost:3000";
 
-    await expect(
-      handleSearch("Tylenol", "English", "", setMedicines, NEXT_PUBLIC_API_URL),
-    ).rejects.toThrow("HTTP error! Status: 404");
+    await handleSearch(
+      "Tylenol",
+      "English",
+      "",
+      setMedicines,
+      NEXT_PUBLIC_API_URL,
+      setErrorMessage,
+    );
 
+    expect(setErrorMessage).toHaveBeenCalledWith(
+      "Unable to connect to the service. Please try again later.",
+    );
     expect(setMedicines).not.toHaveBeenCalled();
   });
 });
