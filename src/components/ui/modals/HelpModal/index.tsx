@@ -17,7 +17,7 @@ const HelpModal: FC = () => {
 
       {isOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="relative w-11/12 p-5 bg-white rounded-lg md:w-1/2">
+          <div className="relative w-11/12 max-h-[90vh] p-5 overflow-y-auto bg-white rounded-lg md:w-1/2">
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-3xl font-bold text-[#044677]">Help Info</h2>
               <button

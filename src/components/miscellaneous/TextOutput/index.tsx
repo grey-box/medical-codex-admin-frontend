@@ -1,6 +1,6 @@
 import React from "react";
 
-interface TextBoxProps {
+interface TextOutputProps {
   selectedLanguage: string;
   style: string;
   setInputText: (value: string) => void;
@@ -8,7 +8,7 @@ interface TextBoxProps {
   outputvalue: string;
 }
 
-const TextBox: React.FC<TextBoxProps> = ({
+const TextOutput: React.FC<TextOutputProps> = ({
   selectedLanguage,
   style,
   setInputText,
@@ -35,4 +35,4 @@ const TextBox: React.FC<TextBoxProps> = ({
   );
 };
 
-export default TextBox;
+export default TextOutput;
