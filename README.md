@@ -35,10 +35,24 @@ npm run dev
 ## Notes
 
 - We have implemented unit testing, end-to-end testing and linting to ensure the application's code is as stable as possible. The CI workflow that gets kicked off runs a format check, a linter, our unit tests and end-to-end tests. The linter is a bit sensitive, but it helps ensure code consistency and makes it easier for future developers to understand what changed with each commit with the diff-checker that Git/GitHub provides.
-- We integrated a script to help automate the process before developers push, which will auto-format your code according to 'Prettier' standards, and then run a lint to check if any code quality issues are detected.
+- We integrated a script to help automate the process before developers push, which will auto-format your code according to 'Prettier' standards, and then run a lint to check if any code quality issues are detected. All commmands are in `package.json`, but are also here for your convenience:
 
 ```bash
  `npm run fix-format-and-lint`
+```
+
+- You can run Jest unit test suites locally using the following commands in a seperate terminal from the Next.js development server:
+
+```bash
+npm run test                # run this just to check if they passed
+npm run test:coverage       # run this to check if tests pass and how much code you are covering
+```
+
+- You can run Cypress unit test suites localling using the following commands in a separate terminal from the Next.js development server. For these, you need to 100% ensure that you are running the development server, and on port 3000:
+
+```bash
+npm run cypress:open        # run this to open up interactive testing suite. This is recommended for debugging any possible issues with tests as you can inspect elements as if you were in the browser itself
+npm run cypress:headless    # run this to quickly check if tests pass
 ```
 
 ---
