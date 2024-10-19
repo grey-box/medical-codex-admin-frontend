@@ -32,6 +32,17 @@ npm run dev
 
 ---
 
+## Notes
+
+- We have implemented unit testing, end-to-end testing and linting to ensure the application's code is as stable as possible. The CI workflow that gets kicked off runs a format check, a linter, our unit tests and end-to-end tests. The linter is a bit sensitive, but it helps ensure code consistency and makes it easier for future developers to understand what changed with each commit with the diff-checker that Git/GitHub provides.
+- We integrated a script to help automate the process before developers push, which will auto-format your code according to 'Prettier' standards, and then run a lint to check if any code quality issues are detected.
+
+```bash
+ `npm run fix-format-and-lint`
+```
+
+---
+
 ## Installation steps for Azure (MacOS based)
 
 ```shell
