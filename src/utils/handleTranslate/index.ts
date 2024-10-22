@@ -5,13 +5,24 @@ const handleTranslate = async (
   NEXT_PUBLIC_API_URL: string | undefined,
 ): Promise<void> => {
   try {
+    const languageMapping: { [key: string]: string } = {
+      English: "en",
+      Ukrainian: "uk",
+      Russian: "ru",
+      Greek: "gr",
+    };
+    const targetLanguageCode = languageMapping[targetLanguage];
+    if (!targetLanguageCode) {
+      throw new Error(`Invalid target language: ${targetLanguage}`);
+    }
+
     const requestBody = {
       translation_query: {
         matching_name: selectedMedicine,
         matching_source: "example_source",
         matching_uid: 1,
       },
-      target_language: targetLanguage,
+      target_language: targetLanguageCode,
     };
     console.log("Request URL:", `${NEXT_PUBLIC_API_URL}/translate/`);
     console.log("Request Body:", JSON.stringify(requestBody, null, 2));
