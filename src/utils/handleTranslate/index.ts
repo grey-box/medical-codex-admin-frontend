@@ -13,6 +13,8 @@ const handleTranslate = async (
       },
       target_language: targetLanguage,
     };
+    console.log("Request URL:", `${NEXT_PUBLIC_API_URL}/translate/`);
+    console.log("Request Body:", JSON.stringify(requestBody, null, 2));
     const response = await fetch(`${NEXT_PUBLIC_API_URL}/translate/`, {
       method: "POST",
       headers: {
@@ -24,6 +26,7 @@ const handleTranslate = async (
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
     const dataFromServer = await response.json();
+    console.log("Response from Server:", dataFromServer);
     const firstResult = dataFromServer.results?.[0];
     if (firstResult) {
       setOutputTranslation(firstResult.translated_name);
