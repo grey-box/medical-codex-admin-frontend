@@ -118,9 +118,9 @@ function Navbar(label) {
         </style>
         <img id="logo" src="/images/logoGREY-BOX.jpg" alt="Grey-box logo"></img>
         <div id="nav-links">
-            <a className="nav-link" href="#">{translate('home')}</a>
-            <a className="nav-link" href="#">{translate('about')}</a>
-            <a className="nav-link" href="#">{translate('help')}</a>
+            <a className="nav-link" href="/">{translate('home')}</a>
+            <a className="nav-link" href="/about">{translate('about')}</a>
+            <a className="nav-link" href="/help">{translate('help')}</a>
         </div>
 
     </nav>
