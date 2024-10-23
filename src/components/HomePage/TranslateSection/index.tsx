@@ -26,8 +26,9 @@ const TranslateSection: FC<TranslateSectionProps> = ({
   setTranslateError,
   loading,
 }) => {
-  const [isFeatureEnabled, setIsFeatureEnabled] = useState<boolean>(false);
+  const [isLastResortEnabled, setIsLastResortEnabled] = useState<boolean>(false);
   const [isWarningModalOpen, setIsWarningModalOpen] = useState<boolean>(false);
+
   const validateAndTranslate = () => {
     if (!targetLanguage) {
       setTranslateError("Target language is required.");
@@ -38,15 +39,15 @@ const TranslateSection: FC<TranslateSectionProps> = ({
   };
 
   const handleSwitchToggle = () => {
-    if (!isFeatureEnabled) {
+    if (!isLastResortEnabled) {
       setIsWarningModalOpen(true);
     } else {
-      setIsFeatureEnabled(false);
+      setIsLastResortEnabled(false);
     }
   };
 
   const handleConfirmEnable = () => {
-    setIsFeatureEnabled(true);
+    setIsLastResortEnabled(true);
     setIsWarningModalOpen(false);
   };
 
@@ -91,16 +92,16 @@ const TranslateSection: FC<TranslateSectionProps> = ({
           <div className="relative">
             <input
               type="checkbox"
-              checked={isFeatureEnabled}
+              checked={isLastResortEnabled}
               onChange={handleSwitchToggle}
               className="absolute w-0 h-0 opacity-0"
             />
             <div
-              className={`block w-14 h-8 rounded-full ${isFeatureEnabled ? "bg-green-500" : "bg-gray-300"} cursor-pointer`}
+              className={`block w-14 h-8 rounded-full ${isLastResortEnabled ? "bg-green-500" : "bg-gray-300"} cursor-pointer`}
               onClick={handleSwitchToggle}
             >
               <div
-                className={`absolute left-1 top-1 w-6 h-6 rounded-full bg-white transition-transform duration-200 ${isFeatureEnabled ? "transform translate-x-full" : ""}`}
+                className={`absolute left-1 top-1 w-6 h-6 rounded-full bg-white transition-transform duration-200 ${isLastResortEnabled ? "transform translate-x-full" : ""}`}
               />
             </div>
           </div>
