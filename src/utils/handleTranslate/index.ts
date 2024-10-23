@@ -1,8 +1,11 @@
+import lastResort from "../lastResort";
+
 const handleTranslate = async (
   selectedMedicine: string,
   targetLanguage: string,
   setOutputTranslation: (translation: string) => void,
   NEXT_PUBLIC_API_URL: string | undefined,
+  isLastResortEnabled: boolean,
 ): Promise<void> => {
   try {
     const languageMapping: { [key: string]: string } = {
@@ -46,6 +49,12 @@ const handleTranslate = async (
     }
   } catch (error) {
     console.error("Error in handleTranslate function:", error);
+    if (error instanceof Error) {
+      if (error.message === "No translation results available." && isLastResortEnabled) {
+        const aiTranslation = await lastResort(selectedMedicine, targetLanguage);
+        setOutputTranslation(aiTranslation);
+      } 
+    }
   }
 };
 
