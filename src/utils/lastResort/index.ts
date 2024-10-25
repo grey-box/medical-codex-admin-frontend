@@ -30,16 +30,11 @@ const lastResort = async (
     }
 
     const lastResortData = await response.json();
-    
-    const translatedMedicine = lastResortData.translated_medicine; 
-    const firstResult = lastResortData.results?.[0];
 
-    if (firstResult) {
-      return firstResult.translated_name;
-    }
+    const translatedMedicine = lastResortData.translated_medicine;
 
     if (translatedMedicine) {
-      return translatedMedicine; 
+      return translatedMedicine;
     }
 
     throw new Error("No translation results available from last resort.");
