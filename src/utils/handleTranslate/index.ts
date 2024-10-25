@@ -29,6 +29,7 @@ const handleTranslate = async (
     };
     console.log("Request URL:", `${NEXT_PUBLIC_API_URL}/translate/`);
     console.log("Request Body:", JSON.stringify(requestBody, null, 2));
+
     const response = await fetch(`${NEXT_PUBLIC_API_URL}/translate/`, {
       method: "POST",
       headers: {
@@ -36,25 +37,25 @@ const handleTranslate = async (
       },
       body: JSON.stringify(requestBody),
     });
+
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
+
     const dataFromServer = await response.json();
     console.log("Response from Server:", dataFromServer);
     const firstResult = dataFromServer.results?.[0];
+
     if (firstResult) {
       setOutputTranslation(firstResult.translated_name);
+    } else if (isLastResortEnabled) {
+      const translatedTerm = await lastResort(selectedMedicine, targetLanguage, NEXT_PUBLIC_API_URL);
+      setOutputTranslation(translatedTerm);
     } else {
       throw new Error("No translation results available.");
     }
   } catch (error) {
     console.error("Error in handleTranslate function:", error);
-    if (error instanceof Error) {
-      if (error.message === "No translation results available." && isLastResortEnabled) {
-        const aiTranslation = await lastResort(selectedMedicine, targetLanguage);
-        setOutputTranslation(aiTranslation);
-      } 
-    }
   }
 };
 
