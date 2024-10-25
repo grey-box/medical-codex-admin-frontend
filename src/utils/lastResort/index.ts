@@ -1,34 +1,52 @@
-import { GoogleGenerativeAI, HarmBlockThreshold, HarmCategory } from '@google/generative-ai';
-
-const apiKey = process.env.NEXT_PUBLIC_GEMINI_API_KEY;
-
-if (!apiKey) {
-  throw new Error('GEMINI_API_KEY is not defined in the environment variables.');
-}
-
-const genAI = new GoogleGenerativeAI(apiKey);
-
-const safetySettings = [
-  {
-    category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT,
-    threshold: HarmBlockThreshold.BLOCK_NONE,
-  },
-];
-
-const model = genAI.getGenerativeModel({
-  model: "gemini-1.5-flash",
-  safetySettings: safetySettings,
-});
-
-const lastResort = async (selectedMedicine: string, targetLanguage: string): Promise<string> => {
-  const prompt = `Translate "${selectedMedicine}" to "${targetLanguage}". Do not use brand names. Only respond with the translated term.`;
-  const result = await model.generateContent(prompt);
-
-  if (!result) {
-    return 'No valid content found in the response from Gemini AI.';
+const lastResort = async (
+  selectedMedicine: string,
+  targetLanguage: string,
+  NEXT_PUBLIC_API_URL: string | undefined
+): Promise<string> => {
+  if (!NEXT_PUBLIC_API_URL) {
+    throw new Error("Backend URL is undefined");
   }
-  console.log(result.response.text());
-  return result.response.text();
+
+  const requestBody = {
+    medicine: selectedMedicine,
+    target_language: targetLanguage,
+  };
+
+  console.log("Making request to:", `${NEXT_PUBLIC_API_URL}/last-resort/`);
+  console.log("Request body:", requestBody);
+
+  try {
+    const response = await fetch(`${NEXT_PUBLIC_API_URL}/last-resort/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(requestBody),
+    });
+
+    if (!response.ok) {
+      const errorMessage = await response.text();
+      throw new Error(`Last Resort HTTP error! Status: ${response.status}, Message: ${errorMessage}`);
+    }
+
+    const lastResortData = await response.json();
+    
+    const translatedMedicine = lastResortData.translated_medicine; 
+    const firstResult = lastResortData.results?.[0];
+
+    if (firstResult) {
+      return firstResult.translated_name;
+    }
+
+    if (translatedMedicine) {
+      return translatedMedicine; 
+    }
+
+    throw new Error("No translation results available from last resort.");
+  } catch (error) {
+    console.error("Error occurred:", error);
+    throw error;
+  }
 };
 
 export default lastResort;
