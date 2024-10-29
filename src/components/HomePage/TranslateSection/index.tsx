@@ -29,7 +29,7 @@ const TranslateSection: FC<TranslateSectionProps> = ({
 }) => {
   const [isWarningModalOpen, setIsWarningModalOpen] = useState<boolean>(false);
   const [lastResortResult, setLastResortResult] = useState<string>("");
-  const [lastResortLoading, setLastResortLoading] = useState<boolean>(false); // New state
+  const [lastResortLoading, setLastResortLoading] = useState<boolean>(false);
 
   const validateAndTranslate = async () => {
     if (!targetLanguage) {
@@ -53,7 +53,7 @@ const TranslateSection: FC<TranslateSectionProps> = ({
         process.env.NEXT_PUBLIC_API_URL,
       );
       setLastResortResult(translated);
-    } catch (error) {
+    } catch {
       setTranslateError("Last resort translation failed.");
     } finally {
       setLastResortLoading(false);
