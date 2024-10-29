@@ -49,6 +49,8 @@ const HomePage: FC = () => {
     setLoadingTranslate(false);
   };
 
+  const targetLanguages = languages.filter((lang) => lang !== sourceLanguage);
+
   return (
     <div className="relative flex flex-col overflow-hidden">
       <Head>
@@ -98,7 +100,7 @@ const HomePage: FC = () => {
           setTargetLanguage={setTargetLanguage}
           outputTranslation={outputTranslation}
           handleTranslate={handleTranslateAction}
-          languages={languages}
+          languages={targetLanguages}
           translateError={translateError}
           setTranslateError={setTranslateError}
           loading={loadingTranslate}
