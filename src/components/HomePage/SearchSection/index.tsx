@@ -44,6 +44,7 @@ const SearchSection: FC<SearchSectionProps> = ({
           label="Source Language"
           options={languages}
           onChange={setSourceLanguage}
+          value={sourceLanguage}
         />
         <input
           type="text"

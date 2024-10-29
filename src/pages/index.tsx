@@ -49,6 +49,12 @@ const HomePage: FC = () => {
     setLoadingTranslate(false);
   };
 
+  const handleSetSourceLanguage = (lang: string) => {
+    setSourceLanguage(lang);
+    setSelectedMedicine("");
+    setOutputTranslation("");
+  };
+
   const targetLanguages = languages.filter((lang) => lang !== sourceLanguage);
 
   return (
@@ -80,7 +86,7 @@ const HomePage: FC = () => {
           inputSearch={inputSearch}
           setInputSearch={setInputSearch}
           sourceLanguage={sourceLanguage}
-          setSourceLanguage={setSourceLanguage}
+          setSourceLanguage={handleSetSourceLanguage}
           handleSearch={handleSearchAction}
           languages={languages}
           searchError={searchError}

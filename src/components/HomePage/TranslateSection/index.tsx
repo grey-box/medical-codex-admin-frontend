@@ -70,6 +70,7 @@ const TranslateSection: FC<TranslateSectionProps> = ({
           label="Target Language"
           options={languages}
           onChange={setTargetLanguage}
+          value={targetLanguage}
           disabled={!selectedMedicine}
         />
         <div className="flex flex-col w-full md:w-1/4">
