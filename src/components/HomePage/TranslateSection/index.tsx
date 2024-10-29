@@ -2,19 +2,18 @@ import React, { FC, useState } from "react";
 import Dropdown from "@/components/ui/Dropdown";
 import SectionError from "@/components/HomePage/SectionError";
 import LastResortWarnModal from "@/components/ui/modals/LastResortWarnModal";
+import handleLastResort from "@/utils/handleLastResort";
 
 interface TranslateSectionProps {
   selectedMedicine: string;
   targetLanguage: string;
   setTargetLanguage: (value: string) => void;
   outputTranslation: string;
-  handleTranslate: () => void;
+  handleTranslate: () => Promise<void>;
   languages: string[];
   translateError: string | null;
   setTranslateError: (msg: string | null) => void;
   loading: boolean;
-  isLastResortEnabled: boolean;
-  setIsLastResortEnabled: (value: boolean) => void;
 }
 
 const TranslateSection: FC<TranslateSectionProps> = ({
@@ -27,31 +26,38 @@ const TranslateSection: FC<TranslateSectionProps> = ({
   translateError,
   setTranslateError,
   loading,
-  isLastResortEnabled,
-  setIsLastResortEnabled,
 }) => {
   const [isWarningModalOpen, setIsWarningModalOpen] = useState<boolean>(false);
+  const [lastResortResult, setLastResortResult] = useState<string>("");
+  const [lastResortLoading, setLastResortLoading] = useState<boolean>(false); // New state
 
-  const validateAndTranslate = () => {
+  const validateAndTranslate = async () => {
     if (!targetLanguage) {
       setTranslateError("Target language is required.");
     } else {
       setTranslateError(null);
-      handleTranslate();
+      await handleTranslate();
+      if (!outputTranslation) {
+        setIsWarningModalOpen(true);
+      }
     }
   };
 
-  const handleSwitchToggle = () => {
-    if (!isLastResortEnabled) {
-      setIsWarningModalOpen(true);
-    } else {
-      setIsLastResortEnabled(false);
-    }
-  };
-
-  const handleConfirmEnable = () => {
-    setIsLastResortEnabled(true);
+  const handleConfirmEnable = async () => {
     setIsWarningModalOpen(false);
+    setLastResortLoading(true);
+    try {
+      const translated = await handleLastResort(
+        selectedMedicine,
+        targetLanguage,
+        process.env.NEXT_PUBLIC_API_URL,
+      );
+      setLastResortResult(translated);
+    } catch (error) {
+      setTranslateError("Last resort translation failed.");
+    } finally {
+      setLastResortLoading(false);
+    }
   };
 
   return (
@@ -69,14 +75,18 @@ const TranslateSection: FC<TranslateSectionProps> = ({
         <div className="flex flex-col w-full md:w-1/4">
           <button
             className={`bg-[#2f876e] h-12 text-white rounded-lg shadow-md ${
-              loading
+              loading || lastResortLoading
                 ? "cursor-not-allowed opacity-50"
                 : "hover:bg-[#256c54] transition-all"
             }`}
             onClick={validateAndTranslate}
-            disabled={loading || !selectedMedicine}
+            disabled={loading || lastResortLoading || !selectedMedicine}
           >
-            {loading ? "Loading..." : "Translate"}
+            {loading
+              ? "Loading..."
+              : lastResortLoading
+                ? "Last Resort Loading..."
+                : "Translate"}
           </button>
 
           <div className="block md:hidden">
@@ -87,28 +97,9 @@ const TranslateSection: FC<TranslateSectionProps> = ({
           type="text"
           className="w-full h-12 text-base text-center font-inter font-semibold text-[#044677] shadow-md border border-gray-300 rounded-md md:w-1/2 focus:border-[#2f876e] focus:ring-[#2f876e] focus:outline-none p-2"
           placeholder="Translation will appear here"
-          value={outputTranslation}
+          value={outputTranslation || lastResortResult}
           readOnly
         />
-        <div className="flex items-center">
-          <span className="mr-2">Last Resort Translation:</span>
-          <div className="relative">
-            <input
-              type="checkbox"
-              checked={isLastResortEnabled}
-              onChange={handleSwitchToggle}
-              className="absolute w-0 h-0 opacity-0"
-            />
-            <div
-              className={`block w-14 h-8 rounded-full ${isLastResortEnabled ? "bg-green-500" : "bg-gray-300"} cursor-pointer`}
-              onClick={handleSwitchToggle}
-            >
-              <div
-                className={`absolute left-1 top-1 w-6 h-6 rounded-full bg-white transition-transform duration-200 ${isLastResortEnabled ? "transform translate-x-full" : ""}`}
-              />
-            </div>
-          </div>
-        </div>
       </div>
 
       <div className="hidden mt-5 md:block">

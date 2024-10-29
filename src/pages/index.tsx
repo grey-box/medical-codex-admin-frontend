@@ -24,8 +24,6 @@ const HomePage: FC = () => {
   const [translateError, setTranslateError] = useState<string | null>(null);
   const [loadingSearch, setLoadingSearch] = useState<boolean>(false);
   const [loadingTranslate, setLoadingTranslate] = useState<boolean>(false);
-  const [isLastResortEnabled, setIsLastResortEnabled] =
-    useState<boolean>(false);
 
   const handleSearchAction = async () => {
     setLoadingSearch(true);
@@ -104,8 +102,6 @@ const HomePage: FC = () => {
           translateError={translateError}
           setTranslateError={setTranslateError}
           loading={loadingTranslate}
-          isLastResortEnabled={isLastResortEnabled}
-          setIsLastResortEnabled={setIsLastResortEnabled}
         />
       </div>
     </div>
