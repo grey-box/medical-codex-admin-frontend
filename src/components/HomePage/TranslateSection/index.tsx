@@ -13,8 +13,8 @@ interface TranslateSectionProps {
   translateError: string | null;
   setTranslateError: (msg: string | null) => void;
   loading: boolean;
-  isLastResortEnabled: boolean; 
-  setIsLastResortEnabled: (value: boolean) => void; 
+  isLastResortEnabled: boolean;
+  setIsLastResortEnabled: (value: boolean) => void;
 }
 
 const TranslateSection: FC<TranslateSectionProps> = ({
@@ -28,7 +28,7 @@ const TranslateSection: FC<TranslateSectionProps> = ({
   setTranslateError,
   loading,
   isLastResortEnabled,
-  setIsLastResortEnabled, 
+  setIsLastResortEnabled,
 }) => {
   const [isWarningModalOpen, setIsWarningModalOpen] = useState<boolean>(false);
 

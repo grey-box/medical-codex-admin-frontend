@@ -1,7 +1,7 @@
 const lastResort = async (
   selectedMedicine: string,
   targetLanguage: string,
-  NEXT_PUBLIC_API_URL: string | undefined
+  NEXT_PUBLIC_API_URL: string | undefined,
 ): Promise<string> => {
   if (!NEXT_PUBLIC_API_URL) {
     throw new Error("Backend URL is undefined");
@@ -26,7 +26,9 @@ const lastResort = async (
 
     if (!response.ok) {
       const errorMessage = await response.text();
-      throw new Error(`Last Resort HTTP error! Status: ${response.status}, Message: ${errorMessage}`);
+      throw new Error(
+        `Last Resort HTTP error! Status: ${response.status}, Message: ${errorMessage}`,
+      );
     }
 
     const lastResortData = await response.json();

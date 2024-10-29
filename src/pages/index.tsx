@@ -14,7 +14,9 @@ const languages = ["English", "Ukrainian", "Russian", "German"];
 const HomePage: FC = () => {
   const [inputSearch, setInputSearch] = useState<string>("");
   const [outputTranslation, setOutputTranslation] = useState<string>("");
-  const [medicines, setMedicines] = useState<Array<{ matching_name: string }>>([]);
+  const [medicines, setMedicines] = useState<Array<{ matching_name: string }>>(
+    [],
+  );
   const [selectedMedicine, setSelectedMedicine] = useState<string>("");
   const [targetLanguage, setTargetLanguage] = useState<string>("");
   const [sourceLanguage, setSourceLanguage] = useState<string>("");
@@ -22,7 +24,8 @@ const HomePage: FC = () => {
   const [translateError, setTranslateError] = useState<string | null>(null);
   const [loadingSearch, setLoadingSearch] = useState<boolean>(false);
   const [loadingTranslate, setLoadingTranslate] = useState<boolean>(false);
-  const [isLastResortEnabled, setIsLastResortEnabled] = useState<boolean>(false);
+  const [isLastResortEnabled, setIsLastResortEnabled] =
+    useState<boolean>(false);
 
   const handleSearchAction = async () => {
     setLoadingSearch(true);
@@ -32,7 +35,7 @@ const HomePage: FC = () => {
       sourceLanguage,
       setMedicines,
       NEXT_PUBLIC_API_URL,
-      setSearchError
+      setSearchError,
     );
     setLoadingSearch(false);
   };
@@ -44,7 +47,7 @@ const HomePage: FC = () => {
       targetLanguage,
       setOutputTranslation,
       NEXT_PUBLIC_API_URL,
-      isLastResortEnabled
+      isLastResortEnabled,
     );
     setLoadingTranslate(false);
   };
@@ -65,7 +68,8 @@ const HomePage: FC = () => {
               Project Medical Codex
             </span>
             <span className="mt-2 text-sm md:text-base">
-              A tool developed to help coordinate medical equipment between countries.
+              A tool developed to help coordinate medical equipment between
+              countries.
             </span>
           </div>
           <HelpModal />

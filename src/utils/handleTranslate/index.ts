@@ -49,7 +49,11 @@ const handleTranslate = async (
     if (firstResult) {
       setOutputTranslation(firstResult.translated_name);
     } else if (isLastResortEnabled) {
-      const translatedTerm = await lastResort(selectedMedicine, targetLanguage, NEXT_PUBLIC_API_URL);
+      const translatedTerm = await lastResort(
+        selectedMedicine,
+        targetLanguage,
+        NEXT_PUBLIC_API_URL,
+      );
       setOutputTranslation(translatedTerm);
     } else {
       throw new Error("No translation results available.");
