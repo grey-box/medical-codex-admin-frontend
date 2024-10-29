@@ -1,4 +1,4 @@
-## lastResort Function
+## handleLastResort Function
 
 Author(s): Thayer Picart
 

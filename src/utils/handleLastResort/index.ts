@@ -1,4 +1,4 @@
-const lastResort = async (
+const handleLastResort = async (
   selectedMedicine: string,
   targetLanguage: string,
   NEXT_PUBLIC_API_URL: string | undefined,
@@ -46,4 +46,4 @@ const lastResort = async (
   }
 };
 
-export default lastResort;
+export default handleLastResort;
