@@ -47,7 +47,6 @@ const HomePage: FC = () => {
       targetLanguage,
       setOutputTranslation,
       NEXT_PUBLIC_API_URL,
-      isLastResortEnabled,
     );
     setLoadingTranslate(false);
   };

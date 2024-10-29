@@ -1,11 +1,8 @@
-import lastResort from "../lastResort";
-
 const handleTranslate = async (
   selectedMedicine: string,
   targetLanguage: string,
   setOutputTranslation: (translation: string) => void,
   NEXT_PUBLIC_API_URL: string | undefined,
-  isLastResortEnabled: boolean,
 ): Promise<void> => {
   try {
     const languageMapping: { [key: string]: string } = {
@@ -29,7 +26,6 @@ const handleTranslate = async (
     };
     console.log("Request URL:", `${NEXT_PUBLIC_API_URL}/translate/`);
     console.log("Request Body:", JSON.stringify(requestBody, null, 2));
-
     const response = await fetch(`${NEXT_PUBLIC_API_URL}/translate/`, {
       method: "POST",
       headers: {
@@ -37,24 +33,14 @@ const handleTranslate = async (
       },
       body: JSON.stringify(requestBody),
     });
-
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
-
     const dataFromServer = await response.json();
     console.log("Response from Server:", dataFromServer);
     const firstResult = dataFromServer.results?.[0];
-
     if (firstResult) {
       setOutputTranslation(firstResult.translated_name);
-    } else if (isLastResortEnabled) {
-      const translatedTerm = await lastResort(
-        selectedMedicine,
-        targetLanguage,
-        NEXT_PUBLIC_API_URL,
-      );
-      setOutputTranslation(translatedTerm);
     } else {
       throw new Error("No translation results available.");
     }
