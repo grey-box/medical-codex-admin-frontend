@@ -163,3 +163,10 @@ body, input, button, select {
   flex-direction: column;
   justify-content: space-between;
 }
+
+#translate-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: black;
+}

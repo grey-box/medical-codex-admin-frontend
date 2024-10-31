@@ -2,18 +2,243 @@
     "results": [
         {
             "en_name": "tylenol",
-            "uk_name": "Парацетамол_uk",
-            "ru_name": "Парацетамол_ru"
+            "uk_name": "Парацетамол",
+            "ru_name": "Парацетамол",
+            "source": "chatGPT"
         },
         {
             "en_name": "ibuprofen",
-            "uk_name": "Ібупрофен_uk",
-            "ru_name": "Ибупрофен_ru"
+            "uk_name": "Ібупрофен",
+            "ru_name": "Ибупрофен",
+            "source": "chatGPT"
         },
         {
             "en_name": "morphine",
-            "uk_name": "морфін_uk",
-            "ru_name": "морфин_ru"
+            "uk_name": "морфін",
+            "ru_name": "морфин",
+            "source": "chatGPT"
+        },
+        {
+            "en_name": "aspirin",
+            "uk_name": "Аспірин",
+            "ru_name": "Аспирин",
+            "source": "chatGPT"
+        },
+        {
+            "en_name": "antibiotic",
+            "uk_name": "антибіотик",
+            "ru_name": "антибиотик",
+            "source": "chatGPT"
+        },
+        {
+            "en_name": "acetaminophen",
+            "uk_name": "ацетамінофен",
+            "ru_name": "ацетаминофен",
+            "source": "chatGPT"
+        },
+        {
+            "en_name": "penicillin",
+            "uk_name": "пеніцилін",
+            "ru_name": "пенициллин",
+            "source": "chatGPT"
+        },
+        {
+            "en_name": "ibandronate",
+            "uk_name": "іандронат",
+            "ru_name": "ибандронат",
+            "source": "chatGPT"
+        },
+        {
+            "en_name": "metformin",
+            "uk_name": "метформін",
+            "ru_name": "метформин",
+            "source": "chatGPT"
+        },
+        {
+            "en_name": "omeprazole",
+            "uk_name": "омепразол",
+            "ru_name": "омепразол",
+            "source": "chatGPT"
+        },
+        {
+            "en_name": "allergy",
+            "uk_name": "алергія",
+            "ru_name": "аллергия",
+            "source": "chatGPT"
+        },
+        {
+            "en_name": "insulin",
+            "uk_name": "інсулін",
+            "ru_name": "инсулин",
+            "source": "chatGPT"
+        },
+        {
+            "en_name": "anesthesia",
+            "uk_name": "анестезія",
+            "ru_name": "анестезия",
+            "source": "chatGPT"
+        },
+        {
+            "en_name": "diabetes",
+            "uk_name": "діабет",
+            "ru_name": "диабет",
+            "source": "chatGPT"
+        },
+        {
+            "en_name": "amoxicillin",
+            "uk_name": "амоксицилін",
+            "ru_name": "амоксициллин",
+            "source": "chatGPT"
+        },
+        {
+            "en_name": "clavulanate",
+            "uk_name": "клавуланат",
+            "ru_name": "клавуланат",
+            "source": "chatGPT"
+        },
+        {
+            "en_name": "doxycycline",
+            "uk_name": "доксициклін",
+            "ru_name": "доксициклин",
+            "source": "chatGPT"
+        },
+        {
+            "en_name": "statin",
+            "uk_name": "статин",
+            "ru_name": "статин",
+            "source": "chatGPT"
+        },
+        {
+            "en_name": "epinephrine",
+            "uk_name": "епінефрін",
+            "ru_name": "эпинефрин",
+            "source": "chatGPT"
+        },
+        {
+            "en_name": "allergen",
+            "uk_name": "алерген",
+            "ru_name": "аллерген",
+            "source": "chatGPT"
+        },
+        {
+            "en_name": "acetylsalicylic acid",
+            "uk_name": "ацетилсаліцилова кислота",
+            "ru_name": "ацетилсалициловая кислота",
+            "source": "chatGPT"
+        },
+        {
+            "en_name": "prednisone",
+            "uk_name": "преднізон",
+            "ru_name": "преднизон",
+            "source": "chatGPT"
+        },
+        {
+            "en_name": "cortisone",
+            "uk_name": "кортизон",
+            "ru_name": "кортизон",
+            "source": "chatGPT"
+        },
+        {
+            "en_name": "antihistamine",
+            "uk_name": "антигістамін",
+            "ru_name": "антигистамин",
+            "source": "chatGPT"
+        },
+        {
+            "en_name": "antiseptic",
+            "uk_name": "антисептик",
+            "ru_name": "антисептик",
+            "source": "chatGPT"
+        },
+        {
+            "en_name": "aspiration",
+            "uk_name": "аспірація",
+            "ru_name": "аспирация",
+            "source": "chatGPT"
+        },
+        {
+            "en_name": "paracetamol",
+            "uk_name": "парацетамол",
+            "ru_name": "парацетамол",
+            "source": "chatGPT"
+        },
+        {
+            "en_name": "benadryl",
+            "uk_name": "бенадрил",
+            "ru_name": "бенадрил",
+            "source": "chatGPT"
+        },
+        {
+            "en_name": "antacid",
+            "uk_name": "антацид",
+            "ru_name": "антацид",
+            "source": "chatGPT"
+        },
+        {
+            "en_name": "ibandronate",
+            "uk_name": "іандронат",
+            "ru_name": "ибандронат",
+            "source": "chatGPT"
+        },
+        {
+            "en_name": "salbutamol",
+            "uk_name": "сальбутамол",
+            "ru_name": "сальбутамол",
+            "source": "chatGPT"
+        },
+        {
+            "en_name": "hydrocortisone",
+            "uk_name": "гідрокортизон",
+            "ru_name": "гидрокортизон",
+            "source": "chatGPT"
+        },
+        {
+            "en_name": "ventolin",
+            "uk_name": "вентолін",
+            "ru_name": "вентолин",
+            "source": "chatGPT"
+        },
+        {
+            "en_name": "calcium",
+            "uk_name": "кальцій",
+            "ru_name": "кальций",
+            "source": "chatGPT"
+        },
+        {
+            "en_name": "potassium",
+            "uk_name": "калій",
+            "ru_name": "калий",
+            "source": "chatGPT"
+        },
+        {
+            "en_name": "zofran",
+            "uk_name": "зоран",
+            "ru_name": "зофран",
+            "source": "chatGPT"
+        },
+        {
+            "en_name": "metoprolol",
+            "uk_name": "метопролол",
+            "ru_name": "метопролол",
+            "source": "chatGPT"
+        },
+        {
+            "en_name": "lisinopril",
+            "uk_name": "лізиноприл",
+            "ru_name": "лизиноприл",
+            "source": "chatGPT"
+        },
+        {
+            "en_name": "ibandronate",
+            "uk_name": "іандронат",
+            "ru_name": "ибандронат",
+            "source": "chatGPT"
+        },
+        {
+            "en_name": "amitriptyline",
+            "uk_name": "амітриптилін",
+            "ru_name": "амитриптилин",
+            "source": "chatGPT"
         }
     ]
 }
