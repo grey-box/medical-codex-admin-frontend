@@ -31,6 +31,10 @@ export default function Home() {
   
   const [outputTranslation, setOutputTranslation] = useState("");
 
+  const [outputSource, setOutputSource] = useState("");
+
+  const [outputMarkReview, setOutputMarkReview] = useState("");
+
   const { translate, language, setLanguage } = useLanguage();
 
   return (
@@ -50,23 +54,13 @@ export default function Home() {
                   inputSearch,
                   selectedLangSource,
                   selectedLangTarget,
-                  setOutputTranslation
+                  setOutputTranslation,
+                  setOutputSource,
+                  setOutputMarkReview
                 )
               }>{translate('translate')}</button>
           <label id="output-label">{translate('output')}</label>
-
-          <div id="translation-output">            
-            <div id="translate-box">
-                <style></style>
-                <input
-                  type="text" 
-                  id="output-text"
-                  placeholder="Test"
-                  value={outputTranslation}
-                  readOnly
-                />
-            </div>
-          </div>
+          {TranslateBox(outputTranslation, outputSource, outputMarkReview)}
         </form>
       </main>
     </>

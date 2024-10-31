@@ -7,42 +7,74 @@ function fetchData() {
 
 }
 
-function TranslateBox(source, target) {
+function TranslateBox(outputTranslation, outputSource, outputMarkReview) {
     const { translate } = useLanguage();
     
     
     const style = `
-        #output-text {
-            font-size: 1em;
-            padding: 0.75em 1em;
-            width: 100%;
-            border: 1px solid #ccc;
-            border-radius: 1em;
-            background-color: #fff;
-            overflow-y: scroll;
-            max-height: 10em;
-            font-family: 'Open Sans', sans-serif;
-            line-height: 1.5;
-            color: #333;
-            text-align: left;
-        }
-        
-        #output-text p {
-            margin: 0;
-            padding: 0.5em 0;
-        }
+    #translate-box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border: 1px solid #ccc;
+        border-radius: 1em;
+        background-color: #fff;
+        padding: 1em;
+        width: 100%;
+    }
+
+    #output-text {
+        font-size: 1em;
+        padding: 0.75em 1em;
+        width: 100%;
+        border: none;
+        border-radius: 1em;
+        overflow-y: scroll;
+        max-height: 10em;
+        font-family: 'Open Sans', sans-serif;
+        line-height: 1.5;
+        color: #333;
+        text-align: left;
+    }
     `;
 
     return (
-        <div id="translate-box">
-            <style>{style}</style>
-            <input
-              type="text" 
-              id="output-text"
-              placeholder="Test"
-              value={outputTranslation}
-              readOnly
-            />
+        <div id="translation-output">            
+            <div id="translate-box" style={{ borderRadius: '0.5em', padding: '1em' }}>
+                <style>
+                    {style}
+                </style>
+                
+                <div style={{ display: outputSource && outputMarkReview ? '' : 'none', textAlign: 'center'}}>
+                  <span>
+                    <b>Output: </b>{outputTranslation}
+                  </span>
+                  <br />
+                  <span><b>Source:</b> {outputSource}</span>
+                  <br />
+                  
+                  <span>
+                    {outputMarkReview ? (
+                      <a
+                        href={outputMarkReview}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{
+                          color: 'blue',
+                          textDecoration: 'underline',
+                          ':hover': { backgroundColor: 'lightblue' }
+                        }}
+                      >
+                        Translation needs to be reviewed form
+                      </a>
+                    ) : (
+                      <span style={{ color: 'grey' }}>
+                        Translation needs to be reviewed form
+                      </span>
+                    )}
+                  </span>
+                </div>
+            </div>
         </div>
     );
 
