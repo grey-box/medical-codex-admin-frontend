@@ -1,4 +1,4 @@
-import React, { useState, FC } from "react";
+import React, { useState, useEffect, FC } from "react";
 import SearchSection from "@/components/HomePage/SearchSection";
 import ResultsSection from "@/components/HomePage/ResultsSection";
 import TranslateSection from "@/components/HomePage/TranslateSection";
@@ -63,6 +63,12 @@ const HomePage: FC = () => {
   };
 
   const targetLanguages = languages.filter((lang) => lang !== sourceLanguage);
+
+  useEffect(() => {
+    setTargetLanguage("");
+    setOutputTranslation("");
+    setTranslateError(null);
+  }, [selectedMedicine]);
 
   return (
     <div className="relative flex flex-col overflow-hidden">

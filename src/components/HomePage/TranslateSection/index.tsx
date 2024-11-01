@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC, useState, useEffect } from "react";
 import Dropdown from "@/components/ui/Dropdown";
 import SectionError from "@/components/HomePage/SectionError";
 import LastResortWarnModal from "@/components/ui/modals/LastResortWarnModal";
@@ -30,6 +30,11 @@ const TranslateSection: FC<TranslateSectionProps> = ({
   const [isWarningModalOpen, setIsWarningModalOpen] = useState<boolean>(false);
   const [lastResortResult, setLastResortResult] = useState<string>("");
   const [lastResortLoading, setLastResortLoading] = useState<boolean>(false);
+
+  useEffect(() => {
+    setLastResortResult("");
+    setIsWarningModalOpen(false);
+  }, [selectedMedicine]);
 
   const validateAndTranslate = async () => {
     if (!targetLanguage) {
