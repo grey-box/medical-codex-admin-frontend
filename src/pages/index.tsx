@@ -38,15 +38,22 @@ const HomePage: FC = () => {
     setLoadingSearch(false);
   };
 
-  const handleTranslateAction = async () => {
+  const handleTranslateAction = async (): Promise<string | null> => {
     setLoadingTranslate(true);
-    await handleTranslate(
-      selectedMedicine,
-      targetLanguage,
-      setOutputTranslation,
-      NEXT_PUBLIC_API_URL,
-    );
-    setLoadingTranslate(false);
+    try {
+      const translation = await handleTranslate(
+        selectedMedicine,
+        targetLanguage,
+        setOutputTranslation,
+        NEXT_PUBLIC_API_URL,
+      );
+      return translation;
+    } catch {
+      setTranslateError("Translation failed.");
+      return null;
+    } finally {
+      setLoadingTranslate(false);
+    }
   };
 
   const handleSetSourceLanguage = (lang: string) => {

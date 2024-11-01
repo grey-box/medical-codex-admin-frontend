@@ -9,7 +9,7 @@ interface TranslateSectionProps {
   targetLanguage: string;
   setTargetLanguage: (value: string) => void;
   outputTranslation: string;
-  handleTranslate: () => Promise<void>;
+  handleTranslate: () => Promise<string | null>;
   languages: string[];
   translateError: string | null;
   setTranslateError: (msg: string | null) => void;
@@ -36,8 +36,8 @@ const TranslateSection: FC<TranslateSectionProps> = ({
       setTranslateError("Target language is required.");
     } else {
       setTranslateError(null);
-      await handleTranslate();
-      if (!outputTranslation) {
+      const translation = await handleTranslate();
+      if (!translation) {
         setIsWarningModalOpen(true);
       }
     }
