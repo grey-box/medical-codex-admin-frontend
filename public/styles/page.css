@@ -73,11 +73,34 @@
   cursor: pointer; 
 }
 
-#output-label {
-  margin-top: 1em;
-  font-size: 1.2em;
-  color: #333;
-  font-weight: bold;
+#search-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 3em;
+}
+
+#search-container a {
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 4em;
+  width: 4em;
+}
+
+#search-container a {
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 4em;
+  width: 4em;
+}
+
+#search-container a img {
+  height: 1.5em;
+  width: 1.5em;
 }
 
 /* Tablet view */
