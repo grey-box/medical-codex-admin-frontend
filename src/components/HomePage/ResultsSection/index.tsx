@@ -9,6 +9,7 @@ interface ResultsSectionProps {
 
 const ResultsSection: FC<ResultsSectionProps> = ({
   medicines,
+  selectedMedicine,
   setSelectedMedicine,
 }) => {
   return (
@@ -20,6 +21,7 @@ const ResultsSection: FC<ResultsSectionProps> = ({
         label="Select Medicine"
         options={medicines.map((medicine) => medicine.matching_name)}
         onChange={setSelectedMedicine}
+        value={selectedMedicine}
         disabled={medicines.length === 0}
       />
     </div>

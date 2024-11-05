@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC } from "react";
 import {
   FormControl,
   InputLabel,
@@ -12,6 +12,7 @@ interface DropdownProps {
   label: string;
   options: string[];
   onChange: (value: string) => void;
+  value: string;
   disabled?: boolean;
 }
 
@@ -19,21 +20,19 @@ const Dropdown: FC<DropdownProps> = ({
   label,
   options,
   onChange,
+  value,
   disabled = false,
 }) => {
-  const [selectedOption, setSelectedOption] = useState<string>("");
-
   const handleChange = (event: SelectChangeEvent<string>): void => {
-    const value = event.target.value;
-    setSelectedOption(value);
-    onChange(value);
+    const selectedValue = event.target.value;
+    onChange(selectedValue);
   };
 
   return (
     <FormControl fullWidth disabled={disabled}>
       <InputLabel>{label}</InputLabel>
       <Select
-        value={selectedOption}
+        value={value}
         onChange={handleChange}
         input={<OutlinedInput label={label} />}
       >

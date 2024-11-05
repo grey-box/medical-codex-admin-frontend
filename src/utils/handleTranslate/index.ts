@@ -3,13 +3,13 @@ const handleTranslate = async (
   targetLanguage: string,
   setOutputTranslation: (translation: string) => void,
   NEXT_PUBLIC_API_URL: string | undefined,
-): Promise<void> => {
+): Promise<string | null> => {
   try {
     const languageMapping: { [key: string]: string } = {
       English: "en",
       Ukrainian: "uk",
       Russian: "ru",
-      Greek: "gr",
+      French: "fr",
     };
     const targetLanguageCode = languageMapping[targetLanguage];
     if (!targetLanguageCode) {
@@ -41,11 +41,13 @@ const handleTranslate = async (
     const firstResult = dataFromServer.results?.[0];
     if (firstResult) {
       setOutputTranslation(firstResult.translated_name);
+      return firstResult.translated_name;
     } else {
       throw new Error("No translation results available.");
     }
   } catch (error) {
     console.error("Error in handleTranslate function:", error);
+    return null;
   }
 };
 

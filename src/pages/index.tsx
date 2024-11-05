@@ -1,4 +1,4 @@
-import React, { useState, FC } from "react";
+import React, { useState, useEffect, FC } from "react";
 import SearchSection from "@/components/HomePage/SearchSection";
 import ResultsSection from "@/components/HomePage/ResultsSection";
 import TranslateSection from "@/components/HomePage/TranslateSection";
@@ -9,7 +9,7 @@ import Head from "next/head";
 
 const NEXT_PUBLIC_API_URL: string | undefined = process.env.NEXT_PUBLIC_API_URL;
 
-const languages = ["English", "Ukrainian", "Russian", "German"];
+const languages = ["English", "Ukrainian", "Russian", "French"];
 
 const HomePage: FC = () => {
   const [inputSearch, setInputSearch] = useState<string>("");
@@ -38,16 +38,41 @@ const HomePage: FC = () => {
     setLoadingSearch(false);
   };
 
-  const handleTranslateAction = async () => {
+  const handleTranslateAction = async (): Promise<string | null> => {
     setLoadingTranslate(true);
-    await handleTranslate(
-      selectedMedicine,
-      targetLanguage,
-      setOutputTranslation,
-      NEXT_PUBLIC_API_URL,
-    );
-    setLoadingTranslate(false);
+    try {
+      const translation = await handleTranslate(
+        selectedMedicine,
+        targetLanguage,
+        setOutputTranslation,
+        NEXT_PUBLIC_API_URL,
+      );
+      return translation;
+    } catch {
+      setTranslateError("Translation failed.");
+      return null;
+    } finally {
+      setLoadingTranslate(false);
+    }
   };
+
+  const handleSetSourceLanguage = (lang: string) => {
+    setSourceLanguage(lang);
+    setSelectedMedicine("");
+    setOutputTranslation("");
+  };
+
+  const targetLanguages = languages.filter((lang) => lang !== sourceLanguage);
+
+  useEffect(() => {
+    setTargetLanguage("");
+    setOutputTranslation("");
+    setTranslateError(null);
+  }, [selectedMedicine]);
+
+  useEffect(() => {
+    setOutputTranslation("");
+  }, [targetLanguage]);
 
   return (
     <div className="relative flex flex-col overflow-hidden">
@@ -78,7 +103,7 @@ const HomePage: FC = () => {
           inputSearch={inputSearch}
           setInputSearch={setInputSearch}
           sourceLanguage={sourceLanguage}
-          setSourceLanguage={setSourceLanguage}
+          setSourceLanguage={handleSetSourceLanguage}
           handleSearch={handleSearchAction}
           languages={languages}
           searchError={searchError}
@@ -98,7 +123,8 @@ const HomePage: FC = () => {
           setTargetLanguage={setTargetLanguage}
           outputTranslation={outputTranslation}
           handleTranslate={handleTranslateAction}
-          languages={languages}
+          setOutputTranslation={setOutputTranslation}
+          languages={targetLanguages}
           translateError={translateError}
           setTranslateError={setTranslateError}
           loading={loadingTranslate}

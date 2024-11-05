@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC, useState, useEffect } from "react";
 import Dropdown from "@/components/ui/Dropdown";
 import SectionError from "@/components/HomePage/SectionError";
 import LastResortWarnModal from "@/components/ui/modals/LastResortWarnModal";
@@ -9,7 +9,8 @@ interface TranslateSectionProps {
   targetLanguage: string;
   setTargetLanguage: (value: string) => void;
   outputTranslation: string;
-  handleTranslate: () => Promise<void>;
+  setOutputTranslation: (value: string) => void;
+  handleTranslate: () => Promise<string | null>;
   languages: string[];
   translateError: string | null;
   setTranslateError: (msg: string | null) => void;
@@ -21,6 +22,7 @@ const TranslateSection: FC<TranslateSectionProps> = ({
   targetLanguage,
   setTargetLanguage,
   outputTranslation,
+  setOutputTranslation,
   handleTranslate,
   languages,
   translateError,
@@ -28,16 +30,20 @@ const TranslateSection: FC<TranslateSectionProps> = ({
   loading,
 }) => {
   const [isWarningModalOpen, setIsWarningModalOpen] = useState<boolean>(false);
-  const [lastResortResult, setLastResortResult] = useState<string>("");
   const [lastResortLoading, setLastResortLoading] = useState<boolean>(false);
+
+  useEffect(() => {
+    setIsWarningModalOpen(false);
+  }, [selectedMedicine]);
 
   const validateAndTranslate = async () => {
     if (!targetLanguage) {
       setTranslateError("Target language is required.");
     } else {
       setTranslateError(null);
-      await handleTranslate();
-      if (!outputTranslation) {
+      setOutputTranslation("");
+      const translation = await handleTranslate();
+      if (!translation) {
         setIsWarningModalOpen(true);
       }
     }
@@ -46,19 +52,23 @@ const TranslateSection: FC<TranslateSectionProps> = ({
   const handleConfirmEnable = async () => {
     setIsWarningModalOpen(false);
     setLastResortLoading(true);
+    setOutputTranslation("");
     try {
       const translated = await handleLastResort(
         selectedMedicine,
         targetLanguage,
         process.env.NEXT_PUBLIC_API_URL,
       );
-      setLastResortResult(translated);
+      setOutputTranslation(translated);
     } catch {
       setTranslateError("Last resort translation failed.");
     } finally {
       setLastResortLoading(false);
     }
   };
+
+  const isButtonDisabled =
+    !targetLanguage || !selectedMedicine || loading || lastResortLoading;
 
   return (
     <div className="p-5">
@@ -70,17 +80,18 @@ const TranslateSection: FC<TranslateSectionProps> = ({
           label="Target Language"
           options={languages}
           onChange={setTargetLanguage}
+          value={targetLanguage}
           disabled={!selectedMedicine}
         />
         <div className="flex flex-col w-full md:w-1/4">
           <button
-            className={`bg-[#2f876e] h-12 text-white rounded-lg shadow-md ${
-              loading || lastResortLoading
-                ? "cursor-not-allowed opacity-50"
-                : "hover:bg-[#256c54] transition-all"
+            className={`h-12 rounded-lg shadow-md ${
+              isButtonDisabled
+                ? "bg-gray-400 cursor-not-allowed"
+                : "bg-[#2f876e] text-white hover:bg-[#256c54] transition-all"
             }`}
             onClick={validateAndTranslate}
-            disabled={loading || lastResortLoading || !selectedMedicine}
+            disabled={isButtonDisabled}
           >
             {loading
               ? "Loading..."
@@ -97,7 +108,7 @@ const TranslateSection: FC<TranslateSectionProps> = ({
           type="text"
           className="w-full h-12 text-base text-center font-inter font-semibold text-[#044677] shadow-md border border-gray-300 rounded-md md:w-1/2 focus:border-[#2f876e] focus:ring-[#2f876e] focus:outline-none p-2"
           placeholder="Translation will appear here"
-          value={outputTranslation || lastResortResult}
+          value={outputTranslation}
           readOnly
         />
       </div>
