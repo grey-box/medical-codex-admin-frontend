@@ -34,6 +34,8 @@ const SearchSection: FC<SearchSectionProps> = ({
     }
   };
 
+  const isButtonDisabled = !inputSearch || !sourceLanguage || loading;
+
   return (
     <div className="p-5">
       <div className="m-2 text-lg font-semibold text-center font-inter">
@@ -54,13 +56,13 @@ const SearchSection: FC<SearchSectionProps> = ({
           onChange={(e) => setInputSearch(e.target.value)}
         />
         <button
-          className={`bg-[#2f876e] w-full md:w-1/4 h-12 text-white rounded-lg shadow-md ${
-            loading
-              ? "cursor-not-allowed opacity-50"
-              : "hover:bg-[#256c54] transition-all"
+          className={`w-full md:w-1/4 h-12 rounded-lg shadow-md ${
+            isButtonDisabled
+              ? "bg-gray-400 cursor-not-allowed"
+              : "bg-[#2f876e] text-white hover:bg-[#256c54] transition-all"
           }`}
           onClick={validateAndSearch}
-          disabled={loading}
+          disabled={isButtonDisabled}
         >
           {loading ? "Loading..." : "Search"}
         </button>

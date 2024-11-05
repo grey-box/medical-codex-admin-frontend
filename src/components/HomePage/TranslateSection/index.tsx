@@ -65,6 +65,9 @@ const TranslateSection: FC<TranslateSectionProps> = ({
     }
   };
 
+  const isButtonDisabled =
+    !targetLanguage || !selectedMedicine || loading || lastResortLoading;
+
   return (
     <div className="p-5">
       <div className="m-2 text-lg font-semibold text-center font-inter">
@@ -80,13 +83,13 @@ const TranslateSection: FC<TranslateSectionProps> = ({
         />
         <div className="flex flex-col w-full md:w-1/4">
           <button
-            className={`bg-[#2f876e] h-12 text-white rounded-lg shadow-md ${
-              loading || lastResortLoading
-                ? "cursor-not-allowed opacity-50"
-                : "hover:bg-[#256c54] transition-all"
+            className={`h-12 rounded-lg shadow-md ${
+              isButtonDisabled
+                ? "bg-gray-400 cursor-not-allowed"
+                : "bg-[#2f876e] text-white hover:bg-[#256c54] transition-all"
             }`}
             onClick={validateAndTranslate}
-            disabled={loading || lastResortLoading || !selectedMedicine}
+            disabled={isButtonDisabled}
           >
             {loading
               ? "Loading..."
