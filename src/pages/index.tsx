@@ -70,6 +70,10 @@ const HomePage: FC = () => {
     setTranslateError(null);
   }, [selectedMedicine]);
 
+  useEffect(() => {
+    setOutputTranslation("");
+  }, [targetLanguage]);
+
   return (
     <div className="relative flex flex-col overflow-hidden">
       <Head>
@@ -119,6 +123,7 @@ const HomePage: FC = () => {
           setTargetLanguage={setTargetLanguage}
           outputTranslation={outputTranslation}
           handleTranslate={handleTranslateAction}
+          setOutputTranslation={setOutputTranslation}
           languages={targetLanguages}
           translateError={translateError}
           setTranslateError={setTranslateError}

@@ -9,6 +9,7 @@ interface TranslateSectionProps {
   targetLanguage: string;
   setTargetLanguage: (value: string) => void;
   outputTranslation: string;
+  setOutputTranslation: (value: string) => void;
   handleTranslate: () => Promise<string | null>;
   languages: string[];
   translateError: string | null;
@@ -21,6 +22,7 @@ const TranslateSection: FC<TranslateSectionProps> = ({
   targetLanguage,
   setTargetLanguage,
   outputTranslation,
+  setOutputTranslation,
   handleTranslate,
   languages,
   translateError,
@@ -28,11 +30,9 @@ const TranslateSection: FC<TranslateSectionProps> = ({
   loading,
 }) => {
   const [isWarningModalOpen, setIsWarningModalOpen] = useState<boolean>(false);
-  const [lastResortResult, setLastResortResult] = useState<string>("");
   const [lastResortLoading, setLastResortLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    setLastResortResult("");
     setIsWarningModalOpen(false);
   }, [selectedMedicine]);
 
@@ -41,6 +41,7 @@ const TranslateSection: FC<TranslateSectionProps> = ({
       setTranslateError("Target language is required.");
     } else {
       setTranslateError(null);
+      setOutputTranslation("");
       const translation = await handleTranslate();
       if (!translation) {
         setIsWarningModalOpen(true);
@@ -51,13 +52,14 @@ const TranslateSection: FC<TranslateSectionProps> = ({
   const handleConfirmEnable = async () => {
     setIsWarningModalOpen(false);
     setLastResortLoading(true);
+    setOutputTranslation("");
     try {
       const translated = await handleLastResort(
         selectedMedicine,
         targetLanguage,
         process.env.NEXT_PUBLIC_API_URL,
       );
-      setLastResortResult(translated);
+      setOutputTranslation(translated);
     } catch {
       setTranslateError("Last resort translation failed.");
     } finally {
@@ -106,7 +108,7 @@ const TranslateSection: FC<TranslateSectionProps> = ({
           type="text"
           className="w-full h-12 text-base text-center font-inter font-semibold text-[#044677] shadow-md border border-gray-300 rounded-md md:w-1/2 focus:border-[#2f876e] focus:ring-[#2f876e] focus:outline-none p-2"
           placeholder="Translation will appear here"
-          value={outputTranslation || lastResortResult}
+          value={outputTranslation}
           readOnly
         />
       </div>
