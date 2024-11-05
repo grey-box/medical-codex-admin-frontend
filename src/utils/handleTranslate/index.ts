@@ -9,7 +9,7 @@ const handleTranslate = async (
       English: "en",
       Ukrainian: "uk",
       Russian: "ru",
-      Greek: "gr",
+      French: "fr",
     };
     const targetLanguageCode = languageMapping[targetLanguage];
     if (!targetLanguageCode) {

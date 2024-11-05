@@ -9,7 +9,7 @@ import Head from "next/head";
 
 const NEXT_PUBLIC_API_URL: string | undefined = process.env.NEXT_PUBLIC_API_URL;
 
-const languages = ["English", "Ukrainian", "Russian", "German"];
+const languages = ["English", "Ukrainian", "Russian", "French"];
 
 const HomePage: FC = () => {
   const [inputSearch, setInputSearch] = useState<string>("");
