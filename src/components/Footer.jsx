@@ -34,7 +34,7 @@ function Footer() {
                     text-align: left;
                 }
             `}</style>
-            <div class="flex-wrapper">
+            <div className="flex-wrapper">
                 <img id="logo" src="/images/logoGREY-BOX.jpg" alt="Grey-box logo"/>
                 <span><strong>Grey-box</strong> {translate('footerGreybox')}</span>
             </div>

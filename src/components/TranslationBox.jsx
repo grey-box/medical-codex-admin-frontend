@@ -5,7 +5,35 @@ function fetchData() {
 }
 
 function TranslateBox(outputTranslation, outputSource, outputMarkReview) {
-    const {translate} = useLanguage();
+    const { translate } = useLanguage();
+    
+    
+    const style = `
+    #translate-box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border: 1px solid #ccc;
+        border-radius: 1em;
+        background-color: #fff;
+        padding: 1em;
+        width: 100%;
+    }
+
+    #output-text {
+        font-size: 1em;
+        padding: 0.75em 1em;
+        width: 100%;
+        border: none;
+        border-radius: 1em;
+        overflow-y: scroll;
+        max-height: 10em;
+        font-family: Open Sans, sans-serif;
+        line-height: 1.5;
+        color: #333;
+        text-align: left;
+    }
+    `;
 
     return (
         <div id="translation-output">

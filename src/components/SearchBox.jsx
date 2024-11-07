@@ -113,7 +113,7 @@ function SearchBox(source, API_URL, setInputSearch) {
         #search:hover #search-box {
             border-radius: 1em 1em 0px 0px;
         }
-        input[type="radio"] {
+        input[type=radio] {
             accent-color: #074fa8; /* Color for radio buttons */
             margin-right: 0.5em; /* Spacing between radio button and label */
         }
@@ -143,13 +143,13 @@ function SearchBox(source, API_URL, setInputSearch) {
             
         </div>
         <div id="fuzzy-settings" style={{display: showSettings}}>
-            <div class="slider-box">
+            <div className="slider-box">
                 <label>Number of Results: {numberFuzzySettings}</label>
-                <input type="range" min="1" max="10" defaultValue="5" class="slider" onChange={(e) => {numberSliderChange(e.target.value)}}/>
+                <input type="range" min="1" max="10" defaultValue="5" className="slider" onChange={(e) => {numberSliderChange(e.target.value)}}/>
             </div>
-            <div class="slider-box">
+            <div className="slider-box">
                 <label>Fuzzy Matching Accuracy: {thresholdFuzzySettings}</label>
-                <input type="range" min="1" max="10" defaultValue="5" class="slider" onChange={(e) => {thresholdSliderChange(e.target.value)}}/>
+                <input type="range" min="1" max="10" defaultValue="5" className="slider" onChange={(e) => {thresholdSliderChange(e.target.value)}}/>
             </div>
         </div>
         </>
