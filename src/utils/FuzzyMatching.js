@@ -1,11 +1,11 @@
-const handleFuzzy = async (input, sourceLanguage, API_URL, setFuzzyOutput) => {
+const handleFuzzy = async (input, sourceLanguage, threshold, results, API_URL, setFuzzyOutput) => {
   
     if (!API_URL) {
         console.error("API URL is not valid");
         return;
     }
   
-    try {
+    try { 
       const response = await fetch(`${API_URL}/fuzzymatching/`, {
         method: "POST",
         headers: {
@@ -13,9 +13,9 @@ const handleFuzzy = async (input, sourceLanguage, API_URL, setFuzzyOutput) => {
         },
         body: JSON.stringify({
           source_language: sourceLanguage,
-          query: input
-          // threshold : 5,
-          // nb_max_results: 5
+          query: input,
+          threshold : threshold,
+          nb_max_results: results
         }),
   
       });

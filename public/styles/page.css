@@ -60,14 +60,15 @@
 }
 
 #translate-button {
-    font-size: 1em;
-    padding: 0.75em 1.5em;
-    border: none;
-    color: white;
-    background-color: #074fa8;
-    border-radius: 0.75em;
-    transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-size: 1em;
+  padding: 0.75em 1.5em;
+  border: none;
+  color: white;
+  background-color: #074fa8;
+  border-radius: 0.75em;
+  transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 2em 0em;
 }
 
 #translate-button:hover {
@@ -76,6 +77,35 @@
     cursor: pointer;
 }
 
+#search-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 3em;
+}
+
+#search-container a {
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 4em;
+  width: 4em;
+}
+
+#search-container a {
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 4em;
+  width: 4em;
+}
+
+#search-container a img {
+  height: 1.5em;
+  width: 1.5em;
+=======
 #output-label {
     margin-top: 1em;
     font-size: 1.2em;
@@ -128,11 +158,11 @@
 }
 
 input[type="text"], select {
-    padding: 0.5em;
-    font-size: 1em;
-    border: 1px solid #ccc;
-    border-radius: 0.5em;
-    transition: box-shadow 0.3s ease-in-out;
+  padding: 0.5em;
+  font-size: 1em;
+  border: 1px solid #ccc;
+  border-radius: 0.5em;
+  transition: box-shadow 0.1s ease-in-out;
 }
 
 input[type="text"]:hover, select:hover {
