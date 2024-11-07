@@ -5,11 +5,7 @@ import {handleFuzzy} from "../utils/FuzzyMatching";
 
 function SearchBox(source, API_URL, setInputSearch) {
     const { translate } = useLanguage();
-    
-    const [
-        fuzzyOutput,
-        setFuzzyOutput,
-      ] = useState([" "]);
+
 
     const [fuzzyOutput, setFuzzyOutput] = useState([" "]);
     const [selectedWord, setSelectedWord] = useState("");
