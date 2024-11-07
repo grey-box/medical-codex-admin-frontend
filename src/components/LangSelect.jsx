@@ -34,17 +34,17 @@ function LangSelect(label, state, setter) {
             align-items: center;
             margin: 0.5em 0;
         }
-        .radio-option input[type="radio"] {
+        .radio-option {
             margin-right: 0.5em;
         }
         .radio-option label {
             font-style: italic;
             cursor: pointer;
         }
-        .radio-option input[type="radio"]:hover {
+        .radio-option:hover {
             accent-color: #074fa8;
         }
-        .radio-option input[type="radio"]:focus {
+        .radio-option:focus {
             outline: 2px solid #074fa8;
             outline-offset: 2px;
         }

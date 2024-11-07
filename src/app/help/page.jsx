@@ -19,7 +19,7 @@ const Help=()=>{
          </p>
         </div>
     
-    <section id="help" class="help1">
+    <section id="help" className="help1">
       <div className="container">
       <div className="content-wrapper">
       <img src='/images/whitepills.png' className="white-pills" alt="white pills" />

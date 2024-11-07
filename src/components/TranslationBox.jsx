@@ -31,7 +31,7 @@ function TranslateBox(outputTranslation, outputSource, outputMarkReview) {
         border-radius: 1em;
         overflow-y: scroll;
         max-height: 10em;
-        font-family: 'Open Sans', sans-serif;
+        font-family: Open Sans, sans-serif;
         line-height: 1.5;
         color: #333;
         text-align: left;
