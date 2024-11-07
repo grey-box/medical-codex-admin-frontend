@@ -1,10 +1,7 @@
 'use client';
-import { useState } from "react";
-import { useLanguage } from '../i18n/LanguageContext';
-import { TranslationParserMock } from "../TranslationMock/translateMock";
+import {useLanguage} from '../i18n/LanguageContext';
 
 function fetchData() {
-
 }
 
 function TranslateBox(outputTranslation, outputSource, outputMarkReview) {
@@ -39,36 +36,29 @@ function TranslateBox(outputTranslation, outputSource, outputMarkReview) {
     `;
 
     return (
-        <div id="translation-output">            
-            <div id="translate-box" style={{ borderRadius: '0.5em', padding: '1em' }}>
-                <style>
-                    {style}
-                </style>
-                
-                <div style={{ display: outputSource && outputMarkReview ? '' : 'none', textAlign: 'center'}}>
+        <div id="translation-output">
+            <div id="translate-box">
+                <div
+                    className={outputSource && outputMarkReview ? 'translation-content' : 'translation-content hidden'}>
                   <span>
                     <b>Output: </b>{outputTranslation}
                   </span>
-                  <br />
-                  <span><b>Source:</b> {outputSource}</span>
-                  <br />
-                  
-                  <span>
+                    <br/>
+                    <span><b>Source:</b> {outputSource}</span>
+                    <br/>
+
+                    <span>
                     {outputMarkReview ? (
-                      <a
-                        href={outputMarkReview}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        style={{
-                          color: 'blue',
-                          textDecoration: 'underline',
-                          ':hover': { backgroundColor: 'lightblue' }
-                        }}
-                      >
-                        Translation needs to be reviewed form
-                      </a>
+                        <a
+                            href={outputMarkReview}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="review-link"
+                        >
+                            Translation needs to be reviewed form
+                        </a>
                     ) : (
-                      <span style={{ color: 'grey' }}>
+                        <span className="review-text-disabled">
                         Translation needs to be reviewed form
                       </span>
                     )}
@@ -77,9 +67,6 @@ function TranslateBox(outputTranslation, outputSource, outputMarkReview) {
             </div>
         </div>
     );
-
 }
-    
-export default TranslateBox;
-          
 
+export default TranslateBox;
