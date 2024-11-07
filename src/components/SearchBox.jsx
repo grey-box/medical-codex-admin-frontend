@@ -4,7 +4,7 @@ import { useLanguage } from '../i18n/LanguageContext';
 import { handleFuzzy } from "../utils/FuzzyMatching";
 import handleInputSearch from "../app/page";
 
-function SearchBox(source, target, API_URL, setInputSearch) {
+function SearchBox(source, API_URL, setInputSearch) {
     const { translate } = useLanguage();
     
     const [
@@ -22,11 +22,34 @@ function SearchBox(source, target, API_URL, setInputSearch) {
         setTypedWord,
     ] = useState("");
 
+    const [
+        showSettings,
+        setShowSettings
+    ] = useState("none");
+
+    const [
+        numberFuzzySettings,
+        setNumberFuzzySettings
+    ] = useState(5);
+
+    const [
+        thresholdFuzzySettings,
+        setThresholdFuzzySettings
+    ] = useState(5);
+
+    const numberSliderChange = (value) => {
+        setNumberFuzzySettings(value);
+    }
+
+    const thresholdSliderChange = (value) => {
+        setThresholdFuzzySettings(value);
+    }
+
     const inputChangedHandler = (value) => {
         setTypedWord(value.target.value);
         setInputSearch(value.target.value)
         if(typedWord)
-            handleFuzzy(typedWord, source, API_URL, setFuzzyOutput);
+            handleFuzzy(typedWord, source, thresholdFuzzySettings, numberFuzzySettings, API_URL, setFuzzyOutput);
     }
 
     const selectionHandler = (value) => {
@@ -34,7 +57,17 @@ function SearchBox(source, target, API_URL, setInputSearch) {
         document.getElementById("search-box").setAttribute("text", selectedWord);
     }
 
+    const clickSettings = () => {
+        if (showSettings === "none")
+            setShowSettings("block");
+        else
+            setShowSettings("none");
+    }
+
     const style = `
+        label {
+            color: black;
+        }
         #search {
             display: block;
             width: 100%;
@@ -95,21 +128,43 @@ function SearchBox(source, target, API_URL, setInputSearch) {
             accent-color: #074fa8; /* Color for radio buttons */
             margin-right: 0.5em; /* Spacing between radio button and label */
         }
+        .slider-box {
+            display: flex;
+            flex-direction: column;
+        }
+        
     `;
 
     return (
-        <div id="search">
-            <style>{style}</style>
-            <input 
-                id="search-box" 
-                placeholder={translate('searchPlaceholder')} 
-                type="text" 
-                defaultValue={selectedWord}
-                onChange={e =>inputChangedHandler(e)}/>
-            <ul id="dropdown-content">
+        <>
+        <div id="search-container">
+            <div id="search">
+                <style>{style}</style>
+                <input 
+                    id="search-box" 
+                    placeholder={translate('searchPlaceholder')} 
+                    type="text" 
+                    defaultValue={selectedWord}
+                    onChange={e =>inputChangedHandler(e)}/>
+                <ul id="dropdown-content">
                 {fuzzyOutput.map((item) => <li key={item} value={item} onClick={() => selectionHandler(item)}>{item}</li>)}
-            </ul>
+                </ul>
+            </div>
+            <a onClick={() => {clickSettings()}}><img src="/images/icon-settings.png"></img></a>
+            
         </div>
+        <div id="fuzzy-settings" style={{display: showSettings}}>
+            <div class="slider-box">
+                <label>Number of Results: {numberFuzzySettings}</label>
+                <input type="range" min="1" max="10" defaultValue="5" class="slider" onChange={(e) => {numberSliderChange(e.target.value)}}/>
+            </div>
+            <div class="slider-box">
+                <label>Fuzzy Matching Accuracy: {thresholdFuzzySettings}</label>
+                <input type="range" min="1" max="10" defaultValue="5" class="slider" onChange={(e) => {thresholdSliderChange(e.target.value)}}/>
+            </div>
+        </div>
+        </>
+        
     );
 }
     

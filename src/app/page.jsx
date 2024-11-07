@@ -48,12 +48,8 @@ export default function Home() {
             {LangSelect("Target Language", selectedLangTarget, setSelectedLangTarget)}
           </div>
             </div>
-          <div id="search-container">
-            {SearchBox(selectedLangSource, selectedLangTarget, API_URL, setInputSearch)}
-            <div>
-              <a><img src="/images/icon-settings.png"></img></a>
-            </div>
-          </div>
+            {SearchBox(selectedLangSource, API_URL, setInputSearch)}
+            
           
           <button type="button" id="translate-button" onClick={() =>
                 mockTranslate(

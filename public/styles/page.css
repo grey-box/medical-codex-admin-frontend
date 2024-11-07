@@ -64,7 +64,7 @@
   border-radius: 0.75em;
   transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin-bottom: 2em;
+  margin: 2em 0em;
 }
 
 #translate-button:hover {
@@ -152,7 +152,7 @@ input[type="text"], select {
   font-size: 1em;
   border: 1px solid #ccc;
   border-radius: 0.5em;
-  transition: box-shadow 0.3s ease-in-out;
+  transition: box-shadow 0.1s ease-in-out;
 }
 
 input[type="text"]:hover, select:hover {
