@@ -1,8 +1,7 @@
 'use client';
-import { useState } from "react";
-import { useLanguage } from '../i18n/LanguageContext';
-import { handleFuzzy } from "../utils/FuzzyMatching";
-import handleInputSearch from "../app/page";
+import {useState} from "react";
+import {useLanguage} from '../i18n/LanguageContext';
+import {handleFuzzy} from "../utils/FuzzyMatching";
 
 function SearchBox(source, API_URL, setInputSearch) {
     const { translate } = useLanguage();
@@ -12,15 +11,9 @@ function SearchBox(source, API_URL, setInputSearch) {
         setFuzzyOutput,
       ] = useState([" "]);
 
-    const [
-        selectedWord,
-        setSelectedWord,
-    ] = useState("");
-
-    const [
-        typedWord,
-        setTypedWord,
-    ] = useState("");
+    const [fuzzyOutput, setFuzzyOutput] = useState([" "]);
+    const [selectedWord, setSelectedWord] = useState("");
+    const [typedWord, setTypedWord] = useState("");
 
     const [
         showSettings,
@@ -167,6 +160,5 @@ function SearchBox(source, API_URL, setInputSearch) {
         
     );
 }
-    
+
 export default SearchBox;
-          
