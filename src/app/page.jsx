@@ -39,8 +39,8 @@ export default function Home() {
 
   return (
     <>
+      <Navbar/>
       <main id="main">
-        <Navbar/>
         <form id="translation-form">
           <div id="lang-selectors-container">
           <div id="lang-selectors">

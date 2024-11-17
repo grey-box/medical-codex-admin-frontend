@@ -557,7 +557,7 @@ input[type="radio"] {
 
 .team-member .name {
     font-size: 1.8em;
-    color: #333;
+    color: #000000;
     margin-top: 0.25em;
     margin-bottom: 0.5em;
     font-weight: 700;
@@ -694,10 +694,6 @@ input[type="radio"] {
 
   .team-member {
     padding: 1.5em;
-  }
-
-  .team-member .name {
-    font-size: 1.5em;
   }
 
   .social-media-icons {

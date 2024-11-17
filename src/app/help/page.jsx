@@ -6,7 +6,7 @@ import '../../../public/styles/page.css';
 
 const Help = () => {
     return (
-        <div className="help-page">
+        <main id="help-page">
             <Navbar/>
 
             <div className="about-header">
@@ -70,7 +70,7 @@ const Help = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </main>
     );
 };
 
