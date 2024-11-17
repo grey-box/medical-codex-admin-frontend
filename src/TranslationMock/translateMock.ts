@@ -22,36 +22,37 @@ const translateMock = async (
           var outputTranslation;
           
 
-
+          var beginLink = "https://docs.google.com/forms/d/e/1FAIpQLSfdhz9kvQhP6tburx6ojvC051z1xY9we02lzB67vjAB_ttqZw/viewform?usp=pp_url&entry.169601347="
+          var rest = "Test1&entry.868583717=Test2&entry.377140004=Test3&entry.600267019=Test4"
           if (selectedLangSource === 'English' && selectedLangTarget === 'Ukrainian' && inputSearch === en_name) {
             setOutputTranslation(uk_name);
             setOutputSource(source);
-            setOutputMarkReview("https://docs.google.com/forms/d/e/1FAIpQLSfdhz9kvQhP6tburx6ojvC051z1xY9we02lzB67vjAB_ttqZw/viewform?usp=pp_url" + "&entry.169601347=" + selectedLangSource + "&entry.868583717=" + inputSearch + "&entry.377140004=" + selectedLangTarget + "&entry.600267019=" + uk_name);
+            setOutputMarkReview(beginLink + selectedLangSource + "&entry.868583717=" + inputSearch + "&entry.377140004=" + selectedLangTarget + "&entry.600267019=" + uk_name);
 
           } else if (selectedLangSource === 'English' && selectedLangTarget === 'Russian' && inputSearch === en_name) {
             setOutputTranslation(ru_name);
             setOutputSource(source);
-            setOutputMarkReview("https://docs.google.com/forms/d/e/1FAIpQLSfdhz9kvQhP6tburx6ojvC051z1xY9we02lzB67vjAB_ttqZw/viewform?usp=pp_url" + "&entry.169601347=" + selectedLangSource + "&entry.868583717=" + inputSearch + "&entry.377140004=" + selectedLangTarget + "&entry.600267019=" + ru_name);
+            setOutputMarkReview(beginLink + selectedLangSource + "&entry.868583717=" + inputSearch + "&entry.377140004=" + selectedLangTarget + "&entry.600267019=" + ru_name);
 
           } else if (selectedLangSource === 'Ukrainian' && selectedLangTarget === 'English' && inputSearch === uk_name) {
             setOutputTranslation(en_name);
             setOutputSource(source);
-            setOutputMarkReview("https://docs.google.com/forms/d/e/1FAIpQLSfdhz9kvQhP6tburx6ojvC051z1xY9we02lzB67vjAB_ttqZw/viewform?usp=pp_url" + "&entry.169601347=" + selectedLangSource + "&entry.868583717=" + inputSearch + "&entry.377140004=" + selectedLangTarget + "&entry.600267019=" + en_name);
+            setOutputMarkReview(beginLink + selectedLangSource + "&entry.868583717=" + inputSearch + "&entry.377140004=" + selectedLangTarget + "&entry.600267019=" + en_name);
 
           } else if (selectedLangSource === 'Ukrainian' && selectedLangTarget === 'Russian' && inputSearch === uk_name) {
             setOutputTranslation(ru_name);
             setOutputSource(source);
-            setOutputMarkReview("https://docs.google.com/forms/d/e/1FAIpQLSfdhz9kvQhP6tburx6ojvC051z1xY9we02lzB67vjAB_ttqZw/viewform?usp=pp_url" + "&entry.169601347=" + selectedLangSource + "&entry.868583717=" + inputSearch + "&entry.377140004=" + selectedLangTarget + "&entry.600267019=" + ru_name);
+            setOutputMarkReview(beginLink + selectedLangSource + "&entry.868583717=" + inputSearch + "&entry.377140004=" + selectedLangTarget + "&entry.600267019=" + ru_name);
 
           } else if (selectedLangSource === 'Russian' && selectedLangTarget === 'English' && inputSearch === ru_name) {
             setOutputTranslation(en_name);
             setOutputSource(source);
-            setOutputMarkReview("https://docs.google.com/forms/d/e/1FAIpQLSfdhz9kvQhP6tburx6ojvC051z1xY9we02lzB67vjAB_ttqZw/viewform?usp=pp_url" + "&entry.169601347=" + selectedLangSource + "&entry.868583717=" + inputSearch + "&entry.377140004=" + selectedLangTarget + "&entry.600267019=" + en_name);
+            setOutputMarkReview(beginLink + selectedLangSource + "&entry.868583717=" + inputSearch + "&entry.377140004=" + selectedLangTarget + "&entry.600267019=" + en_name);
 
           } else if (selectedLangSource === 'Russian' && selectedLangTarget === 'Ukrainian' && inputSearch === ru_name) {
             setOutputTranslation(uk_name);
             setOutputSource(source);
-            setOutputMarkReview("https://docs.google.com/forms/d/e/1FAIpQLSfdhz9kvQhP6tburx6ojvC051z1xY9we02lzB67vjAB_ttqZw/viewform?usp=pp_url" + "&entry.169601347=" + selectedLangSource + "&entry.868583717=" + inputSearch + "&entry.377140004=" + selectedLangTarget + "&entry.600267019=" + uk_name);
+            setOutputMarkReview(beginLink + selectedLangSource + "&entry.868583717=" + inputSearch + "&entry.377140004=" + selectedLangTarget + "&entry.600267019=" + uk_name);
 
           }
 
