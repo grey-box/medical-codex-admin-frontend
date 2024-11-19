@@ -71,17 +71,24 @@ const TranslateSection: FC<TranslateSectionProps> = ({
     !targetLanguage || !selectedMedicine || loading || lastResortLoading;
 
   return (
-    <div className="p-5">
-      <div className="m-2 text-lg font-semibold text-center font-inter">
+    <div className="p-5" data-testid="translate-section">
+      <div
+        className="m-2 text-lg font-semibold text-center font-inter"
+        data-testid="translate-title"
+      >
         Translate/Localize drug name...
       </div>
-      <div className="flex flex-col gap-5 md:flex-row md:items-center">
+      <div
+        className="flex flex-col gap-5 md:flex-row md:items-center"
+        data-testid="translate-controls"
+      >
         <Dropdown
           label="Target Language"
           options={languages}
           onChange={setTargetLanguage}
           value={targetLanguage}
           disabled={!selectedMedicine}
+          data-testid="target-language-dropdown"
         />
         <div className="flex flex-col w-full md:w-1/4">
           <button
@@ -92,6 +99,7 @@ const TranslateSection: FC<TranslateSectionProps> = ({
             }`}
             onClick={validateAndTranslate}
             disabled={isButtonDisabled}
+            data-testid="translate-button"
           >
             {loading
               ? "Loading..."
@@ -99,9 +107,11 @@ const TranslateSection: FC<TranslateSectionProps> = ({
                 ? "Last Resort Loading..."
                 : "Translate"}
           </button>
-
           <div className="block md:hidden">
-            <SectionError errorMessage={translateError} />
+            <SectionError
+              errorMessage={translateError}
+              data-testid="translate-error-mobile"
+            />
           </div>
         </div>
         <input
@@ -110,16 +120,20 @@ const TranslateSection: FC<TranslateSectionProps> = ({
           placeholder="Translation will appear here"
           value={outputTranslation}
           readOnly
+          data-testid="output-translation"
         />
       </div>
-
       <div className="hidden mt-5 md:block">
-        <SectionError errorMessage={translateError} />
+        <SectionError
+          errorMessage={translateError}
+          data-testid="translate-error"
+        />
       </div>
       {isWarningModalOpen && (
         <LastResortWarnModal
           onConfirm={handleConfirmEnable}
           onCancel={() => setIsWarningModalOpen(false)}
+          data-testid="last-resort-modal"
         />
       )}
     </div>

@@ -16,15 +16,25 @@ const LastResortWarnModal: FC<LastResortWarnModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
+      data-testid="last-resort-modal"
+    >
       <div className="relative w-11/12 p-5 bg-white rounded-lg md:w-1/2">
-        <div className="flex items-center justify-between mb-4">
+        <div
+          className="flex items-center justify-between mb-4"
+          data-testid="last-resort-modal-header"
+        >
           <h2 className="text-3xl font-bold text-red-600">Warning</h2>
-          <button onClick={onCancel} className="text-lg font-bold text-black">
+          <button
+            onClick={onCancel}
+            className="text-lg font-bold text-black"
+            data-testid="last-resort-modal-close"
+          >
             &times;
           </button>
         </div>
-        <div className="p-4">
+        <div className="p-4" data-testid="last-resort-modal-body">
           {showWarning ? (
             <div>
               <p className="text-lg font-semibold text-[#044677] mb-4">
@@ -37,6 +47,7 @@ const LastResortWarnModal: FC<LastResortWarnModalProps> = ({
                 <button
                   onClick={handleOkay}
                   className="bg-[#2e7c64] text-white font-bold py-2 px-4 rounded-lg hover:bg-[#256c54] transition-all"
+                  data-testid="last-resort-modal-okay"
                 >
                   Okay
                 </button>
@@ -58,12 +69,14 @@ const LastResortWarnModal: FC<LastResortWarnModalProps> = ({
                 <button
                   onClick={onConfirm}
                   className="bg-[#2e7c64] text-white font-bold py-2 px-4 rounded-lg hover:bg-[#256c54] transition-all"
+                  data-testid="last-resort-modal-confirm"
                 >
                   Yes
                 </button>
                 <button
                   onClick={onCancel}
                   className="px-4 py-2 font-bold text-white transition-all bg-red-500 rounded-lg hover:bg-red-600"
+                  data-testid="last-resort-modal-cancel"
                 >
                   No
                 </button>
