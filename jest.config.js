@@ -6,6 +6,15 @@ module.exports = {
 
 module.exports = {
   transform: {
-    '^.+\\.[tj]sx?$': 'babel-jest', 
+    '^.+\.[tj]sx?$': 'babel-jest', 
   },
+};
+
+module.exports = {
+  preset: 'ts-jest',
+  testEnvironment: 'node',
+  transform: {
+    '^.+\.(ts|tsx)$': 'ts-jest',
+  },
+  moduleFileExtensions: ['ts', 'tsx', 'js'],
 };

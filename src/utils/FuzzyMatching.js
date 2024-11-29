@@ -50,4 +50,4 @@ const handleFuzzy = async (input, sourceLanguage, threshold, results, API_URL, s
   
     
   
-  export { handleFuzzy };
+  // export { handleFuzzy };

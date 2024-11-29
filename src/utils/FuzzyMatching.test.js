@@ -2,7 +2,7 @@ const { handleFuzzy } = require('./FuzzyMatching');
 
 describe('handleFuzzy', () => {
   const mockSetFuzzyOutput = jest.fn();
-  const mockAPI_URL = "http://localhost:8000";
+  const mockAPI_URL = "http://192.168.1.20:8000";
 
   beforeEach(() => {
     jest.clearAllMocks(); // Clear mocks before each test
