@@ -58,7 +58,8 @@ export default function Home() {
                   selectedLangTarget,
                   setOutputTranslation,
                   setOutputSource,
-                  setOutputMarkReview
+                  setOutputMarkReview,
+                  API_URL
                 )
               }>{translate('translate')}</button>
           {TranslateBox(outputTranslation, outputSource, outputMarkReview)}
