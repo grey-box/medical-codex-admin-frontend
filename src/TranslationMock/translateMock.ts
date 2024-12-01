@@ -1,5 +1,3 @@
-import translationData from './TranslationTestData.json';
-
 
 const translateMock = async (
     inputSearch: string,
@@ -15,7 +13,6 @@ const translateMock = async (
       // const response = await fetch('./TranslationTestData.json');
       // const json = await response.json();
       setOutputTranslation("");
-      const json = translationData
       setOutputTranslation("");
       setOutputSource("")
       setOutputMarkReview("");
