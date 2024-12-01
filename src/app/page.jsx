@@ -13,7 +13,7 @@ import mockTranslate from "../TranslationMock/translateMock";
 import React, { FC } from "react";
 
 // Change API URL
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
+const API_URL = "http://192.168.1.20:8000";
 
 export default function Home() {
   const [
