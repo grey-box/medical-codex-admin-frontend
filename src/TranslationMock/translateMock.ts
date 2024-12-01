@@ -72,8 +72,29 @@ const translateMock = async (
         console.log("Received data:", data);
     
         var outputTranslation = data.results.map(match => match.translated_name)
+        if (outputTranslation === null) {
+          const lastResortResponse = await fetch(`${API_URL}/last-resort/`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              medicine: inputSearch,
+              target_language: targetLanguage,
+            }),
+          });
+          if (!lastResortResponse.ok) {
+            throw new Error(`HTTP error! Status: ${lastResortResponse.status}`);
+          }
+          const lastResortData = await lastResortResponse.json();
+          outputTranslation = lastResortData.translated_name;
+          setOutputSource("Last resort Gemini"); 
+        } else {
+          setOutputSource(data.results.map(match => match.translated_source));
+        }
+        
         setOutputTranslation(outputTranslation);
-        setOutputSource(data.results.map(match => match.translated_source));
+        
         // add source to google translate form
 
         var beginLink = "https://docs.google.com/forms/d/e/1FAIpQLSfdhz9kvQhP6tburx6ojvC051z1xY9we02lzB67vjAB_ttqZw/viewform?usp=pp_url&entry.169601347="
