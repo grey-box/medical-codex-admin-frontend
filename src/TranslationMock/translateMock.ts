@@ -69,10 +69,11 @@ const translateMock = async (
     
         const data = await response.json();
     
-        console.log("Received data:", data);
+        console.log("Before Last Resort Data:", data);
     
         var outputTranslation = data.results.map(match => match.translated_name)
-        if (outputTranslation === null) {
+        console.log("Before Last Resort Translation:", outputTranslation);
+        if (outputTranslation.length === 0) {
           const lastResortResponse = await fetch(`${API_URL}/last-resort/`, {
             method: "POST",
             headers: {
@@ -80,14 +81,16 @@ const translateMock = async (
             },
             body: JSON.stringify({
               medicine: inputSearch,
-              target_language: targetLanguage,
+              target_language: selectedLangTarget,
             }),
           });
           if (!lastResortResponse.ok) {
             throw new Error(`HTTP error! Status: ${lastResortResponse.status}`);
           }
           const lastResortData = await lastResortResponse.json();
-          outputTranslation = lastResortData.translated_name;
+          console.log("Last Resort Data:", lastResortData);
+          outputTranslation = lastResortData.translated_medicine;
+          console.log("After Last Resort Translation:", outputTranslation);
           setOutputSource("Last resort Gemini"); 
         } else {
           setOutputSource(data.results.map(match => match.translated_source));
