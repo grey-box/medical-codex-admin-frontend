@@ -22,3 +22,12 @@ module.exports = {
   moduleFileExtensions: ['ts', 'tsx', 'js'],
 };
 
+module.exports = {
+  transform: {
+    '^.+\\.jsx?$': 'babel-jest', 
+    '^.+\\.tsx?$': 'ts-jest',   
+  },
+  transformIgnorePatterns: ['node_modules/(?!your-module)'], 
+};
+
+
