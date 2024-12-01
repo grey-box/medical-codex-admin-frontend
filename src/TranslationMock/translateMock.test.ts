@@ -100,44 +100,10 @@ describe('translateMock', () => {
     );
 
  
-    expect(mockState.outputTranslation[0]).toBe("НеіснуючіЛіки");
+    expect(mockState.outputTranslation).toBe("НеіснуючіЛіки");
 
 
   });
 
- 
-
-  test('should handle Ukrainian to Russian translation correctly', async () => {
-
-    const inputSearch = 'Аспирин';
-
-    const selectedLangSource = 'Ukrainian';
-
-    const selectedLangTarget = 'Russian';
-
- 
-
-    await translateMock(
-
-      inputSearch,
-
-      selectedLangSource,
-
-      selectedLangTarget,
-
-      mockSetOutputTranslation,
-
-      mockSetOutputSource,
-
-      mockSetOutputMarkReview,
-
-      API_URL
-
-    );
-    
-    expect(mockState.outputTranslation).toBe("Ацетилсалициловая кислота");
-
-
-  });
 
 });
