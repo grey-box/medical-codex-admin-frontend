@@ -73,7 +73,7 @@ describe('translateMock', () => {
 
   test('should handle invalid input gracefully', async () => {
 
-    const inputSearch = 'NonExistentMedicine';
+    const inputSearch = 'Test';
 
     const selectedLangSource = 'English';
 
@@ -100,7 +100,7 @@ describe('translateMock', () => {
     );
 
  
-    expect(mockState.outputTranslation).toBe("НеіснуючіЛіки");
+    expect(mockState.outputTranslation).toEqual(["Тестостерон"]);
 
 
   });
