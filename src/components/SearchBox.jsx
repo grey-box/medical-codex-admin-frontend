@@ -3,6 +3,24 @@ import {useState} from "react";
 import {useLanguage} from '../i18n/LanguageContext';
 import {handleFuzzy} from "../utils/FuzzyMatching";
 
+/**
+ * Renders a search box with fuzzy matching autocompletion and settings panel.
+ * 
+ * The component renders a text input field that triggers a fuzzy matching
+ * search when the user types. The fuzzy matching results are displayed in a
+ * dropdown box below the input field. The user can select a result from the
+ * dropdown to prefill the input field.
+ * 
+ * The component also renders a settings panel that allows the user to adjust
+ * the number of results and the fuzzy matching accuracy threshold. The panel
+ * is initially hidden and can be toggled on and off by clicking on the
+ * settings icon.
+ * 
+ * @param {string} source - The source language for the fuzzy matching search.
+ * @param {string} API_URL - The base URL of the translation API.
+ * @param {function} setInputSearch - Callback to set the input search term.
+ * @returns {React.ReactElement} - The rendered search box component.
+ */
 function SearchBox(source, API_URL, setInputSearch) {
     const { translate } = useLanguage();
 
