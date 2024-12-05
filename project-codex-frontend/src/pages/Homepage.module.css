@@ -1,0 +1,23 @@
+.layoutContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.inputSection,
+.resultSection {
+  flex: 1;
+  padding: 10px;
+}
+
+.inputSection > *:not(:last-child),
+.resultSection > *:not(:last-child) {
+  margin-bottom: 10px; 
+}
+
+@media (max-width: 768px) {
+  .layoutContainer {
+    flex-direction: column;
+  }
+}

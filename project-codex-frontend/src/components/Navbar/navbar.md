@@ -1,0 +1,1 @@
+This component is the navbar.  It has links to the home, about, admin panel, and help pages.

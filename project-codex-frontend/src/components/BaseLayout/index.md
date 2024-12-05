@@ -1,0 +1,1 @@
+This component is the base layout for the site.  It adds a navbar at the top of the page.
