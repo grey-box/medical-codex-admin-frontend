@@ -1,5 +1,7 @@
 const { handleFuzzy } = require('./FuzzyMatching');
-
+/**
+ * Unit tests for the FuzzyMatching utility functions
+ */
 describe('handleFuzzy', () => {
   const mockSetFuzzyOutput = jest.fn();
   const mockAPI_URL = "http://192.168.1.20:8000";

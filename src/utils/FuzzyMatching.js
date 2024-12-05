@@ -1,3 +1,15 @@
+/**
+ * Fetches fuzzy matching results from the server given input search term, source language, fuzziness threshold, number of results, base API URL, and a callback to set the output results.
+ * 
+ * @param {string} input - The search term to be translated.
+ * @param {string} sourceLanguage - The source language of the input term.
+ * @param {number} threshold - The fuzziness threshold for the matching algorithm.
+ * @param {number} results - The number of results to be returned.
+ * @param {string} API_URL - The base URL of the translation API.
+ * @param {function} setFuzzyOutput - Callback to set the output translation result.
+ * 
+ * @throws Will throw an error if the fetch request fails or if the API URL is invalid.
+ */
 const handleFuzzy = async (input, sourceLanguage, threshold, results, API_URL, setFuzzyOutput) => {
   
     if (!API_URL) {

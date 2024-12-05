@@ -7,6 +7,16 @@ export const metadata = {
   description: "Medicine localization",
 };
 
+/**
+ * RootLayout is a React component that provides a top-level structure 
+ * for the application, wrapping its children with the LanguageProvider 
+ * context to manage language settings.
+ *
+ * @param {Object} props - The component props.
+ * @param {ReactNode} props.children - The child components to be rendered 
+ * within the layout.
+ * @returns {React.ReactElement} - The rendered root layout.
+ */
 export default function RootLayout({ children }) {
   return (
     <html lang="en">

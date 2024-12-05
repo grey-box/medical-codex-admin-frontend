@@ -1,4 +1,19 @@
 
+/**
+ * Translates a given input search term from a source language to a target language.
+ * 
+ * @param inputSearch - The term to be translated.
+ * @param selectedLangSource - The source language of the input term.
+ * @param selectedLangTarget - The desired target language for the translation.
+ * @param setOutputTranslation - Callback to set the output translation result.
+ * @param setOutputSource - Callback to set the source of the translation.
+ * @param setOutputMarkReview - Callback to set the review link for the translation.
+ * @param API_URL - The base URL of the translation API.
+ * 
+ * @returns A promise that resolves when the translation process is complete.
+ * 
+ * @throws Will throw an error if the fetch request fails or if the API URL is invalid.
+ */
 const translateMock = async (
     inputSearch: string,
     selectedLangSource: string,

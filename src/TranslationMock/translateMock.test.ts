@@ -3,7 +3,14 @@ import translateMock from './translateMock';
 
 // import translationData from './TranslationTestData.json';
 
- 
+/**
+ * Test the translateMock function
+ * 
+ * This test suite checks that the translateMock function behaves as expected.
+ * It tests the following scenarios:
+ * - The function translates English to Ukrainian correctly
+ * - The function handles invalid input gracfully
+ */
 const mockState = {
   outputTranslation: "",
   outputSource: "",

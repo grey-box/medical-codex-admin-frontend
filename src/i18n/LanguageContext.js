@@ -5,6 +5,15 @@ import {translations} from './translations';
 
 const LanguageContext = createContext();
 
+/**
+ * LanguageProvider is a React component that manages and provides the current language context
+ * to its children. It detects the user's preferred language and updates the context accordingly.
+ * The component also provides a translation function that retrieves translations for a given key
+ * in the current language, defaulting to English if the key is not found.
+ *
+ * @param {Object} props - The component props.
+ * @param {ReactNode} props.children - The child components that will have access to the language context.
+ */
 export function LanguageProvider({children}) {
     const [language, setLanguage] = useState('en');
 

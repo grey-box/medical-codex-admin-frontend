@@ -3,6 +3,16 @@
 import React, { useState } from "react";
 import { useLanguage } from '../i18n/LanguageContext';
 
+/**
+ * LangSelect is a React component that renders a set of radio buttons for language selection.
+ * It allows users to choose between English, Ukrainian, and Russian languages.
+ * 
+ * @param {string} label - The label for the group of radio buttons.
+ * @param {string} state - The current selected language state.
+ * @param {function} setter - The function to update the selected language state.
+ * 
+ * @returns {React.ReactElement} The rendered language selection component.
+ */
 function LangSelect(label, state, setter) {
     const { translate } = useLanguage();
     

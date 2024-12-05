@@ -15,6 +15,23 @@ import React, { FC } from "react";
 // Change API URL
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
+/**
+ * Home component renders the main page layout for the translation app.
+ * It includes language selection, input for translation, and displays
+ * the translated output. The component utilizes several hooks to manage
+ * language selection and translation state.
+ *
+ * The component uses:
+ * - useState for managing selected source and target language, input search,
+ *   and translation outputs.
+ * - useLanguage hook to access language context and translation function.
+ *
+ * The returned layout includes:
+ * - Navbar at the top of the page.
+ * - A form containing language selectors, input field for the search term,
+ *   and a button to initiate translation.
+ * - Displays the translation result in a TranslateBox component.
+ */
 export default function Home() {
   const [
     selectedLangSource,

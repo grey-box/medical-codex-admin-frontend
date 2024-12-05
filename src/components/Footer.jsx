@@ -1,6 +1,12 @@
 import React from "react";
 import { useLanguage } from '../i18n/LanguageContext';
 
+/**
+ * Footer is a React component that displays a footer with the Grey-box logo and
+ * a brief description of the organization.
+ *
+ * @returns {React.ReactElement} The footer React element.
+ */
 function Footer() {
     const {translate} = useLanguage();
     return (

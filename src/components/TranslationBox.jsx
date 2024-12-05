@@ -4,6 +4,14 @@ import {useLanguage} from '../i18n/LanguageContext';
 function fetchData() {
 }
 
+/**
+ * Renders a box containing the translation output, source and link to review form.
+ * 
+ * @param {string} outputTranslation - The translated text to be displayed
+ * @param {string} outputSource - The source of the translated text (e.g. human, AI, etc.)
+ * @param {string} outputMarkReview - The URL to the review form for the translated text
+ * @returns {React.ReactElement} - The rendered translation box
+ */
 function TranslateBox(outputTranslation, outputSource, outputMarkReview) {
     const { translate } = useLanguage();
     
