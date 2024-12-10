@@ -23,7 +23,7 @@
     "test:coverage": "jest --watchAll --coverage",
     "test:ci": "jest --coverage --ci --silent",
     "cypress": "cypress open",
-    "cypress:ci": "cypress run"
+    "cypress:ci": "cypress run -- --browser electron"
   },
   "eslintConfig": {
     "extends": [
