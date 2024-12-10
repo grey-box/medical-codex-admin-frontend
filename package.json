@@ -22,8 +22,8 @@
     "test": "jest --watchAll",
     "test:coverage": "jest --watchAll --coverage",
     "test:ci": "jest --coverage --ci --silent",
-    "cypress:open": "cypress open",
-    "cypress:headless": "cypress run"
+    "cypress": "cypress open",
+    "cypress:ci": "cypress run"
   },
   "eslintConfig": {
     "extends": [
