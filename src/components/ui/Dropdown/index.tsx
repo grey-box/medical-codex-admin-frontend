@@ -14,6 +14,7 @@ interface DropdownProps {
   onChange: (value: string) => void;
   value: string;
   disabled?: boolean;
+  "data-testid"?: string;
 }
 
 const Dropdown: FC<DropdownProps> = ({
@@ -22,6 +23,7 @@ const Dropdown: FC<DropdownProps> = ({
   onChange,
   value,
   disabled = false,
+  "data-testid": testId,
 }) => {
   const handleChange = (event: SelectChangeEvent<string>): void => {
     const selectedValue = event.target.value;
@@ -29,7 +31,7 @@ const Dropdown: FC<DropdownProps> = ({
   };
 
   return (
-    <FormControl fullWidth disabled={disabled}>
+    <FormControl fullWidth disabled={disabled} data-testid={testId}>
       <InputLabel>{label}</InputLabel>
       <Select
         value={value}

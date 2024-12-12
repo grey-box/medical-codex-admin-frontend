@@ -47,6 +47,7 @@ const SearchSection: FC<SearchSectionProps> = ({
           options={languages}
           onChange={setSourceLanguage}
           value={sourceLanguage}
+          data-testid="source-language-dropdown"
         />
         <input
           type="text"
@@ -54,6 +55,7 @@ const SearchSection: FC<SearchSectionProps> = ({
           placeholder="Word to search"
           value={inputSearch}
           onChange={(e) => setInputSearch(e.target.value)}
+          data-testid="search-input"
         />
         <button
           className={`w-full md:w-1/4 h-12 rounded-lg shadow-md ${
@@ -63,11 +65,12 @@ const SearchSection: FC<SearchSectionProps> = ({
           }`}
           onClick={validateAndSearch}
           disabled={isButtonDisabled}
+          data-testid="search-button"
         >
           {loading ? "Loading..." : "Search"}
         </button>
       </div>
-      <SectionError errorMessage={searchError} />
+      <SectionError errorMessage={searchError} data-testid="section-error" />
     </div>
   );
 };

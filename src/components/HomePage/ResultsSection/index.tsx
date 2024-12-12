@@ -13,7 +13,7 @@ const ResultsSection: FC<ResultsSectionProps> = ({
   setSelectedMedicine,
 }) => {
   return (
-    <div className="p-5">
+    <div className="p-5" data-testid="results-section">
       <div className="m-2 text-lg font-semibold text-center font-inter">
         Results
       </div>
@@ -23,6 +23,7 @@ const ResultsSection: FC<ResultsSectionProps> = ({
         onChange={setSelectedMedicine}
         value={selectedMedicine}
         disabled={medicines.length === 0}
+        data-testid="results-dropdown"
       />
     </div>
   );
