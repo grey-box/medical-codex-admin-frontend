@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import Dropdown from "@/components/ui/Dropdown";
 import SectionError from "@/components/HomePage/SectionError";
 
@@ -25,13 +25,23 @@ const SearchSection: FC<SearchSectionProps> = ({
   searchError,
   loading,
 }) => {
+  const sanitizeInput = (input: string) => {
+    return input.replace(/<[^>]*>?/gm, "").replace(/[^\w\s]/gi, "");
+  };
+
   const validateAndSearch = () => {
-    if (!inputSearch || !sourceLanguage) {
-      setSearchError("Both fields are required.");
-    } else {
-      setSearchError(null);
-      handleSearch();
+    const sanitizedInput = sanitizeInput(inputSearch);
+    if (!sanitizedInput.trim()) {
+      setSearchError("Search input cannot be empty.");
+      return;
     }
+    if (!sourceLanguage.trim()) {
+      setSearchError("Source language cannot be empty.");
+      return;
+    }
+    setSearchError(null);
+    setInputSearch(sanitizedInput);
+    handleSearch();
   };
 
   const isButtonDisabled = !inputSearch || !sourceLanguage || loading;
