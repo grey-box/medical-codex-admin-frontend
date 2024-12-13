@@ -34,3 +34,6 @@ jobs:
         run: npm run start &
         env:
           CI: true
+
+      # - name: Run Cypress E2E tests
+      #   run: npm run cypress:ci
