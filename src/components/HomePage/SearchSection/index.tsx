@@ -25,20 +25,33 @@ const SearchSection: FC<SearchSectionProps> = ({
   searchError,
   loading,
 }) => {
+  const [invalidChars, setInvalidChars] = useState<string | null>(null);
+
   const sanitizeInput = (input: string) => {
     return input.replace(/<[^>]*>?/gm, "").replace(/[^\w\s]/gi, "");
   };
 
   const validateAndSearch = () => {
+    const invalidCharsMatch = inputSearch.match(/[^\w\s]/gi);
     const sanitizedInput = sanitizeInput(inputSearch);
+
+    if (invalidCharsMatch) {
+      setInvalidChars(
+        `Invalid characters removed: ${invalidCharsMatch.join(", ")}`,
+      );
+    } else {
+      setInvalidChars(null);
+    }
+
     if (!sanitizedInput.trim()) {
-      setSearchError("Search input cannot be empty.");
+      setSearchError("Search input cannot be empty or invalid.");
       return;
     }
     if (!sourceLanguage.trim()) {
       setSearchError("Source language cannot be empty.");
       return;
     }
+
     setSearchError(null);
     setInputSearch(sanitizedInput);
     handleSearch();
@@ -80,6 +93,14 @@ const SearchSection: FC<SearchSectionProps> = ({
           {loading ? "Loading..." : "Search"}
         </button>
       </div>
+      {invalidChars && (
+        <div
+          className="mt-4 text-center text-yellow-500"
+          data-testid="invalid-chars"
+        >
+          {invalidChars}
+        </div>
+      )}
       <SectionError errorMessage={searchError} data-testid="section-error" />
     </div>
   );
