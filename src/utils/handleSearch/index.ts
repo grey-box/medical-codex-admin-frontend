@@ -26,8 +26,14 @@ const handleSearch = async (
     }
     const data = await response.json();
     console.log("Received data:", data);
-    setMedicines(data.results);
-    setSearchError(null);
+
+    if (data.results.length === 0) {
+      setSearchError("No results found.");
+      setMedicines([]);
+    } else {
+      setMedicines(data.results);
+      setSearchError(null);
+    }
   } catch (error) {
     console.error("Error fetching data:", error);
     setSearchError("Unable to connect to the service. Please try again later.");
