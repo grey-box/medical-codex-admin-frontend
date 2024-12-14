@@ -1,6 +1,7 @@
 import React, { FC, useState } from "react";
 import Dropdown from "@/components/ui/Dropdown";
 import SectionError from "@/components/HomePage/SectionError";
+import { sanitizeInput, validateInput } from "@/utils/validation";
 
 interface SearchSectionProps {
   inputSearch: string;
@@ -27,21 +28,10 @@ const SearchSection: FC<SearchSectionProps> = ({
 }) => {
   const [invalidChars, setInvalidChars] = useState<string | null>(null);
 
-  const sanitizeInput = (input: string) => {
-    return input.replace(/<[^>]*>?/gm, "").replace(/[^\w\s]/gi, "");
-  };
-
   const validateAndSearch = () => {
-    const invalidCharsMatch = inputSearch.match(/[^\w\s]/gi);
-    const sanitizedInput = sanitizeInput(inputSearch);
+    const { sanitizedInput, invalidChars } = validateInput(inputSearch);
 
-    if (invalidCharsMatch) {
-      setInvalidChars(
-        `Invalid characters removed: ${invalidCharsMatch.join(", ")}`,
-      );
-    } else {
-      setInvalidChars(null);
-    }
+    setInvalidChars(invalidChars);
 
     if (!sanitizedInput.trim()) {
       setSearchError("Search input cannot be empty or invalid.");
