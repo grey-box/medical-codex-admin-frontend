@@ -1,120 +1,141 @@
-# medical-codex-admin-frontend
+# Medical Codex Administration Frontend
 
-Medical codex Administration Frontend
+This repository contains the frontend application for the Medical Codex Administration system.
+
+## Table of Contents
+
+- [System Requirements](#system-requirements)
+- [Local Development](#local-development)
+- [Testing](#testing)
+- [Deployment](#deployment)
+- [Azure Setup](#azure-setup)
 
 ## System Requirements
 
-- Node: https://nodejs.org/en
+- [Node.js](https://nodejs.org/en) (v20 LTS recommended)
 - IDE (Visual Studio Code, JetBrains IDEs, etc.)
 
-## Local Instance Instructions
+## Local Development
 
-1. Open your preferred IDE of choice. I am using Visual Studio Code.
-2. Open a new terminal, and clone the repository using the following command (SSH not considered as that didn't seem required):
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/grey-box/medical-codex-admin-frontend.git
+   cd medical-codex-admin-frontend
+   ```
 
-```bash
-git clone https://github.com/grey-box/medical-codex-admin-frontend.git
-```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-3. Ensure that you are in the working directory of the repository that you just cloned.
-4. Once you are in the root of the clone repository, you need to install requirements using the following command:
+3. Set up environment variables:
+    - Copy `.env.template` to `.env.local`
+    - Adjust values in `.env.local` as needed
 
-```bash
-npm i
-```
+4. Start the development server:
+   ```bash
+   npm run dev
+   ```
 
-5. Ensure that the backend is running, or if the APIs are deployed, you may only need to adjust your `.env.local`. Please refer to the `.env.template` for help regarding `.env.local` creation. This is also under the assumption that you have the backend endpoints exposed from the backend, or hosted on Azure.
-6. Boot up the development server using the following command. Assuming everything else is running fine, you should see `localhost:3000` exposed.:
+   The application should now be running at `http://localhost:3000`.
 
-```bash
-npm run dev
-```
+## Testing
 
----
-
-## Notes
-
-- We have implemented unit testing, end-to-end testing and linting to ensure the application's code is as stable as possible. The CI workflow that gets kicked off runs a format check, a linter, our unit tests and end-to-end tests. The linter is a bit sensitive, but it helps ensure code consistency and makes it easier for future developers to understand what changed with each commit with the diff-checker that Git/GitHub provides.
-- We integrated a script to help automate the process before developers push, which will auto-format your code according to 'Prettier' standards, and then run a lint to check if any code quality issues are detected. All commmands are in `package.json`, but are also here for your convenience:
+### Unit Tests (Jest)
 
 ```bash
- `npm run fix-format-and-lint`
+npm run test                # Run tests
+npm run test:coverage       # Run tests with coverage report
 ```
 
-- You can run Jest unit test suites locally using the following commands in a seperate terminal from the Next.js development server:
+### End-to-End Tests (Cypress)
+
+Ensure the development server is running on port 3000 before running Cypress tests.
 
 ```bash
-npm run test                # run this just to check if they passed
-npm run test:coverage       # run this to check if tests pass and how much code you are covering
+npm run cypress:open        # Open Cypress Test Runner
+npm run cypress:headless    # Run Cypress tests in headless mode
 ```
 
-- You can run Cypress unit test suites localling using the following commands in a separate terminal from the Next.js development server. For these, you need to 100% ensure that you are running the development server, and on port 3000:
+### Linting and Formatting
 
 ```bash
-npm run cypress:open        # run this to open up interactive testing suite. This is recommended for debugging any possible issues with tests as you can inspect elements as if you were in the browser itself
-npm run cypress:headless    # run this to quickly check if tests pass
+npm run fix-format-and-lint  # Auto-format code and run linter
 ```
 
----
+## Deployment
 
-## Installation steps for Azure (MacOS based)
+(Add deployment instructions here if different from Azure setup)
 
-```shell
-brew update && brew install azure-cli
-```
+## Azure Setup
 
-## Login to Azure
+### Prerequisites
 
-```shell
-az login --use-device-code
-export AZ_SUBSCRIPTION_ID=""
-az account set --subscription "${AZ_SUBSCRIPTION_ID}"
-```
+- [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)
 
-## Create an App Service Plan
+### Installation Steps (MacOS)
 
-Set the Service Plan variables
+1. Install Azure CLI:
+   ```bash
+   brew update && brew install azure-cli
+   ```
 
-```shell
-export AZ_APPSERVICE_PLAN="MedicalCodexApp"
-export AZ_RESGRP="project_codex_dev"
-export AZ_APP_NAME="MedicalCodexFrontend"
-```
+2. Login to Azure:
+   ```bash
+   az login --use-device-code
+   export AZ_SUBSCRIPTION_ID="your_subscription_id"
+   az account set --subscription "${AZ_SUBSCRIPTION_ID}"
+   ```
 
-If you don't have already an App Service Plan, create one
+3. Set up environment variables:
+   ```bash
+   export AZ_APPSERVICE_PLAN="MedicalCodexApp"
+   export AZ_RESGRP="project_codex_dev"
+   export AZ_APP_NAME="MedicalCodexFrontend"
+   ```
 
-```shell
-az appservice plan create \
---name "${AZ_APPSERVICE_PLAN}" \
---resource-group "${AZ_RESGRP}" \
---sku B1 \
---is-linux \
---tags project=codex
-```
+4. Create an App Service Plan (if not existing):
+   ```bash
+   az appservice plan create \
+   --name "${AZ_APPSERVICE_PLAN}" \
+   --resource-group "${AZ_RESGRP}" \
+   --sku B1 \
+   --is-linux \
+   --tags project=codex
+   ```
 
-## Create a web app
+5. Create a web app:
+   ```bash
+   az webapp create --name "${AZ_APP_NAME}" \
+   --resource-group "${AZ_RESGRP}" \
+   --plan "${AZ_APPSERVICE_PLAN}" \
+   --runtime "NODE:20-lts"
+   ```
 
-```shell
-az webapp create --name "${AZ_APP_NAME}" \
---resource-group "${AZ_RESGRP}" \
---plan "${AZ_APPSERVICE_PLAN}" \
---runtime "NODE:20-lts"
-```
+6. Configure environment variables:
+   ```bash
+   az webapp config appsettings set --name "${AZ_APP_NAME}" \
+   --resource-group "${AZ_RESGRP}" \
+   --settings SCM_DO_BUILD_DURING_DEPLOYMENT=1 \
+   REACT_APP_API_URL="https://medicalcodexbackend.azurewebsites.net"
+   ```
 
-## Configure Environment Variables
+7. Deploy the web app:
+   ```bash
+   az webapp up --name "${AZ_APP_NAME}" \
+   --resource-group "${AZ_RESGRP}" \
+   --sku B1 --runtime "NODE:20-lts"
+   ```
 
-```shell
-az webapp config appsettings set --name "${AZ_APP_NAME}" --resource-group "${AZ_RESGRP}" --settings SCM_DO_BUILD_DURING_DEPLOYMENT=1
-```
+## Contributing
 
-```shell
-az webapp config appsettings set --name "${AZ_APP_NAME}" --resource-group "${AZ_RESGRP}" --settings REACT_APP_API_URL="https://medicalcodexbackend.azurewebsites.net"
-```
+This project is developed by Grey-Box. You should contact the organization and join our volunteer team before doing extensive work on this software. 
 
-## Deploy Web App
+We will gladly accept small fixes as pull requests.
 
-```
-az webapp up --name "${AZ_APP_NAME}" \
---resource-group "${AZ_RESGRP}" \
---sku B1 --runtime "NODE:20-lts"
-```
+## License
+
+This project is licensed under the Apache License, Version 2.0. See the [LICENSE](LICENSE) file for details.
+
+For more information about the Apache License, Version 2.0, please visit:
+[http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0)_

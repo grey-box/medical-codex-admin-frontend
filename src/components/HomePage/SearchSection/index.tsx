@@ -1,7 +1,7 @@
 import React, { FC, useState } from "react";
-import Dropdown from "@/components/ui/Dropdown";
 import SectionError from "@/components/HomePage/SectionError";
-import { sanitizeInput, validateInput } from "@/utils/validation";
+import { validateInput } from "@/utils/validation";
+import Dropdown from "@/components/ui/Dropdown";
 
 interface SearchSectionProps {
   inputSearch: string;
