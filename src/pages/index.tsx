@@ -1,4 +1,4 @@
-import React, { useState, useEffect, FC } from "react";
+import React, { useState, FC, useEffect } from "react";
 import SearchSection from "@/components/HomePage/SearchSection";
 import ResultsSection from "@/components/HomePage/ResultsSection";
 import TranslateSection from "@/components/HomePage/TranslateSection";
@@ -7,11 +7,14 @@ import handleTranslate from "@/utils/handleTranslate";
 import HelpModal from "@/components/ui/modals/HelpModal";
 import Head from "next/head";
 
-const NEXT_PUBLIC_API_URL: string | undefined = process.env.NEXT_PUBLIC_API_URL;
+const NEXT_PUBLIC_API_URL: string | undefined = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000' ;
 
 const languages = ["English", "Ukrainian", "Russian", "French"];
 
 const HomePage: FC = () => {
+  useEffect(() => {
+    console.log("API URL:", process.env.NEXT_PUBLIC_API_URL);
+  }, []);
   const [inputSearch, setInputSearch] = useState<string>("");
   const [outputTranslation, setOutputTranslation] = useState<string>("");
   const [medicines, setMedicines] = useState<Array<{ matching_name: string }>>(
