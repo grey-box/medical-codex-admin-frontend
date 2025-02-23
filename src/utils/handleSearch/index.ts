@@ -1,7 +1,13 @@
 const handleSearch = async (
   inputSearch: string,
   sourceLanguage: string,
-  setMedicines: (data: Array<{ matching_name: string }>) => void,
+  setMedicines: (data: Array<{
+    matching_algorithm: string,
+    matching_name: string,
+    matching_row_number: number,
+    matching_source: number,
+    matching_uid: number,
+  }>) => void,
   NEXT_PUBLIC_API_URL: string | undefined,
   setSearchError: (msg: string | null) => void,
 ): Promise<void> => {

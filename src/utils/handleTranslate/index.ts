@@ -1,5 +1,5 @@
 const handleTranslate = async (
-  selectedMedicine: string,
+  selectedMedicine: object,
   targetLanguage: string,
   setOutputTranslation: (translation: string) => void,
   NEXT_PUBLIC_API_URL: string | undefined,
@@ -13,7 +13,8 @@ const handleTranslate = async (
     };
     const targetLanguageCode = languageMapping[targetLanguage];
     if (!targetLanguageCode) {
-      throw new Error(`Invalid target language: ${targetLanguage}`);
+      console.error(`Invalid target language: ${targetLanguage}`);
+      return null;
     }
 
     const requestBody = {
@@ -34,7 +35,8 @@ const handleTranslate = async (
       body: JSON.stringify(requestBody),
     });
     if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
+      console.error(`HTTP error! Status: ${response.status}`);
+      return null;
     }
     const dataFromServer = await response.json();
     console.log("Response from Server:", dataFromServer);
@@ -43,7 +45,8 @@ const handleTranslate = async (
       setOutputTranslation(firstResult.translated_name);
       return firstResult.translated_name;
     } else {
-      throw new Error("No translation results available.");
+      console.error("No translation results available.");
+      return null;
     }
   } catch (error) {
     console.error("Error in handleTranslate function:", error);
