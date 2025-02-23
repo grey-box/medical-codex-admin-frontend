@@ -32,7 +32,6 @@ const HomePage: FC = () => {
     setLoadingSearch(true);
     await handleSearch(
       inputSearch,
-      targetLanguage,
       sourceLanguage,
       setMedicines,
       NEXT_PUBLIC_API_URL,
@@ -44,13 +43,12 @@ const HomePage: FC = () => {
   const handleTranslateAction = async (): Promise<string | null> => {
     setLoadingTranslate(true);
     try {
-      const translation = await handleTranslate(
+      return await handleTranslate(
         selectedMedicine,
         targetLanguage,
         setOutputTranslation,
         NEXT_PUBLIC_API_URL,
       );
-      return translation;
     } catch {
       setTranslateError("Translation failed.");
       return null;

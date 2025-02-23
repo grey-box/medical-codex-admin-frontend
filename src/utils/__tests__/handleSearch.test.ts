@@ -18,61 +18,50 @@ fetchMock.enableMocks();
 
 describe("handleSearch", () => {
   let setErrorMessage: jest.Mock;
+  let setMedicines: jest.Mock;
+  const NEXT_PUBLIC_API_URL = "http://localhost:3000";
 
   beforeEach(() => {
     fetchMock.resetMocks();
     setErrorMessage = jest.fn();
+    setMedicines = jest.fn();
   });
 
-  it("fetches data and updates state with successful API response", async () => {
-    const mockData = { results: [{ matching_name: "Tylenol" }] };
-    fetchMock.mockResponseOnce(JSON.stringify(mockData));
+  const callHandleSearch = () => handleSearch(
+    "Tylenol",
+    "English",
+    setMedicines,
+    NEXT_PUBLIC_API_URL,
+    setErrorMessage,
+  );
 
-    const setMedicines = jest.fn();
-    const NEXT_PUBLIC_API_URL = "http://localhost:3000";
-
-    await handleSearch(
-      "Tylenol",
-      "English",
-      "",
-      setMedicines,
-      NEXT_PUBLIC_API_URL,
-      setErrorMessage,
-    );
-
+  const expectFetchCalledWith = () => {
     expect(fetchMock).toHaveBeenCalledTimes(1);
     expect(fetchMock).toHaveBeenCalledWith(
       `${NEXT_PUBLIC_API_URL}/fuzzymatching/`,
       {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          query: "Tylenol",
-          target_language: "English",
-          source_language: "",
-        }),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ query: "Tylenol", source_language: "English" }),
       },
     );
+  };
+
+  it("fetches data and updates state with successful API response", async () => {
+    const mockData = { results: [{ matching_name: "Tylenol" }] };
+    fetchMock.mockResponseOnce(JSON.stringify(mockData));
+
+    await callHandleSearch();
+
+    expectFetchCalledWith();
     expect(setMedicines).toHaveBeenCalledWith(mockData.results);
-    expect(setErrorMessage).toHaveBeenCalledWith(null); // Expect it to clear any previous error
+    expect(setErrorMessage).toHaveBeenCalledWith(null);
   });
 
   it("throws an error when the API request fails", async () => {
     fetchMock.mockRejectOnce(new Error("Fetch failed"));
 
-    const setMedicines = jest.fn();
-    const NEXT_PUBLIC_API_URL = "http://localhost:3000";
-
-    await handleSearch(
-      "Tylenol",
-      "English",
-      "",
-      setMedicines,
-      NEXT_PUBLIC_API_URL,
-      setErrorMessage,
-    );
+    await callHandleSearch();
 
     expect(setErrorMessage).toHaveBeenCalledWith(
       "Unable to connect to the service. Please try again later.",
@@ -83,17 +72,7 @@ describe("handleSearch", () => {
   it("throws an error when the API response status is not ok (200)", async () => {
     fetchMock.mockResponseOnce("", { status: 404 });
 
-    const setMedicines = jest.fn();
-    const NEXT_PUBLIC_API_URL = "http://localhost:3000";
-
-    await handleSearch(
-      "Tylenol",
-      "English",
-      "",
-      setMedicines,
-      NEXT_PUBLIC_API_URL,
-      setErrorMessage,
-    );
+    await callHandleSearch();
 
     expect(setErrorMessage).toHaveBeenCalledWith(
       "Unable to connect to the service. Please try again later.",
@@ -105,33 +84,9 @@ describe("handleSearch", () => {
     const mockData = { results: [] };
     fetchMock.mockResponseOnce(JSON.stringify(mockData));
 
-    const setMedicines = jest.fn();
-    const NEXT_PUBLIC_API_URL = "http://localhost:3000";
+    await callHandleSearch();
 
-    await handleSearch(
-      "Tylenol",
-      "English",
-      "",
-      setMedicines,
-      NEXT_PUBLIC_API_URL,
-      setErrorMessage,
-    );
-
-    expect(fetchMock).toHaveBeenCalledTimes(1);
-    expect(fetchMock).toHaveBeenCalledWith(
-      `${NEXT_PUBLIC_API_URL}/fuzzymatching/`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          query: "Tylenol",
-          target_language: "English",
-          source_language: "",
-        }),
-      },
-    );
+    expectFetchCalledWith();
     expect(setMedicines).toHaveBeenCalledWith([]);
     expect(setErrorMessage).toHaveBeenCalledWith("No results found.");
   });
