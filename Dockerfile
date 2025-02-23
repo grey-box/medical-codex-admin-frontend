@@ -2,6 +2,7 @@
 FROM node:20-alpine AS build
 
 #Set Environment Variables (Used on Coolify)
+ARG NEXT_PUBLIC_API_URL
 ENV NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}
 
 WORKDIR /app
