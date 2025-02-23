@@ -1,7 +1,7 @@
 # Build stage
-FROM node:20-alpine AS build
+FROM node:23-alpine AS build
 
-#Set Environment Variables (Used on Coolify)
+# Set Environment Variables (Used on Coolify)
 ARG NEXT_PUBLIC_API_URL
 ENV NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}
 
@@ -25,19 +25,19 @@ COPY src ./src
 RUN npm run build
 
 # Production stage
-FROM nginx:alpine
+FROM node:23-alpine
 
-# Remove default nginx static assets
-RUN rm -rf /usr/share/nginx/html/*
+WORKDIR /app
 
-# Copy built files from the previous stage
-COPY --from=build /app/dist /usr/share/nginx/html
+# Copy built files and necessary runtime files from the build stage
+COPY --from=build /app/next.config.js ./
+COPY --from=build /app/public ./public
+COPY --from=build /app/.next ./.next
+COPY --from=build /app/node_modules ./node_modules
+COPY --from=build /app/package.json ./package.json
 
-# Copy nginx configuration
-COPY nginx.conf /etc/nginx/nginx.conf
+# Expose port 3000 (default for Next.js)
+EXPOSE 3000
 
-# Expose port 8080
-EXPOSE 8080
-
-# Start nginx
-CMD ["nginx", "-g", "daemon off;"]
+# Start the Next.js application
+CMD ["npm", "start"]
