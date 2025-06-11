@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 import SocialMediaIcons from "@/components/SocialMediaIcons";
+import FontSizeControl from "@/components/miscellaneous/FrontSize/FontSizeControl";
 
 const Navbar: FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -56,12 +57,14 @@ const Navbar: FC = () => {
 
         <div className="items-center hidden space-x-4 md:flex">
           <SocialMediaIcons />
+          <FontSizeControl />
         </div>
       </div>
 
       {isOpen && (
         <div className="md:hidden flex flex-col items-center space-y-4 bg-[#2e7c64] py-4">
           <SocialMediaIcons />
+          <FontSizeControl />
         </div>
       )}
     </nav>
