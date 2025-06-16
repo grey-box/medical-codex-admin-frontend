@@ -1,39 +1,35 @@
 # Build stage
-FROM node:20-alpine AS build
+FROM node:23-alpine AS builder
 
 WORKDIR /app
 
-# Copy package.json and package-lock.json (if available)
+# Copy package.json and package-lock.json
 COPY package*.json ./
 
 # Install dependencies
-RUN npm ci --only=production
+RUN npm ci
 
-# Copy only necessary files for the build
-COPY *.json ./
-COPY *.js ./
-COPY *.ts ./
-COPY cypress ./cypress
-COPY public ./public
-COPY src ./src
+# Copy all project files
+COPY . .
 
 # Build the application
 RUN npm run build
 
 # Production stage
-FROM nginx:alpine
+FROM node:23-alpine AS runner
 
-# Remove default nginx static assets
-RUN rm -rf /usr/share/nginx/html/*
+WORKDIR /app
 
-# Copy built files from the previous stage
-COPY --from=build /app/dist /usr/share/nginx/html
+ENV NODE_ENV=production
 
-# Copy nginx configuration
-COPY nginx.conf /etc/nginx/nginx.conf
+# Copy necessary files from builder stage
+COPY --from=builder /app/public ./public
+COPY --from=builder /app/package.json ./package.json
+COPY --from=builder /app/.next/standalone ./
+COPY --from=builder /app/.next/static ./.next/static
 
-# Expose port 8080
-EXPOSE 8080
+# Expose port 3000
+EXPOSE 3000
 
-# Start nginx
-CMD ["nginx", "-g", "daemon off;"]
+# Start the application
+CMD ["node", "server.js"]
