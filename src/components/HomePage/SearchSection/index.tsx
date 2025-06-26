@@ -2,6 +2,7 @@ import React, { FC, useState } from "react";
 import SectionError from "@/components/HomePage/SectionError";
 import { validateInput } from "@/utils/validation";
 import Dropdown from "@/components/ui/Dropdown";
+import FileSelectorModal from "@/components/ui/modals/FileSelectorModal";
 
 interface SearchSectionProps {
   inputSearch: string;
@@ -62,6 +63,7 @@ const SearchSection: FC<SearchSectionProps> = ({
           value={sourceLanguage}
           data-testid="source-language-dropdown"
         />
+        <FileSelectorModal></FileSelectorModal>
         <input
           type="text"
           className="w-full md:w-1/2 h-12 text-base font-inter font-semibold text-[#044677] text-center shadow-md border border-gray-300 rounded-md focus:border-[#2f876e] focus:ring-[#2f876e] focus:outline-none p-2"
