@@ -1,5 +1,4 @@
 import React, { useRef, useEffect, useState } from "react";
-import { FaSleigh } from "react-icons/fa";
 
 interface Props {
   onPhotoCaptured: (file: File) => void;
