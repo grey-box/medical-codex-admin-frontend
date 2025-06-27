@@ -41,6 +41,7 @@ const HomePage: FC = () => {
     setLoadingSearch(true);
 
     if (uploadedFile) {
+      console.log("Performing OCR Search");
       await handleOcrSearch(
         uploadedFile,
         sourceLanguage,
@@ -48,8 +49,8 @@ const HomePage: FC = () => {
         NEXT_PUBLIC_API_URL,
         setSearchError,
       );
-      console.log("Performing OCR Search");
     } else {
+      console.log("Performing Fuzzy Search");
       await handleFuzzySearch(
         inputSearch,
         sourceLanguage,

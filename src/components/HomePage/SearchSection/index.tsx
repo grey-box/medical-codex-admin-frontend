@@ -42,21 +42,24 @@ const SearchSection: FC<SearchSectionProps> = ({
   const [fileUrl, setFileUrl] = useState<string | null>(null);
 
   const validateAndSearch = () => {
-    const { sanitizedInput, invalidChars } = validateInput(inputSearch);
-
-    setInvalidChars(invalidChars);
-
-    if (!sanitizedInput.trim()) {
-      setSearchError("Search input cannot be empty or invalid.");
-      return;
-    }
     if (!sourceLanguage.trim()) {
       setSearchError("Source language cannot be empty.");
       return;
     }
 
+    if (!uploadedFile) {
+      const { sanitizedInput, invalidChars } = validateInput(inputSearch);
+      setInvalidChars(invalidChars);
+
+      if (!sanitizedInput.trim()) {
+        setSearchError("Search input cannot be empty or invalid.");
+        return;
+      }
+
+      setInputSearch(sanitizedInput);
+    }
+
     setSearchError(null);
-    setInputSearch(sanitizedInput);
     handleSearch();
   };
 
