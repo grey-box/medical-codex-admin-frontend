@@ -11,7 +11,7 @@
 // 4. It should set an error message when no results are returned.
 
 import { expect } from "@jest/globals";
-import handleSearch from "../handleSearch";
+import handleSearch from "../handleSearch/fuzzymatching";
 import fetchMock from "jest-fetch-mock";
 
 fetchMock.enableMocks();
@@ -27,13 +27,14 @@ describe("handleSearch", () => {
     setMedicines = jest.fn();
   });
 
-  const callHandleSearch = () => handleSearch(
-    "Tylenol",
-    "English",
-    setMedicines,
-    NEXT_PUBLIC_API_URL,
-    setErrorMessage,
-  );
+  const callHandleSearch = () =>
+    handleSearch(
+      "Tylenol",
+      "English",
+      setMedicines,
+      NEXT_PUBLIC_API_URL,
+      setErrorMessage,
+    );
 
   const expectFetchCalledWith = () => {
     expect(fetchMock).toHaveBeenCalledTimes(1);

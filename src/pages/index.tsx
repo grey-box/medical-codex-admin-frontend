@@ -2,12 +2,13 @@ import React, { useState, FC, useEffect } from "react";
 import SearchSection from "@/components/HomePage/SearchSection";
 import ResultsSection from "@/components/HomePage/ResultsSection";
 import TranslateSection from "@/components/HomePage/TranslateSection";
-import handleSearch from "@/utils/handleSearch";
+import handleSearch from "@/utils/handleSearch/fuzzymatching";
 import handleTranslate from "@/utils/handleTranslate";
 import HelpModal from "@/components/ui/modals/HelpModal";
 import Head from "next/head";
 
-const NEXT_PUBLIC_API_URL: string | undefined = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080' ;
+const NEXT_PUBLIC_API_URL: string | undefined =
+  process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080";
 
 const languages = ["English", "Ukrainian", "Russian", "French"];
 
@@ -17,15 +18,15 @@ const HomePage: FC = () => {
   }, []);
   const [inputSearch, setInputSearch] = useState<string>("");
   const [outputTranslation, setOutputTranslation] = useState<string>("");
-  const [medicines, setMedicines] = useState<Array<{
-    matching_algorithm: string,
-    matching_name: string,
-    matching_row_number: number,
-    matching_source: number,
-    matching_uid: number,
-  }>>(
-    [],
-  );
+  const [medicines, setMedicines] = useState<
+    Array<{
+      matching_algorithm: string;
+      matching_name: string;
+      matching_row_number: number;
+      matching_source: number;
+      matching_uid: number;
+    }>
+  >([]);
   const [selectedMedicine, setSelectedMedicine] = useState<string>("");
   const [targetLanguage, setTargetLanguage] = useState<string>("");
   const [sourceLanguage, setSourceLanguage] = useState<string>("");
@@ -49,7 +50,9 @@ const HomePage: FC = () => {
   const handleTranslateAction = async (): Promise<string | null> => {
     setLoadingTranslate(true);
     try {
-      const selectedMedicineObject = medicines.find(med => med.matching_name === selectedMedicine);
+      const selectedMedicineObject = medicines.find(
+        (med) => med.matching_name === selectedMedicine,
+      );
       if (!selectedMedicineObject) {
         setTranslateError("Selected medicine not found in the results.");
         return null;
