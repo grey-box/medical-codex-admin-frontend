@@ -3,6 +3,7 @@ import SectionError from "@/components/HomePage/SectionError";
 import { validateInput } from "@/utils/validation";
 import Dropdown from "@/components/ui/Dropdown";
 import FileSelectorModal from "@/components/ui/modals/FileSelectorModal";
+import FilePreviewModal from "@/components/ui/modals/FilePreviewModal";
 import { FiFile } from "react-icons/fi"; // Feather Icons for file icon
 
 interface SearchSectionProps {
@@ -34,6 +35,10 @@ const SearchSection: FC<SearchSectionProps> = ({
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const [isPreviewOpen, setIsPreviewOpen] = useState(false);
+
+  const [fileUrl, setFileUrl] = useState<string | null>(null);
+
   const validateAndSearch = () => {
     const { sanitizedInput, invalidChars } = validateInput(inputSearch);
 
@@ -58,12 +63,14 @@ const SearchSection: FC<SearchSectionProps> = ({
 
   const handleFileSelected = (file: File) => {
     setUploadedFile(file);
+    setFileUrl(URL.createObjectURL(file));
     setIsModalOpen(false);
   };
 
   const clearUploadedFile = () => {
     setUploadedFile(null);
     setInputSearch("");
+    setFileUrl(null);
   };
 
   return (
@@ -96,10 +103,19 @@ const SearchSection: FC<SearchSectionProps> = ({
           setIsOpen={setIsModalOpen}
           onFileSelected={handleFileSelected}
         ></FileSelectorModal>
+        {isPreviewOpen && fileUrl && (
+          <FilePreviewModal
+            fileUrl={fileUrl}
+            onClose={() => setIsPreviewOpen(false)}
+          />
+        )}
         {uploadedFile ? (
           <div className="flex items-center w-full md:w-1/2 h-12 border border-gray-300 rounded-md shadow-md px-3 bg-white">
             <FiFile className="text-blue-400 mr-3 text-2xl" />
-            <span className="truncate font-semibold text-[#044677]">
+            <span
+              className="truncate font-semibold text-[#044677] cursor-pointer hover:underline"
+              onClick={() => setIsPreviewOpen(true)}
+            >
               {uploadedFile.name}
             </span>
             <button
