@@ -11,7 +11,7 @@
 // 4. It should set an error message when no results are returned.
 
 import { expect } from "@jest/globals";
-import handleSearch from "../handleSearch/fuzzymatching";
+import handleFuzzySearch from "../handleSearch/fuzzymatching";
 import fetchMock from "jest-fetch-mock";
 
 fetchMock.enableMocks();
@@ -28,7 +28,7 @@ describe("handleSearch", () => {
   });
 
   const callHandleSearch = () =>
-    handleSearch(
+    handleFuzzySearch(
       "Tylenol",
       "English",
       setMedicines,

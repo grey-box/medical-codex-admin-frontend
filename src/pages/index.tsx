@@ -2,7 +2,8 @@ import React, { useState, FC, useEffect } from "react";
 import SearchSection from "@/components/HomePage/SearchSection";
 import ResultsSection from "@/components/HomePage/ResultsSection";
 import TranslateSection from "@/components/HomePage/TranslateSection";
-import handleSearch from "@/utils/handleSearch/fuzzymatching";
+import handleFuzzySearch from "@/utils/handleSearch/fuzzymatching";
+import handleOcrSearch from "@/utils/handleSearch/OCR";
 import handleTranslate from "@/utils/handleTranslate";
 import HelpModal from "@/components/ui/modals/HelpModal";
 import Head from "next/head";
@@ -34,16 +35,30 @@ const HomePage: FC = () => {
   const [translateError, setTranslateError] = useState<string | null>(null);
   const [loadingSearch, setLoadingSearch] = useState<boolean>(false);
   const [loadingTranslate, setLoadingTranslate] = useState<boolean>(false);
+  const [uploadedFile, setUploadedFile] = useState<File | null>(null);
 
   const handleSearchAction = async () => {
     setLoadingSearch(true);
-    await handleSearch(
-      inputSearch,
-      sourceLanguage,
-      setMedicines,
-      NEXT_PUBLIC_API_URL,
-      setSearchError,
-    );
+
+    if (uploadedFile) {
+      await handleOcrSearch(
+        uploadedFile,
+        sourceLanguage,
+        setMedicines,
+        NEXT_PUBLIC_API_URL,
+        setSearchError,
+      );
+      console.log("Performing OCR Search");
+    } else {
+      await handleFuzzySearch(
+        inputSearch,
+        sourceLanguage,
+        setMedicines,
+        NEXT_PUBLIC_API_URL,
+        setSearchError,
+      );
+    }
+
     setLoadingSearch(false);
   };
 
@@ -125,6 +140,8 @@ const HomePage: FC = () => {
           searchError={searchError}
           setSearchError={setSearchError}
           loading={loadingSearch}
+          uploadedFile={uploadedFile}
+          setUploadedFile={setUploadedFile}
         />
 
         <ResultsSection

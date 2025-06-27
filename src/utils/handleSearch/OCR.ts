@@ -1,5 +1,5 @@
-const handleFuzzySearch = async (
-  inputSearch: string,
+const handleOcrSearch = async (
+  uploadFile: File,
   sourceLanguage: string,
   setMedicines: (
     data: Array<{
@@ -20,31 +20,26 @@ const handleFuzzySearch = async (
     French: "fr",
   };
   const sourceLanguageCode = languageMapping[sourceLanguage];
-  if (!sourceLanguageCode) {
+  if (!sourceLanguage) {
     setSearchError(`Invalid source language: ${sourceLanguage}`);
     return;
   }
-  try {
-    const requestBody = {
-      query: inputSearch,
-      source_language: sourceLanguageCode,
-    };
-    console.log("Request parameters:", requestBody);
 
-    const response = await fetch(`${NEXT_PUBLIC_API_URL}/fuzzymatching/`, {
+  const formData = new FormData();
+  formData.append("image", uploadFile);
+  formData.append("source_language", sourceLanguageCode);
+
+  try {
+    const response = await fetch(`${NEXT_PUBLIC_API_URL}/ocrmatching/`, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(requestBody),
+      body: formData,
     });
+
     if (!response.ok) {
       setSearchError(`HTTP error! Status: ${response.status}`);
       return;
     }
     const data = await response.json();
-    console.log("Received data:", data);
-
     if (data.results.length === 0) {
       setSearchError("No results found.");
       setMedicines([]);
@@ -53,9 +48,9 @@ const handleFuzzySearch = async (
       setSearchError(null);
     }
   } catch (error) {
-    console.error("Error fetching data:", error);
-    setSearchError("Unable to connect to the service. Please try again later.");
+    console.error("OCR Error:", error);
+    setSearchError("Unable to connect to the OCR service.");
   }
 };
 
-export default handleFuzzySearch;
+export default handleOcrSearch;

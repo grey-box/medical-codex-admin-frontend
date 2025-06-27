@@ -16,6 +16,8 @@ interface SearchSectionProps {
   searchError: string | null;
   setSearchError: (msg: string | null) => void;
   loading: boolean;
+  uploadedFile: File | null;
+  setUploadedFile: (file: File | null) => void;
 }
 
 const SearchSection: FC<SearchSectionProps> = ({
@@ -28,10 +30,10 @@ const SearchSection: FC<SearchSectionProps> = ({
   setSearchError,
   searchError,
   loading,
+  uploadedFile,
+  setUploadedFile,
 }) => {
   const [invalidChars, setInvalidChars] = useState<string | null>(null);
-
-  const [uploadedFile, setUploadedFile] = useState<File | null>(null);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
