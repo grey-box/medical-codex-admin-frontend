@@ -26,7 +26,7 @@ const handleOcrSearch = async (
   }
 
   const formData = new FormData();
-  formData.append("image", uploadFile);
+  formData.append("file", uploadFile);
   formData.append("source_language", sourceLanguageCode);
 
   try {
