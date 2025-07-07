@@ -95,9 +95,10 @@ const SearchSection: FC<SearchSectionProps> = ({
           <button
             onClick={() => setIsModalOpen(true)}
             className="
-            bg-[#2e7c64] text-white font-bold rounded-lg shadow-md hover:bg-[#256c54] transition-all 
+            bg-[#2e7c64] text-white font-normal rounded-lg shadow-md hover:bg-[#256c54] transition-all 
               w-full h-12 md:w-12 md:h-12 
-              flex items-center justify-center text-[28px] leading-none
+              flex items-center justify-center 
+              text-[28px] leading-none text-center font-sans
             "
           >
             📷
