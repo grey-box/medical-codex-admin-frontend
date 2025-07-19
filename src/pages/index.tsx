@@ -7,7 +7,7 @@ import handleTranslate from "@/utils/handleTranslate";
 import HelpModal from "@/components/ui/modals/HelpModal";
 import Head from "next/head";
 
-const NEXT_PUBLIC_API_URL: string | undefined = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000' ;
+const NEXT_PUBLIC_API_URL: string | undefined = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080' ;
 
 const languages = ["English", "Ukrainian", "Russian", "French"];
 
