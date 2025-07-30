@@ -115,13 +115,13 @@ const SearchSection: FC<SearchSectionProps> = ({
           {!OCR_ENABLED && (
             <div
               className="
-  fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2
-    w-[90vw] md:w-auto max-w-md
-    bg-red-600 text-white text-base md:text-lg font-medium
-    px-4 py-3 rounded shadow-lg z-50
-    text-center group-hover:opacity-100 opacity-0
-    transition-opacity duration-300 pointer-events-none
-"
+                fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2
+                w-[90vw] md:w-auto max-w-md
+                bg-red-600 text-white text-base md:text-lg font-medium
+                px-4 py-3 rounded shadow-lg z-50
+                text-center group-hover:opacity-100 opacity-0
+                transition-opacity duration-300 pointer-events-none
+              "
             >
               Image search is currently disabled in the app settings.
             </div>
