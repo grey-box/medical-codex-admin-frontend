@@ -5,12 +5,14 @@ interface ResultsSectionProps {
   medicines: Array<{ matching_name: string }>;
   selectedMedicine: string;
   setSelectedMedicine: (value: string) => void;
+  dropdownLabel?: string;
 }
 
 const ResultsSection: FC<ResultsSectionProps> = ({
   medicines,
   selectedMedicine,
   setSelectedMedicine,
+  dropdownLabel = "Select Medicine",
 }) => {
   return (
     <div className="p-5" data-testid="results-section">
@@ -18,7 +20,7 @@ const ResultsSection: FC<ResultsSectionProps> = ({
         Results
       </div>
       <Dropdown
-        label="Select Medicine"
+        label={dropdownLabel}
         options={medicines.map((medicine) => medicine.matching_name)}
         onChange={setSelectedMedicine}
         value={selectedMedicine}

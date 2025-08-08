@@ -15,6 +15,7 @@ interface TranslateSectionProps {
   translateError: string | null;
   setTranslateError: (msg: string | null) => void;
   loading: boolean;
+  translateTitle?: string;
 }
 
 const TranslateSection: FC<TranslateSectionProps> = ({
@@ -28,6 +29,7 @@ const TranslateSection: FC<TranslateSectionProps> = ({
   translateError,
   setTranslateError,
   loading,
+  translateTitle = "Translate/Localize drug name...",
 }) => {
   const [isWarningModalOpen, setIsWarningModalOpen] = useState<boolean>(false);
   const [lastResortLoading, setLastResortLoading] = useState<boolean>(false);
@@ -76,7 +78,7 @@ const TranslateSection: FC<TranslateSectionProps> = ({
         className="m-2 text-lg font-semibold text-center font-inter"
         data-testid="translate-title"
       >
-        Translate/Localize drug name...
+        {translateTitle}
       </div>
       <div
         className="flex flex-col gap-5 md:flex-row md:items-center"
@@ -129,13 +131,6 @@ const TranslateSection: FC<TranslateSectionProps> = ({
           data-testid="translate-error"
         />
       </div>
-      {isWarningModalOpen && (
-        <LastResortWarnModal
-          onConfirm={handleConfirmEnable}
-          onCancel={() => setIsWarningModalOpen(false)}
-          data-testid="last-resort-modal"
-        />
-      )}
     </div>
   );
 };
