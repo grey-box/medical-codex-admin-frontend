@@ -2,6 +2,9 @@ import React, { FC, useState } from "react";
 import SectionError from "@/components/HomePage/SectionError";
 import { validateInput } from "@/utils/validation";
 import Dropdown from "@/components/ui/Dropdown";
+import FileSelectorModal from "@/components/ui/modals/FileSelectorModal";
+import FilePreviewModal from "@/components/ui/modals/FilePreviewModal";
+import { FiFile } from "react-icons/fi"; // Feather Icons for file icon
 
 interface SearchSectionProps {
   inputSearch: string;
@@ -13,6 +16,8 @@ interface SearchSectionProps {
   searchError: string | null;
   setSearchError: (msg: string | null) => void;
   loading: boolean;
+  uploadedFile: File | null;
+  setUploadedFile: (file: File | null) => void;
 }
 
 const SearchSection: FC<SearchSectionProps> = ({
@@ -25,29 +30,58 @@ const SearchSection: FC<SearchSectionProps> = ({
   setSearchError,
   searchError,
   loading,
+  uploadedFile,
+  setUploadedFile,
 }) => {
   const [invalidChars, setInvalidChars] = useState<string | null>(null);
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const [isPreviewOpen, setIsPreviewOpen] = useState(false);
+
+  const [fileUrl, setFileUrl] = useState<string | null>(null);
+
   const validateAndSearch = () => {
-    const { sanitizedInput, invalidChars } = validateInput(inputSearch);
-
-    setInvalidChars(invalidChars);
-
-    if (!sanitizedInput.trim()) {
-      setSearchError("Search input cannot be empty or invalid.");
-      return;
-    }
     if (!sourceLanguage.trim()) {
       setSearchError("Source language cannot be empty.");
       return;
     }
 
+    if (!uploadedFile) {
+      const { sanitizedInput, invalidChars } = validateInput(inputSearch);
+      setInvalidChars(invalidChars);
+
+      if (!sanitizedInput.trim()) {
+        setSearchError("Search input cannot be empty or invalid.");
+        return;
+      }
+
+      setInputSearch(sanitizedInput);
+    }
+
     setSearchError(null);
-    setInputSearch(sanitizedInput);
     handleSearch();
   };
 
-  const isButtonDisabled = !inputSearch || !sourceLanguage || loading;
+  const isButtonDisabled =
+    (!inputSearch && !uploadedFile) || !sourceLanguage || loading;
+
+  const handleFileSelected = (file: File) => {
+    setUploadedFile(file);
+    setFileUrl(URL.createObjectURL(file));
+    setIsModalOpen(false);
+  };
+
+  const clearUploadedFile = () => {
+    setUploadedFile(null);
+    setInputSearch("");
+    setFileUrl(null);
+  };
+
+  const OCR_ENABLED: boolean =
+    process.env.NEXT_PUBLIC_OCR_ENABLED?.toLowerCase() === "true" || false;
+
+  console.log("OCR enabled:", process.env.NEXT_PUBLIC_OCR_ENABLED);
 
   return (
     <div className="p-5">
@@ -62,14 +96,75 @@ const SearchSection: FC<SearchSectionProps> = ({
           value={sourceLanguage}
           data-testid="source-language-dropdown"
         />
-        <input
-          type="text"
-          className="w-full md:w-1/2 h-12 text-base font-inter font-semibold text-[#044677] text-center shadow-md border border-gray-300 rounded-md focus:border-[#2f876e] focus:ring-[#2f876e] focus:outline-none p-2"
-          placeholder="Word to search"
-          value={inputSearch}
-          onChange={(e) => setInputSearch(e.target.value)}
-          data-testid="search-input"
-        />
+        <div className="w-full md:w-auto flex justify-center md:justify-start group relative">
+          <button
+            onClick={() => {
+              if (OCR_ENABLED) setIsModalOpen(true);
+            }}
+            disabled={!OCR_ENABLED}
+            className={`
+              rounded-lg shadow-md transition-all flex items-center justify-center
+              w-full h-12 md:w-12 md:h-12 text-[28px] font-sans leading-none
+              ${OCR_ENABLED ? "bg-[#2e7c64] hover:bg-[#256c54] text-white" : "bg-gray-400 text-red-500 cursor-not-allowed"}
+            `}
+            aria-label={OCR_ENABLED ? "Enable OCR" : "OCR Disabled"}
+          >
+            📷
+          </button>
+
+          {!OCR_ENABLED && (
+            <div
+              className="
+                fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2
+                w-[90vw] md:w-auto max-w-md
+                bg-red-600 text-white text-base md:text-lg font-medium
+                px-4 py-3 rounded shadow-lg z-50
+                text-center group-hover:opacity-100 opacity-0
+                transition-opacity duration-300 pointer-events-none
+              "
+            >
+              Image search is currently disabled in the app settings.
+            </div>
+          )}
+        </div>
+        <FileSelectorModal
+          isOpen={isModalOpen}
+          setIsOpen={setIsModalOpen}
+          onFileSelected={handleFileSelected}
+        ></FileSelectorModal>
+        {isPreviewOpen && fileUrl && (
+          <FilePreviewModal
+            fileUrl={fileUrl}
+            onClose={() => setIsPreviewOpen(false)}
+          />
+        )}
+        {uploadedFile ? (
+          <div className="flex items-center w-full md:w-1/2 h-12 border border-gray-300 rounded-md shadow-md px-3 bg-white">
+            <FiFile className="text-blue-400 mr-3 text-2xl" />
+            <span
+              className="truncate font-semibold text-[#044677] cursor-pointer hover:underline"
+              onClick={() => setIsPreviewOpen(true)}
+            >
+              {uploadedFile.name}
+            </span>
+            <button
+              onClick={clearUploadedFile}
+              className="ml-auto text-red-500 hover:text-red-700 font-bold"
+              aria-label="Remove uploaded file"
+            >
+              &times;
+            </button>
+          </div>
+        ) : (
+          <input
+            type="text"
+            className="w-full md:w-1/2 h-12 text-base font-inter font-semibold text-[#044677] text-center shadow-md border border-gray-300 rounded-md focus:border-[#2f876e] focus:ring-[#2f876e] focus:outline-none p-2"
+            placeholder="Word to search"
+            value={inputSearch}
+            onChange={(e) => setInputSearch(e.target.value)}
+            data-testid="search-input"
+          />
+        )}
         <button
           className={`w-full md:w-1/4 h-12 rounded-lg shadow-md ${
             isButtonDisabled

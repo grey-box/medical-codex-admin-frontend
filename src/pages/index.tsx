@@ -2,12 +2,14 @@ import React, { useState, FC, useEffect } from "react";
 import SearchSection from "@/components/HomePage/SearchSection";
 import ResultsSection from "@/components/HomePage/ResultsSection";
 import TranslateSection from "@/components/HomePage/TranslateSection";
-import handleSearch from "@/utils/handleSearch";
+import handleFuzzySearch from "@/utils/handleSearch/fuzzymatching";
+import handleOcrSearch from "@/utils/handleSearch/OCR";
 import handleTranslate from "@/utils/handleTranslate";
 import HelpModal from "@/components/ui/modals/HelpModal";
 import Head from "next/head";
 
-const NEXT_PUBLIC_API_URL: string | undefined = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080' ;
+const NEXT_PUBLIC_API_URL: string | undefined =
+  process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080";
 
 const languages = ["English", "Ukrainian", "Russian", "French"];
 
@@ -17,15 +19,15 @@ const HomePage: FC = () => {
   }, []);
   const [inputSearch, setInputSearch] = useState<string>("");
   const [outputTranslation, setOutputTranslation] = useState<string>("");
-  const [medicines, setMedicines] = useState<Array<{
-    matching_algorithm: string,
-    matching_name: string,
-    matching_row_number: number,
-    matching_source: number,
-    matching_uid: number,
-  }>>(
-    [],
-  );
+  const [medicines, setMedicines] = useState<
+    Array<{
+      matching_algorithm: string;
+      matching_name: string;
+      matching_row_number: number;
+      matching_source: number;
+      matching_uid: number;
+    }>
+  >([]);
   const [selectedMedicine, setSelectedMedicine] = useState<string>("");
   const [targetLanguage, setTargetLanguage] = useState<string>("");
   const [sourceLanguage, setSourceLanguage] = useState<string>("");
@@ -33,23 +35,40 @@ const HomePage: FC = () => {
   const [translateError, setTranslateError] = useState<string | null>(null);
   const [loadingSearch, setLoadingSearch] = useState<boolean>(false);
   const [loadingTranslate, setLoadingTranslate] = useState<boolean>(false);
+  const [uploadedFile, setUploadedFile] = useState<File | null>(null);
 
   const handleSearchAction = async () => {
     setLoadingSearch(true);
-    await handleSearch(
-      inputSearch,
-      sourceLanguage,
-      setMedicines,
-      NEXT_PUBLIC_API_URL,
-      setSearchError,
-    );
+
+    if (uploadedFile) {
+      console.log("Performing OCR Search");
+      await handleOcrSearch(
+        uploadedFile,
+        sourceLanguage,
+        setMedicines,
+        NEXT_PUBLIC_API_URL,
+        setSearchError,
+      );
+    } else {
+      console.log("Performing Fuzzy Search");
+      await handleFuzzySearch(
+        inputSearch,
+        sourceLanguage,
+        setMedicines,
+        NEXT_PUBLIC_API_URL,
+        setSearchError,
+      );
+    }
+
     setLoadingSearch(false);
   };
 
   const handleTranslateAction = async (): Promise<string | null> => {
     setLoadingTranslate(true);
     try {
-      const selectedMedicineObject = medicines.find(med => med.matching_name === selectedMedicine);
+      const selectedMedicineObject = medicines.find(
+        (med) => med.matching_name === selectedMedicine,
+      );
       if (!selectedMedicineObject) {
         setTranslateError("Selected medicine not found in the results.");
         return null;
@@ -122,6 +141,8 @@ const HomePage: FC = () => {
           searchError={searchError}
           setSearchError={setSearchError}
           loading={loadingSearch}
+          uploadedFile={uploadedFile}
+          setUploadedFile={setUploadedFile}
         />
 
         <ResultsSection

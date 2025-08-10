@@ -51,6 +51,14 @@ const HelpModal: FC = () => {
                   </li>
                   <li className="flex flex-col">
                     <span className="text-xl font-semibold text-[#044677]">
+                      File Upload Button 📷
+                    </span>
+                    <span className="text-base font-thin text-gray-600">
+                      Upload an image file to use as the search basis
+                    </span>
+                  </li>
+                  <li className="flex flex-col">
+                    <span className="text-xl font-semibold text-[#044677]">
                       Input Textbox
                     </span>
                     <span className="text-base font-thin text-gray-600">
