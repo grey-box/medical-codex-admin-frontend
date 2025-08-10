@@ -3,6 +3,10 @@ FROM node:23-alpine AS builder
 
 WORKDIR /app
 
+#Accept build time env variables
+ARG NEXT_PUBLIC_OCR_ENABLED
+ENV NEXT_PUBLIC_OCR_ENABLED=$NEXT_PUBLIC_OCR_ENABLED
+
 # Copy package.json and package-lock.json
 COPY package*.json ./
 

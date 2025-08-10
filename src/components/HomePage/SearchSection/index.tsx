@@ -78,6 +78,11 @@ const SearchSection: FC<SearchSectionProps> = ({
     setFileUrl(null);
   };
 
+  const OCR_ENABLED: boolean =
+    process.env.NEXT_PUBLIC_OCR_ENABLED?.toLowerCase() === "true" || false;
+
+  console.log("OCR enabled:", process.env.NEXT_PUBLIC_OCR_ENABLED);
+
   return (
     <div className="p-5">
       <div className="m-2 text-lg font-semibold text-center font-inter">
@@ -91,18 +96,36 @@ const SearchSection: FC<SearchSectionProps> = ({
           value={sourceLanguage}
           data-testid="source-language-dropdown"
         />
-        <div className="w-full md:w-auto flex justify-center md:justify-start">
+        <div className="w-full md:w-auto flex justify-center md:justify-start group relative">
           <button
-            onClick={() => setIsModalOpen(true)}
-            className="
-            bg-[#2e7c64] text-white font-normal rounded-lg shadow-md hover:bg-[#256c54] transition-all 
-              w-full h-12 md:w-12 md:h-12 
-              flex items-center justify-center 
-              text-[28px] leading-none text-center font-sans
-            "
+            onClick={() => {
+              if (OCR_ENABLED) setIsModalOpen(true);
+            }}
+            disabled={!OCR_ENABLED}
+            className={`
+              rounded-lg shadow-md transition-all flex items-center justify-center
+              w-full h-12 md:w-12 md:h-12 text-[28px] font-sans leading-none
+              ${OCR_ENABLED ? "bg-[#2e7c64] hover:bg-[#256c54] text-white" : "bg-gray-400 text-red-500 cursor-not-allowed"}
+            `}
+            aria-label={OCR_ENABLED ? "Enable OCR" : "OCR Disabled"}
           >
             📷
           </button>
+
+          {!OCR_ENABLED && (
+            <div
+              className="
+                fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2
+                w-[90vw] md:w-auto max-w-md
+                bg-red-600 text-white text-base md:text-lg font-medium
+                px-4 py-3 rounded shadow-lg z-50
+                text-center group-hover:opacity-100 opacity-0
+                transition-opacity duration-300 pointer-events-none
+              "
+            >
+              Image search is currently disabled in the app settings.
+            </div>
+          )}
         </div>
         <FileSelectorModal
           isOpen={isModalOpen}
