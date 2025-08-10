@@ -1,4 +1,5 @@
 import Navbar from "@/components/Navbar";
+import FontSizeControl from "@/components/miscellaneous/FrontSize/FontSizeControl";
 
 interface BaseLayoutProps {
   children: React.ReactNode;
