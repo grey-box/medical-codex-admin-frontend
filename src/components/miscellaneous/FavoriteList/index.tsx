@@ -41,9 +41,7 @@ function FavoriteList({
   };
 
   const handleItemRemove = (itemIndex: number) => {
-    const newFavoriteList = favoriteList.filter(
-      (item, index) => index !== itemIndex,
-    );
+    const newFavoriteList = favoriteList.filter((_, index) => index !== itemIndex);
     onItemRemove(newFavoriteList);
   };
 

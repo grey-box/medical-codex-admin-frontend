@@ -7,7 +7,7 @@ import handleTranslate from "@/utils/handleTranslate";
 import HelpModal from "@/components/ui/modals/HelpModal";
 import Head from "next/head";
 
-const NEXT_PUBLIC_API_URL: string | undefined = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000' ;
+const NEXT_PUBLIC_API_URL: string | undefined = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080' ;
 
 const languages = ["English", "Ukrainian", "Russian", "French"];
 
@@ -17,7 +17,13 @@ const HomePage: FC = () => {
   }, []);
   const [inputSearch, setInputSearch] = useState<string>("");
   const [outputTranslation, setOutputTranslation] = useState<string>("");
-  const [medicines, setMedicines] = useState<Array<{ matching_name: string }>>(
+  const [medicines, setMedicines] = useState<Array<{
+    matching_algorithm: string,
+    matching_name: string,
+    matching_row_number: number,
+    matching_source: number,
+    matching_uid: number,
+  }>>(
     [],
   );
   const [selectedMedicine, setSelectedMedicine] = useState<string>("");
@@ -32,7 +38,6 @@ const HomePage: FC = () => {
     setLoadingSearch(true);
     await handleSearch(
       inputSearch,
-      targetLanguage,
       sourceLanguage,
       setMedicines,
       NEXT_PUBLIC_API_URL,
@@ -44,14 +49,19 @@ const HomePage: FC = () => {
   const handleTranslateAction = async (): Promise<string | null> => {
     setLoadingTranslate(true);
     try {
-      const translation = await handleTranslate(
-        selectedMedicine,
+      const selectedMedicineObject = medicines.find(med => med.matching_name === selectedMedicine);
+      if (!selectedMedicineObject) {
+        setTranslateError("Selected medicine not found in the results.");
+        return null;
+      }
+      return await handleTranslate(
+        selectedMedicineObject,
         targetLanguage,
         setOutputTranslation,
         NEXT_PUBLIC_API_URL,
       );
-      return translation;
-    } catch {
+    } catch (error) {
+      console.error("Translation error:", error);
       setTranslateError("Translation failed.");
       return null;
     } finally {
