@@ -10,9 +10,11 @@ interface SearchSectionProps {
   setSourceLanguage: (value: string) => void;
   handleSearch: () => void;
   languages: string[];
-  searchError: string | null;
   setSearchError: (msg: string | null) => void;
+  searchError: string | null;
   loading: boolean;
+  searchTitle?: string;
+  searchPlaceholder?: string;
 }
 
 const SearchSection: FC<SearchSectionProps> = ({
@@ -25,6 +27,8 @@ const SearchSection: FC<SearchSectionProps> = ({
   setSearchError,
   searchError,
   loading,
+  searchTitle = "Search for drug name...",
+  searchPlaceholder = "Word to search",
 }) => {
   const [invalidChars, setInvalidChars] = useState<string | null>(null);
 
@@ -52,7 +56,7 @@ const SearchSection: FC<SearchSectionProps> = ({
   return (
     <div className="p-5">
       <div className="m-2 text-lg font-semibold text-center font-inter">
-        Search for drug name...
+        {searchTitle}
       </div>
       <div className="flex flex-col gap-5 md:flex-row md:items-center">
         <Dropdown
@@ -65,7 +69,7 @@ const SearchSection: FC<SearchSectionProps> = ({
         <input
           type="text"
           className="w-full md:w-1/2 h-12 text-base font-inter font-semibold text-[#044677] text-center shadow-md border border-gray-300 rounded-md focus:border-[#2f876e] focus:ring-[#2f876e] focus:outline-none p-2"
-          placeholder="Word to search"
+          placeholder={searchPlaceholder}
           value={inputSearch}
           onChange={(e) => setInputSearch(e.target.value)}
           data-testid="search-input"
